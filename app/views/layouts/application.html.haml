@@ -44,6 +44,56 @@
               .user-list__todo--box
                 %ul.user-list__todo--list
                   %li.user-list__todo--msg
+            %li.user-list__box
+              = link_to (/brand) class: 'user-list__mypage' do
+                顔
+                マイページ
+              .user-list__mypage--box
+                .profile
+                  %figure.profile__image-and-user-name
+                    .profile__image
+                      画像
+                    %figcaption.profile__name
+                      名前
+                  .profile__status
+                    = link_to (/) class: 'profile__statuse--valuation' do
+                      評価数：０
+                    = link_to (/) class: 'profile__status--item' do
+                      出品数：０
+                  %ul.profile__asset
+                    %li.profile__sales
+                      = link_to (/) class: 'profile__sales--link' do
+                        .profile__sales--name
+                          売上金
+                        .profile__sales--yen
+                          ¥0
+                    %li.profile__point
+                      = link_to (/) class: 'profile__point--link' do
+                        .profile__point--name
+                          ポイント
+                        .profile__point--number
+                          P0
+                  .profile__item
+                    %ul.item-status
+                      %li.item-status__box
+                        = link_to (/) class: 'item-status__nice' do
+                          いいね！一覧
+                      %li.item-status__box
+                        = link_to (/) class: 'item-status__exhibiting' do
+                          出品した商品 - 出品中
+                      %li.item-status__box
+                        = link_to (/) class: 'item-status__transaction' do
+                          出品した商品 - 取引中
+                      %li.item-status__box
+                        = link_to (/) class: 'item-status__sold' do
+                          出品した商品 - 売却済み
+                      %li.item-status__box
+                        = link_to (/) class: 'item-status__purchased' do
+                          購入した商品 - 取引中
+                      %li.item-status__box
+                        = link_to (/) class: 'item-status__past_transactions' do
+                          購入した商品 - 過去の取引
+
     = yield
 
     .go-sell
