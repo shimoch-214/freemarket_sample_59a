@@ -30,6 +30,13 @@
                 ブランドから探す
               .item-tag__brand--box
                 //ブランドリスト追加予定
+          %ul.user-list
+            %li.user-list__box
+              = link_to (/mypage/notification), class: 'user-list__notice' do
+                鈴
+                お知らせ
+              .user-list__notice--box
+                .user-list__notice--msg
     = yield
 
     .go-sell
