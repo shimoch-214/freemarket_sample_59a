@@ -18,7 +18,18 @@
           = form_tag( '_path', method: :get), class: 'item-search' do
             = text_field_teg :カラム名
             = submit_tag  '検索', :name => nil
-            
+        .header__memu--paragraph2
+          .item-tag
+            .item-tag__box
+              = link_to (/category), class: 'item-tag__category--name' do
+                カテゴリーから探す
+              .item-tag__category--box
+                //カテゴリーリスト追加予定
+            .item-tag__box
+              = link_to (/brand), class: 'item-tag__brand--name' do
+                ブランドから探す
+              .item-tag__brand--box
+                //ブランドリスト追加予定
     = yield
 
     .go-sell
