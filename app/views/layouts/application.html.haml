@@ -37,6 +37,13 @@
                 お知らせ
               .user-list__notice--box
                 .user-list__notice--msg
+            %li.user-list__box
+              = link_to (/brand) class: 'user-list__todo' do
+                レ
+                やることリスト
+              .user-list__todo--box
+                %ul.user-list__todo--list
+                  %li.user-list__todo--msg
     = yield
 
     .go-sell
