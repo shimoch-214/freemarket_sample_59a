@@ -8,6 +8,17 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+
+    %header.header
+      .header__memu
+        .header__memu--paragraph1
+          .site-name
+            = link_to (_path), class: 'site-name__logo' do
+              mercari
+          = form_tag( '_path', method: :get), class: 'item-search' do
+            = text_field_teg :カラム名
+            = submit_tag  '検索', :name => nil
+            
     = yield
 
     .go-sell
