@@ -1,3 +1,3 @@
 class UploadTest < ApplicationRecord
-  mount_uploader :image, ImageUploader, if: :image?
+  mount_uploader :image, ImageTestUploader, if: :image?
 end
