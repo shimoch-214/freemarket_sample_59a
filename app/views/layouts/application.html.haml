@@ -13,39 +13,39 @@
       .header__memu
         .header__memu--paragraph1
           .site-name
-            = link_to (_path), class: 'site-name__logo' do
+            = link_to (), class: 'site-name__logo' do
               mercari
-          = form_tag( '_path', method: :get), class: 'item-search' do
-            = text_field_teg :カラム名
-            = submit_tag  '検索', :name => nil
+          -# = form_tag( '_path', method: :get), class: 'item-search' do
+          -#   = text_field_teg :カラム名
+          -#   = submit_tag  '検索', :name => nil
         .header__memu--paragraph2
           .item-tag
             .item-tag__box
-              = link_to (/category), class: 'item-tag__category--name' do
+              = link_to (), class: 'item-tag__category--name' do
                 カテゴリーから探す
               .item-tag__category--box
                 //カテゴリーリスト追加予定
             .item-tag__box
-              = link_to (/brand), class: 'item-tag__brand--name' do
+              = link_to (), class: 'item-tag__brand--name' do
                 ブランドから探す
               .item-tag__brand--box
                 //ブランドリスト追加予定
           %ul.user-list
             %li.user-list__box
-              = link_to (/mypage/notification), class: 'user-list__notice' do
+              = link_to (), class: 'user-list__notice' do
                 鈴
                 お知らせ
               .user-list__notice--box
                 .user-list__notice--msg
             %li.user-list__box
-              = link_to (/brand) class: 'user-list__todo' do
+              = link_to (), class: 'user-list__todo' do
                 レ
                 やることリスト
               .user-list__todo--box
                 %ul.user-list__todo--list
                   %li.user-list__todo--msg
             %li.user-list__box
-              = link_to (/brand) class: 'user-list__mypage' do
+              = link_to (), class: 'user-list__mypage' do
                 顔
                 マイページ
               .user-list__mypage--box
@@ -56,19 +56,19 @@
                     %figcaption.profile__name
                       名前
                   .profile__status
-                    = link_to (/) class: 'profile__statuse--valuation' do
+                    = link_to (), class: 'profile__statuse--valuation' do
                       評価数：０
-                    = link_to (/) class: 'profile__status--item' do
+                    = link_to (), class: 'profile__status--item' do
                       出品数：０
                   %ul.profile__asset
                     %li.profile__sales
-                      = link_to (/) class: 'profile__sales--link' do
+                      = link_to (), class: 'profile__sales--link' do
                         .profile__sales--name
                           売上金
                         .profile__sales--yen
                           ¥0
                     %li.profile__point
-                      = link_to (/) class: 'profile__point--link' do
+                      = link_to (), class: 'profile__point--link' do
                         .profile__point--name
                           ポイント
                         .profile__point--number
@@ -76,28 +76,28 @@
                   .profile__item
                     %ul.item-status
                       %li.item-status__box
-                        = link_to (/) class: 'item-status__nice' do
+                        = link_to (), class: 'item-status__nice' do
                           いいね！一覧
                       %li.item-status__box
-                        = link_to (/) class: 'item-status__exhibiting' do
+                        = link_to (), class: 'item-status__exhibiting' do
                           出品した商品 - 出品中
                       %li.item-status__box
-                        = link_to (/) class: 'item-status__transaction' do
+                        = link_to (), class: 'item-status__transaction' do
                           出品した商品 - 取引中
                       %li.item-status__box
-                        = link_to (/) class: 'item-status__sold' do
+                        = link_to (), class: 'item-status__sold' do
                           出品した商品 - 売却済み
                       %li.item-status__box
-                        = link_to (/) class: 'item-status__purchased' do
+                        = link_to (), class: 'item-status__purchased' do
                           購入した商品 - 取引中
                       %li.item-status__box
-                        = link_to (/) class: 'item-status__past_transactions' do
+                        = link_to (), class: 'item-status__past_transactions' do
                           購入した商品 - 過去の取引
 
     = yield
 
     .go-sell
-      = link_to (/) class: 'go-sell__link' do
+      = link_to (), class: 'go-sell__link' do
         .go-sell__box
           .go-sell__name
             出品
