@@ -1,0 +1,10 @@
+%h1 UploadTests#index,
+%p Find me in app/views/upload_tests/index.html.haml
+
+= form_for @uploadtest, url: upload_tests_path do |f|
+  = f.file_field :image
+  = f.submit "Send"
+
+- @images.each do |image|
+  = image_tag image.image.url
+  -# = image.image
