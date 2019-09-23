@@ -16,7 +16,7 @@
             = link_to (), class: 'site-name__logo' do
               mercari
           = form_tag( '', method: :get, class: 'item-search') do
-            = text_field_tag :name, '何かお探しですか？', {class: 'item-search__field'}
+            = text_field_tag :name, '', class: 'item-search__field', placeholder: '何かお探しですか？'
             = submit_tag  '検索', :name => nil, class: 'item-search__submit'
         .header__menu--paragraph2
           .item-tag
@@ -32,6 +32,13 @@
                 //ブランドリスト追加予定
 
           %ul.user-list
+            %li.user-list__box
+              = link_to (), class: 'user-list__box--link' do
+                0
+                いいね一覧
+              .user-list__box--box
+                %ul.user-list__box--list
+                  %li.user-list__box--msg
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
                 鈴
