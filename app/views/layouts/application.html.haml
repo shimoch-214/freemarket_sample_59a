@@ -10,15 +10,15 @@
   %body
 
     %header.header
-      .header__memu
-        .header__memu--paragraph1
+      .header__menu
+        .header__menu--paragraph1
           .site-name
             = link_to (), class: 'site-name__logo' do
               mercari
-          -# = form_tag( '_path', method: :get), class: 'item-search' do
-          -#   = text_field_teg :カラム名
-          -#   = submit_tag  '検索', :name => nil
-        .header__memu--paragraph2
+          = form_tag( '', method: :get, class: 'item-search') do
+            = text_field_tag :name, '何かお探しですか？', {class: 'item-search__field'}
+            = submit_tag  '検索', :name => nil, class: 'item-search__submit'
+        .header__menu--paragraph2
           .item-tag
             .item-tag__box
               = link_to (), class: 'item-tag__category--name' do
@@ -30,25 +30,28 @@
                 ブランドから探す
               .item-tag__brand--box
                 //ブランドリスト追加予定
+
           %ul.user-list
             %li.user-list__box
-              = link_to (), class: 'user-list__notice' do
+              = link_to (), class: 'user-list__box--link' do
                 鈴
                 お知らせ
-              .user-list__notice--box
-                .user-list__notice--msg
+              .user-list__box--box
+                %ul.user-list__box--list
+                  %li.user-list__box--msg
             %li.user-list__box
-              = link_to (), class: 'user-list__todo' do
+              = link_to (), class: 'user-list__box--link' do
                 レ
                 やることリスト
-              .user-list__todo--box
-                %ul.user-list__todo--list
-                  %li.user-list__todo--msg
+              .user-list__box--box
+                %ul.user-list__box--list
+                  %li.user-list__box--msg
             %li.user-list__box
-              = link_to (), class: 'user-list__mypage' do
+              = link_to (), class: 'user-list__box--link' do
                 顔
                 マイページ
-              .user-list__mypage--box
+              .user-list__box--box
+
                 .profile
                   %figure.profile__image-and-user-name
                     .profile__image
@@ -56,22 +59,22 @@
                     %figcaption.profile__name
                       名前
                   .profile__status
-                    = link_to (), class: 'profile__statuse--valuation' do
+                    = link_to (), class: 'profile__status--name' do
                       評価数：０
-                    = link_to (), class: 'profile__status--item' do
+                    = link_to (), class: 'profile__status--name' do
                       出品数：０
                   %ul.profile__asset
-                    %li.profile__sales
-                      = link_to (), class: 'profile__sales--link' do
-                        .profile__sales--name
+                    %li.profile__asset--box
+                      = link_to (), class: 'profile__asset--link' do
+                        .profile__asset--name
                           売上金
-                        .profile__sales--yen
+                        .profile__asset--point
                           ¥0
-                    %li.profile__point
-                      = link_to (), class: 'profile__point--link' do
-                        .profile__point--name
+                    %li.profile__asset--box
+                      = link_to (), class: 'profile__asset--link' do
+                        .profile__asset--name
                           ポイント
-                        .profile__point--number
+                        .profile__asset--point
                           P0
                   .profile__item
                     %ul.item-status
