@@ -1,0 +1,33 @@
+.user-list{
+  display: flex;
+  position: relative;
+  &__box{
+    height: 44px;
+    position: relative;
+    padding: 0px 7px;
+    &--link{
+      -webkit-box-align: center;
+      align-items: center;
+      display: flex;
+      font-size: 14px;
+      height: 32px;
+      transform: scale(1);
+      transition: all 0.3s ease-out 0s;
+    }
+    &--box{
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+      display: none;
+      position: absolute;
+      top: 44px;
+      width: 320px;
+      z-index: 3;
+    }
+    &--list{
+      list-style: none;
+    }
+    &--msg{
+      position: relative;
+    }
+  }
+}

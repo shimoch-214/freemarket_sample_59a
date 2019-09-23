@@ -1,0 +1,43 @@
+.item-tag{
+  display: flex;
+  margin-left: -3px;
+  &__box{
+    cursor: pointer;
+    height: 44px;
+    position: relative;
+    z-index: 3;
+    padding: 0px 10px;
+  }
+  &__category{
+    &--name{
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 36px;
+      white-space: nowrap;
+    }
+    &--box{
+      display: none;
+      left: -34px;
+      position: absolute;
+      top: 44px;
+      z-index: 1;
+    }
+  }
+  &__brand{
+    &--name{
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 36px;
+      white-space: nowrap;
+    }
+    &--box{
+      display: none;
+      left: -34px;
+      position: absolute;
+      top: 44px;
+      z-index: 1;
+    }
+  }
+}
