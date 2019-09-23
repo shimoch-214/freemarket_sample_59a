@@ -7,9 +7,11 @@ set :application, 'freemarket_sample_59a'
 set :default_env, {
   rbenv_root: "/usr/local/rbenv",
   path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
-  # AWS_ACCESS_KEY_ID: Rails.application.credentials.aws[:access_key_id],
-  # AWS_SECRET_ACCESS_KEY: Rails.application.credentials.aws[:secret_access_key]
 }
+
+# set enviroment
+set :rails_env, "production"
+set :unicorn_rack_env, "production"
 
 # どのリポジトリからアプリをpullするかを指定する
 set :repo_url,  'https://github.com/shimoch-214/freemarket_sample_59a.git'
