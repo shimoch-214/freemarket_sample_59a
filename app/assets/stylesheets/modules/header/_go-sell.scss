@@ -1,9 +1,13 @@
 .go-sell{
-  bottom: 32px;
+  background-color: rgb(234, 53, 45);
+  border-radius: 50%;
   font-size: 22px;
   height: 160px;
-  right: 32px;
   width: 160px;
+  text-align: center;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
   &__link{
     display: block;
   }
@@ -13,6 +17,7 @@
     padding-top: 32px;
   }
   &__name{
+    color: rgb(255, 255, 255);
     font-size: 22px;
   }
 }
