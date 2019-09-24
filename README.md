@@ -12,9 +12,9 @@
 |description|text|default: "商品の説明はありません"|
 |condition|integer|null: false, index: true|
 ### Association
-- belongs_to :users
-- belongs_to :payments
-- belongs_to :brands
+- belongs_to :user
+- belongs_to :payment
+- belongs_to :brand
 - has_one :transactions
 - has_many :comments
 - has_many :likes
@@ -32,59 +32,60 @@
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|from_id|integer|null: false|
-|to_id|integer|null: false|
-|buyer_id|integer|null: false|
-|seller_id|integer|null: false|
 |email|string|null: false, index: true, unique: true|
-|phone_number|string| |
-|phone_number_sub|string| |
+|phone_number|string|null: false|
 |avator_image|string| |
 |password|string| |
 |password_confirmation|string| |
 |profile|text| |
 |card_id|integer| |
+|nickname|string|null: false|
+### Association
+- has_one :credit_cards
+- has_many :items
+- has_one :addresses
+- has-one :identifications
+- has_many :transactions 
+- has_many :ratings through: :
+- has_many :comments 
+- has_many :likes
+
+
+## addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
 |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|nickname|string|null: false|
-|adress_prefecture|string|null: false|
-|adress_city|string|null: false|
-|adress_street|string|null: false|
-|adress_building|string| |
-|adress_number|string|null: false|
-|birth_year|string|null: false|
-|birth_month|string|null: false|
-|birth_day|string|null: false|
+|zip_code|string|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|street|string|null: false|
+|building|string| |
+|phone_number_sub|string| |
 ### Association
-- has_one :credit_cards
-- has_many :items
-- has_many :transactions
-- has_many :ratings
-- has_many :comments
-- has_many :likes
+- belongs_to :user
 
 
 ## identificationsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|phone_number|string|null: false|
 |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|nickname|string|null: false|
-|adress_prefecture|string|null: false|
-|adress_city|string|null: false|
-|adress_street|string|null: false|
-|adress_building|string| |
-|adress_number|string|null: false|
+|zip_code|string| |
+|prefecture|string| |
+|city|string| |
+|street|string| |
+|building|string| |
 |birth_year|string|null: false|
 |birth_month|string|null: false|
 |birth_day|string|null: false|
 ### Association
-
+belongs_to :user
 
 ## transactionsテーブル
 |Column|Type|Options|
@@ -99,8 +100,8 @@
 |status|integer| |
 |parchased_at|date| |
 ### Association
-- belongs_to :items
-- belongs_to :users
+- belongs_to :item
+- belongs_to :user
 - has_many :payments
 
 
@@ -109,7 +110,7 @@
 |------|----|-------|
 |name|string|null: false, unique: true|
 ### Association
-- belongs_to :transactions
+- belongs_to :transaction
 - has_many :items
 
 
@@ -120,7 +121,7 @@
 |customer_id|string|null: false|
 |card_id|string|null: false|
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 
 ## ratingsテーブル
@@ -132,7 +133,7 @@
 |rate|integer|null: false|
 |position|boolean|null: false|
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 
 ## commentsテーブル
@@ -142,8 +143,8 @@
 |item|references|null: false, foreign_key: true|
 |user|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 
 ## messagesテーブル
@@ -152,7 +153,7 @@
 |text|text|null: false|
 |item|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :items
+- belongs_to :item
 
 
 ## likesテーブル
@@ -161,8 +162,8 @@
 |item|references|null: false, foreign_key: true|
 |user|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 
 ## imagesテーブル
@@ -171,7 +172,7 @@
 |name|string|null: false|
 |item|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :items
+- belongs_to :item
 
 
 ## categoriesテーブル
@@ -182,7 +183,7 @@
 |name|string|null: false|
 ### Association
 - has_many :items
-- belongs_to :sizes 
+- belongs_to :size
 
 
 ## sizesテーブル
