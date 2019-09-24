@@ -1,0 +1,37 @@
+.top-page
+  .top-page__size
+    .top-image
+    .popular-item-tag
+      %h2.popular-item-tag__title
+        人気の(カテゴリー)
+      %div.popular-item-tag__list--box
+        %ul.popular-item-tag__list
+          // 繰り返し処理を記述する
+          %li.popular-item-tag__a-list 
+            = link_to (), class: 'popular-item-tag__link' do
+              カテゴリー１
+          %li.popular-item-tag__a-list
+            = link_to (), class: 'popular-item-tag__link' do
+              カテゴリー2
+    .new-items
+      .new-items__box
+        .new-items__title
+          %h3.new-items__item-tag
+            (カテゴリー)新着アイテム
+          = link_to (), class: 'new-items__see-more' do
+            もっとみる
+            ＞
+        .new-items__list
+          .new-items__position
+            // アイテムプロフィールの部分テンプレ化と繰り返し処理を記述
+            .item-profile
+              = link_to (), class: 'item-profile__link' do
+                %figure.item-profile__main
+                  %figcaption.item-profile__title
+                    %span.item-profile__title--text
+                      ガンプラ
+                  .item-profile__image
+                    %span.item-profile__image--price
+                      ¥
+                      １０００
+                    .item-profile__image--item-image
