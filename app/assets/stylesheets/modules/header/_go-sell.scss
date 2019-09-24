@@ -20,4 +20,14 @@
     color: rgb(255, 255, 255);
     font-size: 22px;
   }
+  &__image{
+    max-width: 100%;
+    max-height: 100%;
+    color: rgb(255, 255, 255);
+    display: block;
+    width: 60px;
+    height: 54px;
+    margin-top: 8px;
+    margin: 5px auto 0px;
+  }
 }

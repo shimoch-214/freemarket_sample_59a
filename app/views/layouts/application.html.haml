@@ -14,7 +14,7 @@
         .header__menu--paragraph1
           .site-name
             = link_to (), class: 'site-name__logo' do
-              mercari
+              = image_tag "header", class: 'site-name__image'
           = form_tag( '', method: :get, class: 'item-search') do
             = text_field_tag :name, '', class: 'item-search__field', placeholder: '何かお探しですか？'
             = submit_tag  '検索', :name => nil, class: 'item-search__submit'
@@ -111,7 +111,7 @@
         .go-sell__box
           .go-sell__name
             出品
-          画像
+          = image_tag "camera", class: 'go-sell__image'
 
     %footer.footer
       .footer__paragraph1
