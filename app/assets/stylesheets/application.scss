@@ -15,6 +15,7 @@
  */
 @import "modules/devise/login-page";
 @import "config/reset";
+@import "font-awesome";
 
 @import "./modules/header/header";
 @import "./modules/header/site-name";
@@ -25,3 +26,9 @@
 @import "./modules/header/profile";
 @import "./modules/header/go-sell";
 @import "./modules/header/footer";
+
+// for mypages
+@import "./modules/mypages/mypage-contents";
+@import "./modules/mypages/side-bar";
+@import "./modules/mypages/mypage-user-icon";
+@import "./modules/mypages/mypage-tab-container";

@@ -1,0 +1,40 @@
+.mypage-user-icon {
+  background-image: image-url("user-top-bg.jpg");
+  height: 200px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a {
+    width: 100%;
+  }
+  &__fig {
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    border-radius: 50%;
+    }
+  h2 {
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: normal;
+    line-height: 1.4;
+    color: #333;
+  }
+  &__items {
+    display: flex;
+    margin-top: 8px;
+    justify-content: center;
+    &--item {
+      font-size: 14px;
+      color: #333;
+      margin: 0 8px;
+    }
+    &--num {
+      margin-left: 8px;
+      font-weight: bold;
+    }
+  }
+}
