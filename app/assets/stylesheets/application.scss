@@ -9,17 +9,17 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
  */
 
 @import "config/reset";
- 
+@import "font-awesome";
+@import "config/mixin";
+
+
 @import "./modules/devise/footer-user";
 @import "./modules/devise/header-user";
 @import "./modules/devise/login-user";
-
+@import "modules/devise/login-page";
 
 @import "./modules/header/header";
 @import "./modules/header/site-name";
@@ -30,4 +30,10 @@
 @import "./modules/header/profile";
 @import "./modules/header/go-sell";
 @import "./modules/header/footer";
-@import "font-awesome";
+
+// for mypages
+@import "./modules/mypages/mypage-contents";
+@import "./modules/mypages/side-bar";
+@import "./modules/mypages/mypage-user-icon";
+@import "./modules/mypages/mypage-tab-container";
+@import "./modules/mypages/mypage-profile-container"

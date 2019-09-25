@@ -1,0 +1,36 @@
+.side-bar {
+  width: 280px;
+  margin: 0 40px 0 0;
+  &__lists {
+    list-style: none;
+    &--item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 48px;
+      padding: 16px;
+      background: #fff;
+      font-size: 14px;
+      color: #333;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      border-bottom: solid  0.1em #f5f5f5;
+    }
+    .active {
+      background: #eee;
+      font-weight: 600;
+    }
+    &--arrow {
+      color: #ccc;
+    }
+    .arrow-active {
+      color: #333;
+    }
+  }
+  &__head {
+    font-size: 16px;
+    display: block;
+    margin: 40px 0 5px;
+    font-weight: bold;
+  }
+}

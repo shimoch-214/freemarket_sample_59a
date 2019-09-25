@@ -1,0 +1,11 @@
+%section.mypage-tab-container{style: 'margin-bottom: 40px;'}
+  %ul.mypage-tab-container__tabs
+    %li.mypage-tab-container__tabs--item.active
+      = link_to "お知らせ", "#"
+    %li.mypage-tab-container__tabs--item
+      = link_to "やることリスト", "#"
+  %ul.mypage-tab-container__content
+    - 5.times do
+      = render partial: 'mypages/tab-list'
+    %li.mypage-tab-container__content__go-all
+      = link_to "一覧を見る", "#"
