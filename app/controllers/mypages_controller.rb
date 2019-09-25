@@ -13,4 +13,8 @@ class MypagesController < ApplicationController
 
   def edit_identification
   end
+
+  def logout
+    
+  end
 end
