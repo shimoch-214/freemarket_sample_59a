@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title FreemarketSample59a
     = csrf_meta_tags
     = csp_meta_tag
@@ -17,16 +17,20 @@
               = image_tag "header", class: 'site-name__image'
           = form_tag( '', method: :get, class: 'item-search') do
             = text_field_tag :name, '', class: 'item-search__field', placeholder: '何かお探しですか？'
-            = submit_tag  '検索', :name => nil, class: 'item-search__submit'
+            = label_tag :search do
+              %i.fa.fa-search.item-search__submit
+            = submit_tag  '', :name => nil, class: 'item-search__submit', id: 'search'
         .header__menu--paragraph2
           .item-tag
             .item-tag__box
               = link_to (), class: 'item-tag__category--name' do
+                %i.fa.fa-list-ul
                 カテゴリーから探す
               .item-tag__category--box
                 //カテゴリーリスト追加予定
             .item-tag__box
               = link_to (), class: 'item-tag__brand--name' do
+                %i.fa.fa-tag
                 ブランドから探す
               .item-tag__brand--box
                 //ブランドリスト追加予定
@@ -34,28 +38,28 @@
           %ul.user-list
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
-                0
+                %i.fa.fa-heart
                 いいね一覧
               .user-list__box--box
                 %ul.user-list__box--list
                   %li.user-list__box--msg
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
-                鈴
+                %i.fa.fa-bell
                 お知らせ
               .user-list__box--box
                 %ul.user-list__box--list
                   %li.user-list__box--msg
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
-                レ
+                %i.fa.fa-check
                 やることリスト
               .user-list__box--box
                 %ul.user-list__box--list
                   %li.user-list__box--msg
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
-                顔
+                = image_tag "member_photo_noimage_thumb.png", class: 'user-list__image'
                 マイページ
               .user-list__box--box
 
@@ -111,7 +115,7 @@
         .go-sell__box
           .go-sell__name
             出品
-          = image_tag "camera", class: 'go-sell__image'
+          %i.fa.fa-camera.go-sell__image
 
     %footer.footer
       .footer__paragraph1

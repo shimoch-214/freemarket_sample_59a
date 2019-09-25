@@ -1,5 +1,8 @@
 .new-items{
   padding: 42px 0px 100px;
+  &__box:not(:first-child) {
+      margin-top: 60px;
+  }
   &__title{
     margin-bottom: 16px;
     align-items: flex-end;

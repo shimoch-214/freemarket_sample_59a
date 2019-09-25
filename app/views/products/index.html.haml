@@ -1,37 +1,37 @@
 .top-page
   .top-page__size
     .top-image
-    .popular-item-tag
-      %h2.popular-item-tag__title
-        人気の(カテゴリー)
-      %div.popular-item-tag__list--box
-        %ul.popular-item-tag__list
-          // 繰り返し処理を記述する
-          %li.popular-item-tag__a-list 
-            = link_to (), class: 'popular-item-tag__link' do
-              カテゴリー１
-          %li.popular-item-tag__a-list
-            = link_to (), class: 'popular-item-tag__link' do
-              カテゴリー2
-    .new-items
-      .new-items__box
-        .new-items__title
-          %h3.new-items__item-tag
-            (カテゴリー)新着アイテム
-          = link_to (), class: 'new-items__see-more' do
-            もっとみる
-            ＞
-        .new-items__list
-          .new-items__position
-            // アイテムプロフィールの部分テンプレ化と繰り返し処理を記述
-            .item-profile
-              = link_to (), class: 'item-profile__link' do
-                %figure.item-profile__main
-                  %figcaption.item-profile__title
-                    %span.item-profile__title--text
-                      ガンプラ
-                  .item-profile__image
-                    %span.item-profile__image--price
-                      ¥
-                      1000
-                    .item-profile__image--item-image
+    - tag = ["カテゴリー", "ブランド"]
+    - tag.each do |tag_name|
+      .popular-item-tag
+        %h2.popular-item-tag__title
+          = "人気の#{tag_name}"
+        %div.popular-item-tag__list--box
+          %ul.popular-item-tag__list
+            - for num in 1..4 do
+              %li.popular-item-tag__a-list 
+                = link_to (), class: 'popular-item-tag__link' do
+                  = "#{tag_name}#{num}"
+      .new-items
+        - for num in 1..4 do
+          .new-items__box
+            .new-items__title
+              %h3.new-items__item-tag
+                = "#{tag_name}#{num}新着アイテム"
+              = link_to (), class: 'new-items__see-more' do
+                もっとみる
+                ＞
+            .new-items__list
+              .new-items__position
+                - for num in 1..10 do
+                  .item-profile
+                    = link_to (), class: 'item-profile__link' do
+                      %figure.item-profile__main
+                        %figcaption.item-profile__title
+                          %span.item-profile__title--text
+                            ガンプラ
+                        .item-profile__image
+                          %span.item-profile__image--price
+                            ¥
+                            1000
+                          = image_tag 'sample_image_gandam.jpg', class: 'item-profile__image--item-image'
