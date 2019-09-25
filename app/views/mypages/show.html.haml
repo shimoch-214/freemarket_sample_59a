@@ -1,3 +1,17 @@
 .mypage-contents
   = render partial: 'mypages/side-bar'
-  = render partial: 'mypages/top'
+  .mypage-right
+    %section.mypage-user-icon
+      = link_to url: "#" do
+        %figure.mypage-user-icon__fig
+          = image_tag "user_no_photo.png", width: "60", height: "60"
+        %h2 shimoch
+        .mypage-user-icon__items
+          .mypage-user-icon__items--item
+            評価
+            %span.mypage-user-icon__items--num 100
+          .mypage-user-icon__items--item
+            出品数
+            %span.mypage-user-icon__items--num 100
+    = render partial: 'mypages/todo-notification'
+    = render partial: 'mypages/parchase'
