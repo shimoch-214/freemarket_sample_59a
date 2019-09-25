@@ -9,7 +9,9 @@ class MypagesController < ApplicationController
   end
 
   def profile
-    
+  end
+
+  def edit_identification
   end
 
   def logout

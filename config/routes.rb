@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get 'todo'
       get 'notification'
       get 'profile'
-
+      get 'identification', to: 'mypages#edit_identification'
       # メルカリのログアウトページurlは'/logout'になっているが、一旦ここに作る。
       get 'logout'
     end
