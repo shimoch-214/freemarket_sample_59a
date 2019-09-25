@@ -20,6 +20,7 @@
             = label_tag :search do
               %i.fa.fa-search.item-search__submit
             = submit_tag  '', :name => nil, class: 'item-search__submit', id: 'search'
+
         .header__menu--paragraph2
           .item-tag
             .item-tag__box
@@ -34,7 +35,6 @@
                 ブランドから探す
               .item-tag__brand--box
                 //ブランドリスト追加予定
-
           %ul.user-list
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
@@ -116,8 +116,125 @@
           .go-sell__name
             出品
           %i.fa.fa-camera.go-sell__image
+    
+    %aside.app-banner
+      .app-banner__size
+        .app-banner__inner
+          %h2
+            スマホで簡単フリマアプリ
+          %p
+            今すぐダウンロード！
+          .app-banner__icon
+            %figure.app-banner__icon--mercari
+              = image_tag 'mercari_icon.png', class: 'app-banner__mercari_icon'
+            %ul
+              %li
+                = image_tag 'app-store.svg', class: 'app-banner__app-store'
+              %li
+                = image_tag 'google-play.svg', class: 'app-banner__google-play'
+        %figure.app-banner__app-image
+          = image_tag 'download_content_pc.png', class: 'app-banner__download_content_pc'
 
     %footer.footer
-      .footer__paragraph1
-        mercari
+      %nav.footer__local-nav
+        .footer__sell
+          %h2.footer__head
+            メルカリについて
+          %ul.footer__list
+            %li.footer__a-list
+              = link_to () do
+                会社概要（運営会社）
+            %li.footer__a-list
+              = link_to () do
+                採用情報
+            %li.footer__a-list
+              = link_to () do
+                プレスリリース
+            %li.footer__a-list
+              = link_to () do
+                公式ブログ
+            %li.footer__a-list
+              = link_to () do
+                メルカリロゴ利用ガイドライン
+            %li.footer__a-list--social-link
+              = link_to () do
+                %i.fa.fa-twitter
+            %li.footer__a-list--social-link
+              = link_to () do
+                %i.fa.fa-facebook-square
+        .footer__sell
+          %h2.footer__head
+            ヘルプ＆ガイド
+          %ul.footer__list
+            %li.footer__a-list
+              = link_to () do
+                メルカリガイド
+            %li.footer__a-list
+              = link_to () do
+                らくらくメルカリ便
+            %li.footer__a-list
+              = link_to () do
+                ゆうゆうメルカリ便
+            %li.footer__a-list
+              = link_to () do
+                大型メルカリ便
+            %li.footer__a-list
+              = link_to () do
+                車体取引ガイド
+            %li.footer__a-list
+              = link_to () do
+                メルカリあんしん・あんぜん宣言！
+            %li.footer__a-list
+              = link_to () do
+                偽ブランド品撲滅への取り組み
+            %li.footer__a-list
+              = link_to () do
+                メルカリボックス
+        .footer__sell--width
+          %h2.footer__head
+            プライバシーと利用規約
+          .footer__inner-sell
+            %ul.footer__list
+              %li.footer__a-list
+                = link_to () do
+                  プライバシーポリシー
+              %li.footer__a-list
+                = link_to () do
+                  メルカリ利用規約
+              %li.footer__a-list
+                = link_to () do
+                  あんしんスマホサポート制度に関する利用特約
+              %li.footer__a-list
+                = link_to () do
+                  コンプライアンスポリシー
+          .footer__inner-sell
+            %ul.footer__list
+              %li.footer__a-list
+                = link_to () do
+                  個人データの安全管理に係る基本方針
+              %li.footer__a-list
+                = link_to () do
+                  特定商取引に関する表記
+              %li.footer__a-list
+                = link_to () do
+                  資金決済法に基づく表示
+              %li.footer__a-list
+                = link_to () do
+                  法令順守と犯罪抑止のために
+        .footer__sell--long
+          %h2.footer__head
+            国
+          %ul.footer__list
+            %li.footer__a-list
+              = link_to () do
+                日本
+            %li.footer__a-list
+              = link_to () do
+                United States
 
+      .footer__paragraph
+        = link_to (), class: 'footer__logo' do
+          = image_tag 'logo-white.svg'
+        %span.footer__copyright
+          %small
+            © 2019 Mercari

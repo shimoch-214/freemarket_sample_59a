@@ -1,10 +1,96 @@
 .footer{
-  background-color: rgb(34, 34, 34);
-    color: rgb(255, 255, 255);
-    font-size: 12px;
-    padding: 0px 20px 10px;
-  &__paragraph1{
-    width: 700px;
-    margin: 0px auto;
+  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+  font-weight: 500;
+  padding: 0 20px 10px 20px;
+  background: #212121;
+  color: #fff;
+  
+  &__local-nav{
+    width: 1020px;
+    margin: 0 auto;
+    overflow: auto;
+    a{
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.5em;
+      opacity: .7;
+    }
+  }
+  %__sell{
+    padding: 0 20px 0 0;
+    vertical-align: top;
+    display: block;
+    float: left;
+    margin-top: 18px;
+  }
+  &__sell:first-of-type{
+    @extend %__sell;
+    width: 20%;
+  }
+  &__sell{
+    @extend %__sell;
+    width: 23%;
+    &--width{
+      vertical-align: top;
+      display: block;
+      float: left;
+      margin-top: 18px;
+      padding: 0 40px 0 0;
+      width: 42%;
+      margin: 20px 0 0;
+    }
+    &--long{
+      @extend %__sell;
+      margin-top: 18px;
+      padding: 0;
+    }
+  }
+  &__head{
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  &__inner-sell:first-of-type{
+    padding: 0 20px 0 0;
+  }
+  &__inner-sell{
+    float: left;
+    vertical-align: top;
+    width: 50%;
+  }
+  &__list
+  &__a-list:first-child {
+    margin: 16px 0 0;
+  }
+  &__a-list{
+    margin: 14px 0 0;
+    &--social-link{
+      color: #fff;
+      margin: 14px 0 0;
+    }
+    &--social-link{
+      float: left;
+      padding-right: 18px;
+      a{
+        font-size: 200%;
+        opacity: 1;
+      }
+    }
+  }
+  &__paragraph{
+    margin: 30px auto 20px;
+    width: 1020px;
+    display: flex;
+  }
+  &__logo{
+
+  }
+  &__copyright{
+    width: 745px;
+    display: inline-block;
+    margin: 8px 0 8px;
+    text-align: center;
+    vertical-align: sub;
   }
 }

@@ -4,6 +4,7 @@
       margin-top: 60px;
   }
   &__title{
+    color: unset;
     margin-bottom: 16px;
     align-items: flex-end;
     display: flex;
@@ -20,7 +21,7 @@
     flex: 1 1 0%;
   }
   &__see-more{
-    color: rgb(0, 149, 238);
+    color: #0095EE;
     display: block;
     font-size: 14px;
     font-weight: 600;

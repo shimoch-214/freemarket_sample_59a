@@ -1,3 +1,11 @@
 .top-image{
   height: 390px;
+  img{
+    width: auto;
+    max-width: 680px;
+    padding-top: 28px;
+    display: block;
+    margin: 0 auto;
+    padding: 4px 0;
+  }
 }
