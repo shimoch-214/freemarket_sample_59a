@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'todo'
       get 'notification'
       get 'profile'
+      get 'identification', to: 'mypages#edit_identification'
     end
   end
 end

@@ -1,0 +1,69 @@
+.mypage-contents
+  = render partial: 'mypages/side-bar'
+  .mypage-right
+    %section.mypage-identification-container
+      %h3.mypage-identification-container__head
+        本人情報の登録
+      %form.mypage-identification-container__form
+        %p
+          お客さまの本人情報をご登録ください。
+          %br/
+          登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+        %p
+          = link_to "#" do
+            本人確認書類のアップロードについて
+            = fa_icon "chevron-right"
+        .mypage-identification-container__form__content
+          %label{}
+            お名前
+          %p
+            下中 大也
+        .mypage-identification-container__form__content
+          %label{}
+            お名前カナ
+          %p
+            シモナカ ダイヤ
+        .mypage-identification-container__form__content
+          %label{}
+            生年月日
+          %p
+            1991/02/02
+        .mypage-identification-container__form__content
+          %label{ for: "zip_code" }
+            郵便番号
+          %span.mypage-identification-container__form__content--arbitrary
+            任意
+          %input{ type: "text", value: "111-1111", id: "zip_code" }
+        .mypage-identification-container__form__content
+          %label{ for: "prefecture" }
+            都道府県
+          %span.mypage-identification-container__form__content--arbitrary
+            任意
+          %input{ type: "select", value: "あとで" }
+        .mypage-identification-container__form__content
+          %label{ for: "city" }
+            市区町村
+          %span.mypage-identification-container__form__content--arbitrary
+            任意
+          %input{ type: "text", value: "大阪市天王寺区", id: "city" }
+        .mypage-identification-container__form__content
+          %label{ for: "block" }
+            番地
+          %span.mypage-identification-container__form__content--arbitrary
+            任意
+          %input{ type: "text", value: "細工谷", id: "block" }
+        .mypage-identification-container__form__content
+          %label{ for: "building" }
+            建物名
+          %span.mypage-identification-container__form__content--arbitrary
+            任意
+          %input{ type: "text", value: "一軒家", id: "building" }
+        .mypage-identification-container__form__content
+          %button{ type: "submit" }
+            登録する
+        .mypage-identification-container__form__content
+          %p
+            = link_to "#" do
+              本人情報の登録について
+              = fa_icon "chevron-right"
+          
