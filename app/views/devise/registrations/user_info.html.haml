@@ -1,1 +1,51 @@
-aaaaaaaaaaa
+.user_info
+  .user-info__input-registration
+    %p.registration-title 会員情報入力
+  .user-info__form
+    .user-info__form--nickname
+      %label.nickname ニックネーム
+      %span.form-require 必須
+      %input.input-nickname{type:"text",placeholder:"例) メルカリ太郎"}
+    .user__info__form--email
+      %label.email メールアドレス
+      %span.form-require 必須
+      %input.input-email{type:"email",placeholder:"PC・携帯どちらでも可"}
+    .user__info__form--password
+      %label.password パスワード
+      %span.form-require 必須
+      %input.input-password{type:"password",placeholder:"7文字以上"}
+    .user__info__form--password-confirmation
+      %label.password-confirmation パスワード(確認)
+      %span.form-require 必須
+      %input.input-password-confirmation{type:"password-confirmation",placeholder:"7文字以上"}
+    .user__info__form--identification
+      %label.identification 本人確認
+      %p.identification--xplanation 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+    .user__info__form--name
+      %label.name お名前(全角)
+      %span.form-require 必須
+      %input.input-family-name{type:"text",placeholder:"例) 例) 山田"}
+      %input.input-first-name{type:"text",placeholder:"例) 彩"}
+    .user__info__form--name-kana
+      %label.name-kana お名前カナ(全角)
+      %span.form-require 必須
+      %input.input-family-name-kana{type:"text",placeholder:"例) ヤマダ"}
+      %input.input-first-name-kana{type:"text",placeholder:"例) アヤ"}
+    .user__info__form--birthday
+      %label.birthday 生年月日
+      %span.form-require 必須
+      
+    .user__info__form--text
+      %p.text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+    .user__info__recaptcha
+      ロボットは未実装
+    .user__info__form--next
+      %span.next--explanation 「次へ進む」のボタンを押すことにより、
+      %a.terms-of-service{href:"#"} 利用規約
+      %span.next--explanation に同意したものとみなします
+      %input.input-next{type: 'submit', value: '次へ進む'} 
+    .user__info__form--text-right
+    =link_to"#",class:"user__info__form--text-right--link" do
+      本人情報の登録について
+
+    = select_date Date.today, prefix: :start_date, use_month_numbers: true, start_year: 1900, end_year: Date.today.year
