@@ -39,7 +39,7 @@
             都道府県
           %span.mypage-identification-container__form__content--arbitrary
             任意
-          %input{ type: "select", value: "あとで" }
+          = collection_select :user, :prefecture_id, Prefecture.all, :id, :name
         .mypage-identification-container__form__content
           %label{ for: "city" }
             市区町村

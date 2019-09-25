@@ -27,17 +27,15 @@
         @include input-text-default;
         margin-top: 8px;
       }
+      select {
+        @include select-default;
+        margin-top: 8px;
+      }
       button {
         @include btn-default;
       }
       &--arbitrary {
-        margin: 0 0 0 8px;
-        padding: 2px 4px;
-        border-radius: 2px;
-        color: #fff;
-        font-size: 12px;
-        vertical-align: top;
-        background-color: #ccc;
+        @include arbitrary-necessarty;
       }
     }
   }
