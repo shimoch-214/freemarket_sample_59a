@@ -7,4 +7,8 @@ class MypagesController < ApplicationController
 
   def notification
   end
+
+  def profile
+    
+  end
 end

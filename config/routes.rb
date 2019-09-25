@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get 'todo'
       get 'notification'
+      get 'profile'
     end
   end
 end
