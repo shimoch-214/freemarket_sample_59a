@@ -1,0 +1,12 @@
+.mypage-logout {
+  padding: 64px;
+  background-color: #fff;
+  display: block;
+  &__content {
+    width: 320px;
+    margin: 0 auto;
+    button {
+      @include btn-default;
+    }
+  }
+}
