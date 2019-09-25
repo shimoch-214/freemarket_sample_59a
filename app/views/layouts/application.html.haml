@@ -18,41 +18,41 @@
           = form_tag( '', method: :get, class: 'item-search') do
             = text_field_tag :name, '', class: 'item-search__field', placeholder: '何かお探しですか？'
             = label_tag :search do
-              %i.fa.fa-search.item-search__submit
+              = fa_icon('search', class: 'item-search__submit')
             = submit_tag  '', :name => nil, class: 'item-search__submit', id: 'search'
 
         .header__menu--paragraph2
           .item-tag
             .item-tag__box
               = link_to (), class: 'item-tag__category--name' do
-                %i.fa.fa-list-ul
+                = fa_icon('list-ul')
                 カテゴリーから探す
               .item-tag__category--box
                 //カテゴリーリスト追加予定
             .item-tag__box
               = link_to (), class: 'item-tag__brand--name' do
-                %i.fa.fa-tag
+                = fa_icon('tag')
                 ブランドから探す
               .item-tag__brand--box
                 //ブランドリスト追加予定
           %ul.user-list
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
-                %i.fa.fa-heart
+                = fa_icon('heart')
                 いいね一覧
               .user-list__box--box
                 %ul.user-list__box--list
                   %li.user-list__box--msg
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
-                %i.fa.fa-bell
+                = fa_icon('bell')
                 お知らせ
               .user-list__box--box
                 %ul.user-list__box--list
                   %li.user-list__box--msg
             %li.user-list__box
               = link_to (), class: 'user-list__box--link' do
-                %i.fa.fa-check
+                = fa_icon('check')
                 やることリスト
               .user-list__box--box
                 %ul.user-list__box--list
@@ -115,7 +115,7 @@
         .go-sell__box
           .go-sell__name
             出品
-          %i.fa.fa-camera.go-sell__image
+          = fa_icon('camera', class: 'go-sell__image')
     
     %aside.app-banner
       .app-banner__size
@@ -158,10 +158,10 @@
                 メルカリロゴ利用ガイドライン
             %li.footer__a-list--social-link
               = link_to () do
-                %i.fa.fa-twitter
+                = fa_icon('twitter')
             %li.footer__a-list--social-link
               = link_to () do
-                %i.fa.fa-facebook-square
+                = fa_icon('facebook-square')
         .footer__sell
           %h2.footer__head
             ヘルプ＆ガイド
