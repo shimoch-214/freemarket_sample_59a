@@ -1,0 +1,7 @@
+.mypage-contents
+  = render partial: 'mypages/side-bar'
+  .mypage-right
+    = link_to destroy_user_session_path, method: :delete, class: "mypage-logout" do
+      .mypage-logout__content
+        %button
+          ログアウト
