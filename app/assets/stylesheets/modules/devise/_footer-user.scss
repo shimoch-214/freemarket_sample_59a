@@ -1,0 +1,24 @@
+.footer-user{
+margin:0 412px;
+padding:40px 0;
+text-align: center;
+&__links ul li{
+  margin:0 8px;
+  padding: 0;
+  display: inline;
+  color: #333;
+  font-size: 12px;
+}
+&__logo{
+  &__img{
+    margin-top:40px;
+  }
+  
+  
+}
+
+
+&__copyright{
+  font-size: 13px;
+}
+}

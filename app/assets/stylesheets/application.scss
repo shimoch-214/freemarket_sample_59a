@@ -13,5 +13,21 @@
  *= require_tree .
  *= require_self
  */
-@import "modules/devise/login-page";
+
 @import "config/reset";
+ 
+@import "./modules/devise/footer-user";
+@import "./modules/devise/header-user";
+@import "./modules/devise/login-user";
+
+
+@import "./modules/header/header";
+@import "./modules/header/site-name";
+@import "./modules/header/item-search";
+@import "./modules/header/site-name";
+@import "./modules/header/item-tag";
+@import "./modules/header/user-list";
+@import "./modules/header/profile";
+@import "./modules/header/go-sell";
+@import "./modules/header/footer";
+@import "font-awesome";
