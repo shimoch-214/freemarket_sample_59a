@@ -25,15 +25,4 @@
                 ＞
             .new-items__list
               .new-items__position
-                - for num in 1..10 do
-                  .item-profile
-                    = link_to (), class: 'item-profile__link' do
-                      %figure.item-profile__main
-                        %figcaption.item-profile__title
-                          %span.item-profile__title--text
-                            ガンプラ
-                        .item-profile__image
-                          %span.item-profile__image--price
-                            ¥
-                            1000
-                          = image_tag 'sample_image_gandam.jpg', class: 'item-profile__image--item-image'
+                = render partial: "products/item-profile", collection: (1..10).to_a
