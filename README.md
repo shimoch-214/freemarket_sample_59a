@@ -46,7 +46,7 @@
 - has_one :addresses
 - has-one :identifications
 - has_many :transactions 
-- has_many :ratings through: :
+- has_many :ratings
 - has_many :comments 
 - has_many :likes
 
