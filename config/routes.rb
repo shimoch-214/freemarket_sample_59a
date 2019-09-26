@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'signup/registration/user_complete' => 'users/registrations#user_complete', as: :user_registration_complete
     get 'sessions/log_in' => 'users/sessions#new'
     get 'registrations/sign_up' => 'users/registrations#new'
+    get 'registrations/credit_registration' => 'users/registrations#credit_registration'
     
   end
 

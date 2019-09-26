@@ -22,8 +22,9 @@
     }
     .card-form-expire-icon{
       position: absolute;
-      top: 12px;
-      right: 50px;
+        top:15px;
+        left:98px;
+        pointer-events: none;
     }
     .month{
       padding-left: 7px;
@@ -38,7 +39,7 @@
       padding: 0 16px;
       border-radius: 4px;
       border: 1px solid #ccc;
-      background: 0;
+      background-color: #fff;
       font-size: 16px;
       line-height: 1.5;
       -webkit-appearance: none;
