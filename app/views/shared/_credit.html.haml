@@ -2,7 +2,8 @@
   .card-form__box
     .card-form__box__number
       %label.box-group--label{for: 'card-number'} カード番号
-      %span.input-require 必須
+      %span.input-require
+        必須
       %input.card-number--input{type: "text",id: 'card-number', maxlength: "16", placeholder: "半角数字のみ"}
       .registration-error{type: "hidden", value: "必須項目です"}
       %ul.card-list
@@ -23,7 +24,8 @@
     
     .card-form__box__expire
       %label.box-group--label 有効期限
-      %span.input-require 必須
+      %span.input-require
+        必須
       .card-expire
         .card-expire__select-month
           %select.expire-select--month#exp_month{name: "exp_month", type: "text"}
@@ -39,8 +41,8 @@
             %option{value: "10"}10
             %option{value: "11"}11
             %option{value: "12"}12
-          -# .card-form-expire-icon
-          -#   = fa_icon 'cog'
+          %i.card-form-expire-icon
+            = fa_icon 'cog'
           %span{class: "month"} 月
         .card-expire__select-year
           %select.expire-select--year#exp_year{name: "exp_year", type: "text"}
@@ -55,13 +57,15 @@
             %option{value: "2027"}27
             %option{value: "2028"}28
             %option{value: "2029"}29
-            .card-form-expire-icon
+          %i.card-form-expire-icon
+            = fa_icon 'cog'
           %span{class:"year"} 年
 
     .card-form__box__security-code
-      %label.box-group--label セキュリティーコード
-      %span.input-require 必須
-      %input.payment__security-code{type: "text", placeholder: "カード背面４桁もしくは３桁の番号"}
+      %label.box-group--label{for: "security-code"} セキュリティーコード
+      %span.input-require
+        必須
+      %input.payment__security-code{type: "text", id: "security-code", placeholder: "カード背面４桁もしくは３桁の番号"}
       .question-form
         %span.question-form__mark ?
         %span.question-form__text 
