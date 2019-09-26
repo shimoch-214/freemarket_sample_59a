@@ -8,14 +8,6 @@
 
 require 'csv'
 
-CSV.foreach('db/csv/sizes.csv', headers: true) do |row|
-  row['ancestry'] = nil if row['ancestry'] == "NULL"
-  Sizing.create(
-    ancestry: row['ancestry'],
-    name: row['name']
-  )
-end
-
 CSV.foreach('db/csv/categories.csv', headers: true) do |row|
   row['ancestry'] = nil if row['ancestry'] == "NULL"
   Category.create(
@@ -24,6 +16,13 @@ CSV.foreach('db/csv/categories.csv', headers: true) do |row|
   )
 end
 
+CSV.foreach('db/csv/sizes.csv', headers: true) do |row|
+  row['ancestry'] = nil if row['ancestry'] == "NULL"
+  Sizing.create(
+    ancestry: row['ancestry'],
+    name: row['name']
+  )
+end
 
 category_roots = Category.roots
 # レディース
