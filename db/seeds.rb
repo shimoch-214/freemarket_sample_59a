@@ -10,7 +10,7 @@ require 'csv'
 
 CSV.foreach('db/csv/categories.csv', headers: true) do |row|
   row['ancestry'] = nil if row['ancestry'] == "NULL"
-  Category.create(
+  Category.create!(
     ancestry: row['ancestry'],
     name: row['name']
   )
