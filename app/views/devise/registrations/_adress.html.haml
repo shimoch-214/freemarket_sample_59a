@@ -1,0 +1,38 @@
+.user-adress__form
+  .user-adress__form--name
+    %label.name お名前
+    %span.form-require 必須
+    %input.input-family-name{type:"text",placeholder:"例) 山田"}
+    %input.input-first-name{type:"text",placeholder:"例) 彩"}
+  .user-adress__form--name-kana
+    %label.name-kana お名前カナ
+    %span.form-require 必須
+    %input.input-family-name-kana{type:"text",placeholder:"例) ヤマダ"}
+    %input.input-first-name-kana{type:"text",placeholder:"例) アヤ"}
+  .user-adress__form--zip-code
+    %label.zip-code 郵便番号
+    %span.form-require 必須
+    %input.input-zip-code{type:"text",placeholder:"例) 123-4567"}
+  .user-adress__form--prefectures
+    %label.prefectures 都道府県
+    %span.form-require 必須
+    = collection_select :user, :prefecture_id, Prefecture.all, :id, :name, {prompt: ""}, {class: "input-Prefectures"}
+    = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon4"
+  .user-adress__form--city
+    %label.city 市区町村
+    %span.form-require 必須
+    %input.input-city{type:"text",placeholder:"例) 横浜市緑区"}
+  .user-adress__form--street-number
+    %label.street-number 番地
+    %span.form-require 必須
+    %input.input-street-number{type:"text",placeholder:"例) 青山1−1−1"}
+  .user-adress__form--building
+    %label.building 建物名
+    %span.form-arbitrary 任意
+    %input.input-building{type:"text",placeholder:"例) 柳ビル103"}
+  .user-adress__form--phone-number
+    %label.phone-number 電話
+    %span.form-arbitrary 任意
+    %input.input-phone-number{type:"text",placeholder:"例) 09012345678"}
+  .user-adress__form--next
+    %input.next{type:"submit",value:"次へ進む"}
