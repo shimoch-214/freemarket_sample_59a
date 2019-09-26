@@ -84,4 +84,5 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'devise'
 gem 'active_hash'
+gem 'ancestry'
 
