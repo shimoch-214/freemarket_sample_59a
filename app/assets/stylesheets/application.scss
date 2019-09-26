@@ -19,7 +19,13 @@
 @import "./modules/devise/footer-user";
 @import "./modules/devise/header-user";
 @import "./modules/devise/login-user";
-@import "modules/devise/login-page";
+@import "./modules/devise/login-page";
+@import "./modules/devise/user-info";
+@import "./modules/devise/login-page";
+@import "./modules/devise/signup-page";
+@import "./modules/devise/sms-confirmation";
+@import "./modules/devise/user-adress";
+@import "./modules/devise/user-complete";
 
 @import "./modules/header/header";
 @import "./modules/header/site-name";

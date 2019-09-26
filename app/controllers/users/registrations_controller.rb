@@ -63,4 +63,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def user_info
     
   end
+
+  def sms_confirmation
+
+  end
+  
+  def user_adress
+    
+  end
 end
