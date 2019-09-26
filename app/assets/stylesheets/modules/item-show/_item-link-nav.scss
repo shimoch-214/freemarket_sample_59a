@@ -1,0 +1,19 @@
+.item-link-nav{
+  margin: 24px auto 0;
+    width: 700px;
+  &__prev{
+    position: relative;
+    width: 45%;
+    word-wrap: break-word;
+    float: left;
+    padding: 0 0 0 14px;
+  }
+  &__next{
+    position: relative;
+    width: 45%;
+    word-wrap: break-word;
+    float: right;
+    padding: 0 14px 0 0;
+    text-align: right;
+  }
+}
