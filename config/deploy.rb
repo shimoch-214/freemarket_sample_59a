@@ -64,7 +64,7 @@ namespace :deploy do
   end
 
   before :starting, 'deploy:upload'
-  after :finishing, 'deploy:cleanup','deploy:db_seed'
-  # after :migrate, 'deploy:db_seed'
+  after :finishing, 'deploy:cleanup'
+  after :migrating, 'deploy:db_seed'
   
 end
