@@ -15,4 +15,7 @@ Rails.application.routes.draw do
       get 'logout'
     end
   end
+
+  # item exhibiting
+  resources :items, only: [:new, :create, :show]
 end
