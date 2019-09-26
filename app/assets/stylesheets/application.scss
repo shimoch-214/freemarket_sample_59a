@@ -15,18 +15,20 @@
 @import "font-awesome";
 @import "config/mixin";
 
-@import  "font-awesome";
-
 @import "./modules/header/header";
 @import "./modules/header/site-name";
 @import "./modules/header/item-search";
-@import "./modules/header/site-name";
 @import "./modules/header/item-tag";
 @import "./modules/header/user-list";
 @import "./modules/header/profile";
 @import "./modules/header/go-sell";
-@import "./modules/header/app-banner";
 @import "./modules/header/footer";
+@import "./modules/header/app-banner";
+
+
+@import "./modules/credit-registration/card-form-number";
+@import "./modules/credit-registration/card-form-expire";
+@import "./modules/credit-registration/card-form-security";
 
 @import "./modules/top-page/top-page.scss";
 @import "./modules/top-page/top-image.scss";
