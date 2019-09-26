@@ -15,6 +15,7 @@
  */
 @import "modules/devise/login-page";
 @import "config/reset";
+@import "config/mixin";
 
 @import "./modules/header/header";
 @import "./modules/header/site-name";
@@ -25,4 +26,7 @@
 @import "./modules/header/profile";
 @import "./modules/header/go-sell";
 @import "./modules/header/footer";
+@import "./modules/credit-registration/card-form-number";
+@import "./modules/credit-registration/card-form-expire";
+@import "./modules/credit-registration/card-form-security";
 @import "font-awesome";
