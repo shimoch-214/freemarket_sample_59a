@@ -1,0 +1,17 @@
+%aside.app-banner
+  .app-banner__size
+    .app-banner__inner
+      %h2
+        スマホで簡単フリマアプリ
+      %p
+        今すぐダウンロード！
+      .app-banner__icon
+        %figure.app-banner__icon--mercari
+          = image_tag 'mercari_icon.png', class: 'app-banner__mercari_icon'
+        %ul
+          %li
+            = image_tag 'app-store.svg', class: 'app-banner__app-store'
+          %li
+            = image_tag 'google-play.svg', class: 'app-banner__google-play'
+    %figure.app-banner__app-image
+      = image_tag 'download_content_pc.png', class: 'app-banner__download_content_pc'

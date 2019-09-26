@@ -30,4 +30,10 @@
       position: relative;
     }
   }
+  &__image{
+    margin-right: 10px;
+    width: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
 }
