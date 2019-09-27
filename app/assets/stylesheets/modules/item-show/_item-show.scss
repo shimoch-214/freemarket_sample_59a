@@ -8,12 +8,15 @@
     text-align: center;
     word-wrap: break-word;
     line-height: 1.4;
+    font-weight: bold;
+
   }
   &__content{
     margin: 16px 0 0;
+    display: flex;
+    justify-content: space-between;
   }
   &__photo{
-    float: left;
     min-width: 300px;
     max-width: 300px;
     min-height: 375px;
@@ -25,6 +28,9 @@
       overflow: hidden;
     }
     &--child{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       line-height: 0;
     }
   }
@@ -35,17 +41,19 @@
       left: 0px;
       width: 3000px;
       position: relative;
+      display: flex;
+      justify-content: space-between;
     }
     &--size{
       min-height: 1px;
-    float: left;
-    -webkit-backface-visibility: hidden;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+      float: left;
+      -webkit-backface-visibility: hidden;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     &--config{
       min-height: 300px;
@@ -106,10 +114,24 @@
   border-collapse: collapse;
   border: 1px solid #f5f5f5;
   border-spacing: 0;
+  a{
+    color: #0099e8;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  div{
+    font-size: 14px;
+  }
+  tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+  }
   th{
     width: 39%;
     text-align: left;
     font-weight: 400;
+    font-size: 14px;
     background: #fafafa;
     border-collapse: collapse;
     border: 1px solid #f5f5f5;
@@ -118,7 +140,26 @@
   td{
     width: 61%;
     background: #fff;
+    font-size: 14px;
+    padding: 8px;
   }
+  &--evaluation{
+    display: flex;
+    div{
+      margin-right: 20px;
+    }
+  }
+  }
+  &__rank{
+    &--up{
+      color: #ef5185;
+    }
+    &--normal{
+      color: #fba933;
+    }
+    &--down{
+      color: #6ab5d8;
+    }
   }
   &__price-box{
     margin: 24px 0 0;
@@ -138,6 +179,8 @@
   }
   &__buy-botton{
     @include btn-default($bgc:#ea352d);
+    font-size: 24px;
+    font-weight: bold;
   }
   &__text{
     padding: 32px 0 0;
@@ -148,9 +191,21 @@
   }
   &__botton-container{
     margin: 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    i{
+      
+    }
+    span{
+      display: inline-block;
+      margin: 1px 0 0 8px;
+      font-size: 14px;
+      vertical-align: middle;
+    }
   }
   &__botton-container-left{
-    float: left;
+    display: flex;
+    justify-content: space-between;
   }
   &__like-botton{
     color: #333;
@@ -161,15 +216,6 @@
     border-radius: 40px;
     -webkit-transition: all ease-out .3s;
     transition: all ease-out .3s;
-    i{
-      
-    }
-    span{
-      display: inline-block;
-      margin: 1px 0 0 8px;
-      font-size: 14px;
-      vertical-align: middle;
-    }
   }
   &__report-link{
     display: inline-block;
@@ -187,5 +233,7 @@
   }
   &__safe-link{
     display: inline-block;
+    color: #0099e8;
+    text-decoration: none;
   }
 }
