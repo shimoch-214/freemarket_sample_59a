@@ -8,11 +8,6 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %header.mercari-title
-      %h1.mercari-title__icon
-        = link_to ('https://www.mercari.com/jp/') do
-          = image_tag "header.svg", width:"185", height:"49"
-    
     %main.payment-confirmation
       %section.payment-confirmation__box
         %h2.payment-confirmation__box__content
