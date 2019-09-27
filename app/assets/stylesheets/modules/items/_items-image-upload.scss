@@ -1,4 +1,4 @@
-.item-image-upload {
+.items-image-upload {
   padding: 40px;
   &__notice {
     margin-top: 8px;
@@ -9,6 +9,13 @@
     padding: 40px;
     background: #f5f5f5;
     border: 1px dashed #ccc;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
 

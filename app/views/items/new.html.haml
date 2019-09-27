@@ -4,15 +4,16 @@
       商品の情報を入力
     %form
       .items-container__inner--content
-        .item-image-upload
-          %h3.items-forms__label
-            出品画像
-            %span.items-forms__necessary
-              必須
-          %p.item-image-upload__notice
-            最大10枚までアップロードできます
-          .item-image-upload__dropbox
-            ドラッグアンドドロップまたはクリックしてファイルをアップロード
+        %h3.items-forms__content__label
+          出品画像
+          %span.items-forms__content__necessary
+            必須
+        %p.items-image-upload__notice
+          最大10枚までアップロードできます
+        .items-image-upload__dropbox
+          ドラッグアンドドロップ
+          %br/
+          またはクリックしてファイルをアップロード
       .items-container__inner--content
         .items-forms__content
           %label{ for: "name", class: "items-forms__content__label" }
@@ -98,4 +99,20 @@
             #your-profit.items-forms__price--profit
               300,000
       .items-container__inner--content
-        hoge
+        %p
+          = link_to "禁止されている出品", "#"
+          、
+          = link_to "行為", "#"
+          を必ずご確認ください。
+        %p
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          = link_to "偽ブランドの販売"
+          は犯罪であり処罰される可能性があります。
+        %p
+          また、出品をもちまして
+          = link_to "加盟店規約", ""
+          に同意したことになります。
+        %button.items-forms__content__submit
+          出品する
+        %button.items-forms__content__return
+          もどる

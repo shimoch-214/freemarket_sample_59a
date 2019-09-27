@@ -9,6 +9,17 @@
     &--content {
       border-bottom: solid 1px #eee;
       padding: 40px;
+      p {
+        padding: 0;
+      }
+      a {
+        color: #0099e8;
+        text-decoration: none;
+      }
+      a:hover {
+        opacity: 0.7;
+        text-decoration: underline;
+      }
     }
     &--head {
       font-size: 22px;

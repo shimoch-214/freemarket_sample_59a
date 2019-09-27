@@ -49,6 +49,18 @@
         font-size: 16px;
       }
     }
+    &__submit {
+      @include btn-default;
+      margin-top: 40px;
+    }
+    &__return {
+      @include btn-default;
+      width: 45%;
+      margin: 24px auto 0;
+      background: #aaa;
+      border: 1px solid #aaa;
+      color: #fff;
+    }
   }
   &__price {
     list-style: none;

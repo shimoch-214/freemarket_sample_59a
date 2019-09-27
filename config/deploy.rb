@@ -53,18 +53,18 @@ namespace :deploy do
     end
   end
 
-  task :db_seed do
-    on roles(:db) do |host|
-      within current_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :rake, 'db:seed'
-        end
-      end
-    end
-  end
+  # task :db_seed do
+  #   on roles(:db) do |host|
+  #     within current_path do
+  #       with rails_env: fetch(:rails_env) do
+  #         execute :bundle, :exec, :rake, 'db:seed'
+  #       end
+  #     end
+  #   end
+  # end
 
   before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
-  after :migrating, 'deploy:db_seed'
+  # after :finishing, 'deploy:db_seed'
   
 end

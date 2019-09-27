@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  # change layout items exhibiting page!!!!
+  layout "application-user"
 
   def new
   end
