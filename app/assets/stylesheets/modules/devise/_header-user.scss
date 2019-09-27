@@ -1,0 +1,146 @@
+.header-user{
+height:128px;
+text-align: center;
+&__logo{
+  margin-top: 40px;
+  display: inline-block;
+  &__top-img{
+    
+  }
+}
+&__signup-bar{
+  display: inline-block;
+  padding: 40px 0 0 44px;
+    border: 0;
+    vertical-align: top;
+    line-height: 1;
+    position: relative;
+  &--process{
+    
+    display: inline-block;
+    .info{
+      display: inline-block;
+      margin: 0 40px 0 0;
+      font-size: 12px;
+      color:#ea352d;
+      font-weight: 600;
+      &--icon{
+        background: #ea352d;
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        border-radius: 50%;
+        position: relative;
+        z-index: 10;
+
+
+      }
+    }
+    .phone-number{
+      display: inline-block;
+      margin: 0 40px 0 0;
+      color: #888;
+      font-size: 12px;
+      &--icon{
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        border-radius: 50%;
+        background: #ccc;
+        position: relative;
+        z-index: 10;
+      }
+    }
+    .adress{
+      display: inline-block;
+      margin: 0 40px 0 0;
+      color: #888;
+      font-size: 12px;
+      &--icon{
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        border-radius: 50%;
+        background: #ccc;
+        position: relative;
+        z-index: 10;
+      }
+    }
+    .payment{
+      display: inline-block;
+      margin: 0 40px 0 0;
+      color: #888;
+      font-size: 12px;
+      &--icon{
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        border-radius: 50%;
+        background: #ccc;
+        position: relative;
+        z-index: 10;
+      }
+    }
+    .complete{
+      display: inline-block;
+      margin: 0 40px 0 0;
+      color: #888;
+      font-size: 12px;
+      &--icon{
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        border-radius: 50%;
+        background: #ccc;
+        position: relative;
+        z-index: 10;
+      }
+    }
+
+  }
+  &--status-line{
+    display: inline-block;
+    &--1{
+    width: 101px;
+    height: 2px;
+    background: #ccc;
+    position: absolute;
+    top:68px;
+    left:68px;
+    z-index: 9;
+    
+    
+    }
+    &--2{
+      height: 2px;
+      background: #ccc;
+      position: absolute;
+      top:68px;
+      left:179px;
+      width: 120px;
+      z-index: 9;
+    }
+    &--3{
+      height: 2px;
+      background: #ccc;
+      position: absolute;
+      top:68px;
+      left:305px;
+      width: 120px;
+      z-index: 9;
+    }
+    &--4{
+      height: 2px;
+      background: #ccc;
+      position: absolute;
+      top:68px;
+      left:426px;
+      width: 83px;
+      z-index: 9;
+    }
+  }
+
+}
+
+
+}
