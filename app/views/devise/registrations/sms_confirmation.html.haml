@@ -1,0 +1,17 @@
+.sms-confirmation
+  .sms-confirmation__title
+    %p.confirm-phone-number 電話番号の確認
+  .sms-confirmation__form
+    .sms-confirmation__form--phone-number
+      %p.phone-number 携帯電話の番号
+      %input.input-phone-number{type:"text",placeholder:"携帯電話の番号を入力"}
+      %p.text 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+    .sms-confirmation__form--submit
+      %input.submit-sms{type: 'submit', value: 'SMSを送信する'} 
+      %p.text ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+    .sms-confirmation__form--text-right
+      =link_to"#",class:"sms-confirmation__form--text-right--link" do
+        電話番号の確認が必要な理由
+        =fa_icon 'angle-right', class:'sms-icon'
+    
+
