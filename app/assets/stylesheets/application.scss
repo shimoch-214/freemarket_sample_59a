@@ -10,23 +10,38 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  */
-@import "modules/devise/login-page";
+
 @import "config/reset";
 @import "font-awesome";
 @import "config/mixin";
 
-@import  "font-awesome";
+
+@import "./modules/devise/footer-user";
+@import "./modules/devise/header-user";
+@import "./modules/devise/login-user";
+@import "./modules/devise/login-page";
+@import "./modules/devise/user-info";
+@import "./modules/devise/login-page";
+@import "./modules/devise/signup-page";
+@import "./modules/devise/sms-confirmation";
+@import "./modules/devise/user-adress";
+@import "./modules/devise/user-complete";
+@import "./modules/devise/edit-credit";
 
 @import "./modules/header/header";
 @import "./modules/header/site-name";
 @import "./modules/header/item-search";
-@import "./modules/header/site-name";
 @import "./modules/header/item-tag";
 @import "./modules/header/user-list";
 @import "./modules/header/profile";
 @import "./modules/header/go-sell";
-@import "./modules/header/app-banner";
 @import "./modules/header/footer";
+@import "./modules/header/app-banner";
+
+@import "./modules/credit-registration/credit";
+@import "./modules/credit-registration/card-form-number";
+@import "./modules/credit-registration/card-form-expire";
+@import "./modules/credit-registration/card-form-security";
 
 @import "./modules/top-page/top-page.scss";
 @import "./modules/top-page/top-image.scss";
@@ -47,4 +62,8 @@
 @import "./modules/mypages/mypage-tab-container";
 @import "./modules/mypages/mypage-profile-container";
 @import "./modules/mypages/mypage-logout";
-@import "./modules/mypages/mypage-identification-container"
+@import "./modules/mypages/mypage-identification-container";
+
+@import "./modules/items/items-container";
+@import "./modules/items/items-image-upload";
+@import "./modules/items/items-forms";

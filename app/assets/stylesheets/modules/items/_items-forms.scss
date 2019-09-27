@@ -1,0 +1,90 @@
+.items-forms {
+  &__content {
+    &__label {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    &__necessary {
+      @include arbitrary-necessary;
+      background-color:#ea352d;
+      font-weight: bold;
+      line-height: 2;
+    }
+    &__input-text {
+      @include input-text-default;
+      margin-top: 8px;
+      font-size: 16px;
+      color: #333;
+    }
+    &__input-textarea {
+      @include textarea-default;
+      min-height: 142px;
+      margin-top: 8px;
+      font-size: 16px;
+      color: #333;
+    }
+    &__input-text-sep {
+      @include input-text-default;
+      margin-top: 8px;
+      margin-left: 8px;
+      font-size: 16px;
+      width: 160px;
+      color: #333;
+      text-align: right;
+    }
+    &__select-wrap {
+      position: relative;
+      select {
+        @include select-default;
+        margin-top: 8px;
+        font-size: 16px;
+        width: 400px;
+        color: #333;
+      }
+      i {
+        position: absolute;
+        top: 45%;
+        right: 16px;
+        color: #888;
+        font-size: 16px;
+      }
+    }
+    &__submit {
+      @include btn-default;
+      margin-top: 40px;
+    }
+    &__return {
+      @include btn-default;
+      width: 45%;
+      margin: 24px auto 0;
+      background: #aaa;
+      border: 1px solid #aaa;
+      color: #fff;
+    }
+  }
+  &__price {
+    list-style: none;
+    width: 400px;
+    li:first-child {
+      padding: 0 0 24px;
+      border: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: solid 1px #ccc;
+      padding: 24px 0;
+    }
+    &--profit {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    #your-profit {
+      font-size: 32px;
+    }
+  }
+  &__separator {
+    margin-top: 40px;
+  }
+}

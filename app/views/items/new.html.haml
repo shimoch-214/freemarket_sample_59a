@@ -1,0 +1,118 @@
+.items-container
+  .items-container__inner
+    %h3.items-container__inner--head
+      商品の情報を入力
+    %form
+      .items-container__inner--content
+        %h3.items-forms__content__label
+          出品画像
+          %span.items-forms__content__necessary
+            必須
+        %p.items-image-upload__notice
+          最大10枚までアップロードできます
+        .items-image-upload__dropbox
+          ドラッグアンドドロップ
+          %br/
+          またはクリックしてファイルをアップロード
+      .items-container__inner--content
+        .items-forms__content
+          %label{ for: "name", class: "items-forms__content__label" }
+            商品名
+          %span.items-forms__content__necessary
+            必須
+          %input{ type: "text", id: "name", class: "items-forms__content__input-text", placeholder: "商品名（必須 40文字まで)" }
+        .items-forms__content.items-forms__separator
+          %label{ for: "description", class: "items-forms__content__label" }
+            商品の説明
+          %span.items-forms__content__necessary
+            必須
+          %textarea{ id: "description", class: "items-forms__content__input-textarea", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" }
+      .items-container__inner--content-sep
+        %h3.items-container__inner--headsub
+          商品の詳細
+        .items-forms__content
+          %label{ for: "item-category-id", class: "items-forms__content__label" }
+            カテゴリー名
+          %span.items-forms__content__necessary
+            必須
+          .items-forms__content__select-wrap
+            = collection_select :item, :caregory_id, Category.roots, :id, :name
+            = fa_icon "chevron-down"
+          .items-forms__content.items-forms__separator
+          %label{ for: "item-category-id", class: "items-forms__content__label" }
+            商品の状態
+          %span.items-forms__content__necessary
+            必須
+          .items-forms__content__select-wrap
+            = collection_select :item, :condition, Category.roots[0].children, :id, :name
+            = fa_icon "chevron-down"
+      .items-container__inner--content-sep
+        %h3.items-container__inner--headsub
+          配送について
+          = link_to "?", "#"
+        .items-forms__content
+          %label{ for: "item-category-id", class: "items-forms__content__label" }
+            配送料の負担
+          %span.items-forms__content__necessary
+            必須
+          .items-forms__content__select-wrap
+            = collection_select :item, :caregory_id, Category.roots, :id, :name
+            = fa_icon "chevron-down"
+          .items-forms__separator
+          %label{ for: "item-category-id", class: "items-forms__content__label" }
+            発送元の地域
+          %span.items-forms__content__necessary
+            必須
+          .items-forms__content__select-wrap
+            = collection_select :item, :condition, Category.roots[0].children, :id, :name
+            = fa_icon "chevron-down"
+          .items-forms__separator
+          %label{ for: "item-category-id", class: "items-forms__content__label" }
+            発送までの日数
+          %span.items-forms__content__necessary
+            必須
+          .items-forms__content__select-wrap
+            = collection_select :item, :condition, Category.roots[0].children, :id, :name
+            = fa_icon "chevron-down"
+      .items-container__inner--content-sep
+        %h3.items-container__inner--headsub
+          販売価格(300~9,999,999)
+          = link_to "?", "#"
+        %ul.items-forms__price
+          %li
+            %div
+              %label{ for: "item-category-id", class: "items-forms__content__label" }
+                価格
+              %span.items-forms__content__necessary
+                必須
+            %div
+              %span &yen;
+              %input{ type: "text", id: "name", class: "items-forms__content__input-text-sep", placeholder: "例) 300" }
+          %li
+            %div
+              販売手数料 (10%)
+            #commission-fee
+              \-
+          %li
+            .items-forms__price--profit
+              販売利益
+            #your-profit.items-forms__price--profit
+              300,000
+      .items-container__inner--content
+        %p
+          = link_to "禁止されている出品", "#"
+          、
+          = link_to "行為", "#"
+          を必ずご確認ください。
+        %p
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          = link_to "偽ブランドの販売"
+          は犯罪であり処罰される可能性があります。
+        %p
+          また、出品をもちまして
+          = link_to "加盟店規約", ""
+          に同意したことになります。
+        %button.items-forms__content__submit
+          出品する
+        %button.items-forms__content__return
+          もどる
