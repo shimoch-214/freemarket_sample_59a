@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_25_180712) do
+ActiveRecord::Schema.define(version: 2019_09_27_043951) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
@@ -19,6 +19,32 @@ ActiveRecord::Schema.define(version: 2019_09_25_180712) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sizing_id"], name: "index_categories_on_sizing_id"
+  end
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_images_on_item_id"
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "price", null: false
+    t.string "name", null: false
+    t.bigint "category_id"
+    t.bigint "sizing_id"
+    t.string "brand"
+    t.text "description", null: false
+    t.integer "condition", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand"], name: "index_items_on_brand"
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["condition"], name: "index_items_on_condition"
+    t.index ["name"], name: "index_items_on_name"
+    t.index ["price"], name: "index_items_on_price"
+    t.index ["sizing_id"], name: "index_items_on_sizing_id"
   end
 
   create_table "sizings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -47,4 +73,7 @@ ActiveRecord::Schema.define(version: 2019_09_25_180712) do
   end
 
   add_foreign_key "categories", "sizings"
+  add_foreign_key "images", "items"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "sizings"
 end
