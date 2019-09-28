@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_085202) do
+ActiveRecord::Schema.define(version: 2019_09_28_021417) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
@@ -39,12 +39,14 @@ ActiveRecord::Schema.define(version: 2019_09_27_085202) do
     t.integer "condition", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "transaction_id", null: false
     t.index ["brand"], name: "index_items_on_brand"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["condition"], name: "index_items_on_condition"
     t.index ["name"], name: "index_items_on_name"
     t.index ["price"], name: "index_items_on_price"
     t.index ["sizing_id"], name: "index_items_on_sizing_id"
+    t.index ["transaction_id"], name: "index_items_on_transaction_id"
   end
 
   create_table "sizings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_085202) do
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "sizings"
+  add_foreign_key "items", "transactions"
   add_foreign_key "transactions", "items"
   add_foreign_key "transactions", "users", column: "buyer_id"
   add_foreign_key "transactions", "users", column: "seller_id"

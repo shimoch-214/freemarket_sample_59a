@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_many    :images
+  has_one     :transaction
   belongs_to  :category
   belongs_to  :sizing
   enum        condition: {
