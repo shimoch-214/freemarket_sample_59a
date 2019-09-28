@@ -16,7 +16,7 @@
 - belongs_to :user
 - belongs_to :payment
 - belongs_to :brand
-- has_one :transacts
+- has_one :transact
 - has_many :comments
 - has_many :likes
 - has_many :images
@@ -115,7 +115,7 @@ belongs_to :user
 - has_many :items
 
 
-## credit_cardsテーブル
+## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user|references|null: false, foreign_key: true|
@@ -228,4 +228,3 @@ Things you may want to cover:
 
 * ...
 
-sasa
