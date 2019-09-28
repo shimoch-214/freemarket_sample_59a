@@ -8,7 +8,7 @@ ja:
         poor:     "やや傷や汚れあり"
         dirty:    "傷や汚れあり"
         bad:      "全体的に状態が悪い"
-    transaction:
+    transact:
       delivery_method:
         pending:        "未定"
         mercari_post:   "らくらくメルカリ便"
