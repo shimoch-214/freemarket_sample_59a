@@ -39,7 +39,9 @@
 |password_confirmation|string| |
 |profile|text| |
 |card_id|integer| |
-|nickname|string|null: false|
+|nickname|str|null: false|
+
+
 ### Association
 - has_one :credit_cards
 - has_many :items
