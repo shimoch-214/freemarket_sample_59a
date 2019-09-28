@@ -1,0 +1,35 @@
+.social-media{
+  margin: 24px auto;
+  padding: 32px 0 24px;
+  width: 700px;
+  background: #fff;
+  &__box{
+    margin: 16px 0 0;
+    text-align: center;
+    li{
+      display: inline-block;
+      margin: 0 8px 8px 0;
+      vertical-align: middle;
+      text-align: center;
+    }
+    a{
+      display: block;
+    }
+    i{
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      line-height: 44px;
+      font-size: 55px;
+    }
+  }
+  &__facebook{
+    color: #385185;
+  }
+  &__twitter{
+    color:#5d9dc9;
+  }
+  &__pinterest{
+    color: #aa262a;
+  }
+}
