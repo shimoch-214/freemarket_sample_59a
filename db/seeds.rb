@@ -137,3 +137,5 @@ end
 vehicle.children[6].children[0].update(sizing_id: 106)
 
 Category.where(name: "その他").update_all(sizing_id: nil)
+
+

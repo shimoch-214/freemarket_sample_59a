@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_many    :images
   has_one     :transact
+  accepts_nested_attributes_for :transact
   belongs_to  :category
   belongs_to  :sizing
   enum        condition: {
