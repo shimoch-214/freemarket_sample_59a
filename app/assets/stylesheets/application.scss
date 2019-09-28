@@ -49,6 +49,13 @@
 @import "./modules/top-page/new-items";
 @import "./modules/top-page/item-profile";
 
+@import "./modules/item-show/item-show";
+@import "./modules/item-show/item-link-nav";
+@import "./modules/item-show/social-media";
+@import "./modules/item-show/item-proposal";
+@import "./modules/item-show/item-in-user-profile";
+@import "./modules/item-show/item-box";
+
 @import "./modules/mypages/mypage-contents";
 @import "./modules/mypages/side-bar";
 @import "./modules/mypages/mypage-user-icon";
@@ -58,6 +65,7 @@
 @import "./modules/mypages/mypage-identification-container";
 @import "./modules/mypages/mypage-credit";
 
+@import "./modules/parchase-confirmation";
 @import "./modules/items/items-container";
 @import "./modules/items/items-image-upload";
 @import "./modules/items/items-forms";

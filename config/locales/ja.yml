@@ -8,3 +8,21 @@ ja:
         poor:     "やや傷や汚れあり"
         dirty:    "傷や汚れあり"
         bad:      "全体的に状態が悪い"
+    transact:
+      delivery_method:
+        pending:        "未定"
+        mercari_post:   "らくらくメルカリ便"
+        yu_mail:        "ゆうメール"
+        letter_pack:    "レターパック"
+        reqular_post:   "普通郵便(定形、不定形)"
+        kuroneko:       "クロネコヤマト"
+        yu_pack:        "ゆうパック"
+        click_post:     "クリックポスト"
+        yu_packet:      "ゆうパケット"
+      bearing:
+        seller_side:    "送料込み(出品者負担)"
+        buyer_side:     "着払い(購入者負担)"
+      ship_days:
+        short:          "1~2日で発送"
+        medium:         "2~3日で発送"
+        long:           "4~7日で発送"
