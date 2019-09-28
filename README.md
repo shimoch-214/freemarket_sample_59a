@@ -6,7 +6,7 @@
 |price|integer|null: false, index: true|
 |name|string|null: false, index: true|
 |user|references|null: false, foreign_key: true|
-|transacts|reference|null: false, foreign_key: true|
+|transact|reference|null: false, foreign_key: true|
 |category|references|null: false, foreign_key:true|
 |bland|references|foreign_key: true|
 |sizing|references|foreign_key: true|
@@ -46,7 +46,7 @@
 - has_many :items
 - has_one :addresses
 - has-one :identifications
-- has_many :transactions 
+- has_many :transacts 
 - has_many :ratings
 - has_many :comments 
 - has_many :likes
@@ -111,7 +111,7 @@ belongs_to :user
 |------|----|-------|
 |name|string|null: false, unique: true|
 ### Association
-- belongs_to :transaction
+- belongs_to :transact
 - has_many :items
 
 
