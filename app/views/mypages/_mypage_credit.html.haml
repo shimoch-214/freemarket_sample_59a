@@ -6,7 +6,7 @@
       .credit-list--label
         クレジットカード一覧
     %section.credit-card--add
-      = link_to card_create_mypage_path, class: 'credit-card--add__box' do
+      = link_to edit_card_path, class: 'credit-card--add__box' do
         .add-image
           = image_tag 'card-icon.png', width: '17.5px', height: '14px'
         .add-content

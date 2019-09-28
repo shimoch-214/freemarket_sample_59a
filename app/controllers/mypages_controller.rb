@@ -14,13 +14,6 @@ class MypagesController < ApplicationController
   def edit_identification
   end
 
-  def edit_card
-    
-  end
-
-  def create_card
-  end
-
   def logout 
 
   end
