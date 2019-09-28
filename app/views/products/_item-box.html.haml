@@ -1,0 +1,14 @@
+%section.item-box
+  = link_to (), class: 'item-box__link' do
+    %figure.item-box__photo
+      = image_tag 'sample_image_gandam.jpg'
+    .item-box__body
+      %h3.item-box__name
+        ガンダム
+      .item-box__num
+        .item-box__price
+          ¥1080
+        .item-box__like
+          = fa_icon('heart')
+          %span
+            72
