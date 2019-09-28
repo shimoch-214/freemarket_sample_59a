@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_082049) do
-
-  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "customer_id", null: false
-    t.string "card_id", null: false
-    t.index ["user_id"], name: "index_cards_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2019_09_28_082343) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
@@ -46,14 +39,12 @@ ActiveRecord::Schema.define(version: 2019_09_28_082049) do
     t.integer "condition", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "transact_id", null: false
     t.index ["brand"], name: "index_items_on_brand"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["condition"], name: "index_items_on_condition"
     t.index ["name"], name: "index_items_on_name"
     t.index ["price"], name: "index_items_on_price"
     t.index ["sizing_id"], name: "index_items_on_sizing_id"
-    t.index ["transact_id"], name: "index_items_on_transact_id"
   end
 
   create_table "sizings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -103,7 +94,6 @@ ActiveRecord::Schema.define(version: 2019_09_28_082049) do
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "sizings"
-  add_foreign_key "items", "transacts"
   add_foreign_key "transacts", "items"
   add_foreign_key "transacts", "users", column: "buyer_id"
   add_foreign_key "transacts", "users", column: "seller_id"
