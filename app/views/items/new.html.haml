@@ -33,7 +33,9 @@
           %span.items-forms__content__necessary
             必須
           .items-forms__content__select-wrap
-            = f.collection_select :category_id, Category.roots, :id, :name, include_blank: "---"
+            -# = f.collection_select :category_id, Category.roots, :id, :name, include_blank: "---"
+            - options = options_for_select(Category.roots.map{|ele| [ele.name, ele.id]})
+            = select_tag :parent_id, options, include_blank: "---"
             = fa_icon "chevron-down"
           .items-forms__content.items-forms__separator
           = f.label :condition, "商品の状態", class: "items-forms__content__label"
