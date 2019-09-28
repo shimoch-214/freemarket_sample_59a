@@ -6,23 +6,24 @@
 |price|integer|null: false, index: true|
 |name|string|null: false, index: true|
 |user|references|null: false, foreign_key: true|
+|transacts|reference|null: false, foreign_key: true|
 |category|references|null: false, foreign_key:true|
 |bland|references|foreign_key: true|
-|size|references|foreign_key: true|
+|sizing|references|foreign_key: true|
 |description|text|default: "商品の説明はありません"|
 |condition|integer|null: false, index: true|
 ### Association
 - belongs_to :user
 - belongs_to :payment
 - belongs_to :brand
-- has_one :transactions
+- has_one :transacts
 - has_many :comments
 - has_many :likes
 - has_many :images
 - has_many :messages
 - has_many :categories
 - has_many :blands
-- has_many :sizes
+- has_many :sizings
 - has_many :comments 
 - has_many :messages
 - has_many :likes
@@ -33,7 +34,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |email|string|null: false, index: true, unique: true|
-|phone_number|string|null: false|
+|phone_number|string|null: false, unique; true|
 |avator_image|string| |
 |password|string| |
 |password_confirmation|string| |
@@ -87,7 +88,7 @@
 ### Association
 belongs_to :user
 
-## transactionsテーブル
+## transactsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item|references|null: false, foreign_key: true|
@@ -179,14 +180,14 @@ belongs_to :user
 |Column|Type|Options|
 |------|----|-------|
 |ancestry|string| |
-|size|references|foreign_key: true|
+|sizing|references|foreign_key: true|
 |name|string|null: false|
 ### Association
 - has_many :items
-- belongs_to :size
+- belongs_to :sizing
 
 
-## sizesテーブル
+## sizingsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |ancestry|string| |
