@@ -72,6 +72,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
   end
   def credit_registration
-    
   end
 end
