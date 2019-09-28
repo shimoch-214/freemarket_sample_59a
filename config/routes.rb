@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :upload_tests, only: [:index, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'item#index'
+  root 'items#index'
 
   # mypage routings
   resource :mypage, only: :show do
@@ -34,5 +34,5 @@ Rails.application.routes.draw do
   end
 
   # item exhibiting
-  resources :items, only: [:new, :create, :show]
+  resources :items, only: [:index, :new, :create, :show]
 end

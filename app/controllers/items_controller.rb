@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
-  layout "application-user"
+  layout "application"
+
+  def index
+  end
 
   def new
   end
