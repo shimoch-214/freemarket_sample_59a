@@ -34,6 +34,6 @@ Rails.application.routes.draw do
   end
 
   # item exhibiting
-  # resources :items, only: [:new, :create, :show]
-  # get 'sell'
+  get 'sell', to: 'items#new', as: 'item_exhibit'
+  resources :items, only: :create
 end
