@@ -1,4 +1,4 @@
-class Transaction < ApplicationRecord
+class Transact < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to  :item
   belongs_to  :seller,  class_name: 'User', foreign_key: :seller_id
