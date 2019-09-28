@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       get 'identification', to: 'mypages#edit_identification'
       # メルカリのログアウトページurlは'/logout'になっているが、一旦ここに作る。
       get 'logout'
+      # クレジットカード関連
+      resource :card , only: [:show, :edit]
     end
   end
 
@@ -39,4 +41,5 @@ Rails.application.routes.draw do
   
   # 商品取引
   get 'transactions', to:'transactions#index'
+
 end
