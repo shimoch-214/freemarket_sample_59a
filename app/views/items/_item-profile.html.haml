@@ -3,9 +3,9 @@
     %figure.item-profile__main
       %figcaption.item-profile__title
         %span.item-profile__title--text
-          ガンプラ
+          = item.name
       .item-profile__image
         %span.item-profile__image--price
           ¥
-          = "1000"
+          = item.price
         = image_tag 'sample_image_gandam.jpg', class: 'item-profile__image--item-image'

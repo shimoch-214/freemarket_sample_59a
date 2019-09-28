@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   layout "application"
 
   def index
+    @items = Item.all
   end
 
   def new
