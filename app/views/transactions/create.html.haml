@@ -1,62 +1,60 @@
-  -# 対応cssファイル　parchase-confirmation.scss
-  %body
-    %main.payment-confirmation
-      %section.payment-confirmation__box
-        %h2.payment-confirmation__box__content
-          購入内容の確認
-        %section.payment-confirmation__box__parchase-form
-          .payment-confirmation__box__parchase-form--innner
-            .parchase-item--image
-              = image_tag "excalibur.jpeg", width: '64px', height: '64px'
-            .parchase-item--name
-              エクスカリバー
-            .parchase-form
-              .parchase-price
-                .parchase-price__box--cost
-                  ￥1,499
-                .parchase-price__box--fee
-                  送料込み
-              .parchase-point
-                .parchase-point__box
-                  ポイントはありません
-              .payment-box
-                .payment-box__label
-                  支払い金額
-                .payment-box__price
-                  ￥1,499
-              %button.parchase-submit{type:'submit'} 
-                購入する
-        %section.payment-confirmation__box__shipping-address
-          .reciever-address
-            .reciever-address__box
-              %h3.reciever-address__box--label
-                配送先
-              %address.reciever-address__box--detail
-                〒***-****
-                %br 
-                ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-                %br
-                アーサー・ペンドラゴン
-              .reciever-address__box--change
-                %span.change-button
-                変更する
-                %i.arrow-right
-                  = fa_icon 'chevron-right'
+%main.payment-confirmation
+  %section.payment-confirmation__box
+    %h2.payment-confirmation__box__content
+      購入内容の確認
+    %section.payment-confirmation__box__parchase-form
+      .payment-confirmation__box__parchase-form--innner
+        .parchase-item--image
+          = image_tag "excalibur.jpeg", width: '64px', height: '64px'
+        .parchase-item--name
+          エクスカリバー
+        .parchase-form
+          .parchase-price
+            .parchase-price__box--cost
+              ￥1,499
+            .parchase-price__box--fee
+              送料込み
+          .parchase-point
+            .parchase-point__box
+              ポイントはありません
+          .payment-box
+            .payment-box__label
+              支払い金額
+            .payment-box__price
+              ￥1,499
+          %button.parchase-submit{type:'submit'} 
+            購入する
+    %section.payment-confirmation__box__shipping-address
+      .reciever-address
+        .reciever-address__box
+          %h3.reciever-address__box--label
+            配送先
+          %address.reciever-address__box--detail
+            〒***-****
+            %br 
+            ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+            %br
+            アーサー・ペンドラゴン
+          .reciever-address__box--change
+            %span.change-button
+            変更する
+            %i.arrow-right
+              = fa_icon 'chevron-right'
 
-        %section.payment-confirmation__box__payment-method
-          .payment-method
-            .payment-method__box
-              %h3.payment-method__box--label
-                支払い方法
-              %address.payment-method__box--detail
-                **** **** ****
-                %br 
-                ** / **
-                %br
-                = image_tag 'jcb.svg', width: '20px', height: '15px'
-              .payment-method__box--change
-                %span.change-button
-                変更する
-                %i.arrow-right
-                  = fa_icon 'chevron-right'
+    %section.payment-confirmation__box__payment-method
+      .payment-method
+        .payment-method__box
+          %h3.payment-method__box--label
+            支払い方法
+          %address.payment-method__box--detail
+            **** **** ****
+            %br 
+            ** / **
+            %br
+            = image_tag 'jcb.svg', width: '20px', height: '15px'
+          .payment-method__box--change
+            %span.change-button
+            変更する
+            %i.arrow-right
+              = fa_icon 'chevron-right'
 
