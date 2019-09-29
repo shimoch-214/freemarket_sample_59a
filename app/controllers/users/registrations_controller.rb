@@ -11,9 +11,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -61,7 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def user_info
-    
+    @user = User.new
   end
 
   def sms_confirmation
