@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.page(params[:page]).per(10).order("created_at DESC")
+    @category = Category.all
   end
 
   def new

@@ -1,3 +1,5 @@
+-# = category.find(item.category.ancestry.split("/").first).name
+-# = category.find(category.where("ancestry LIKE ?", "%/%").pluck(:id).sample).sizing_id
 .item-profile
   = link_to ("/items/#{item.id}"), class: 'item-profile__link' do
     %figure.item-profile__main

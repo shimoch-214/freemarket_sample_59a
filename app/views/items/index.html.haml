@@ -3,26 +3,34 @@
     .top-image
       %h2
         = image_tag 'index_keyvisual_sample.png'
+
     - tag = ["カテゴリー", "ブランド"]
     - tag.each do |tag_name|
+      - if tag_name == "カテゴリー"
+        - popular_categories_num = [1, 200, 893, 680]
+        - popular_items = popular_categories_num.map{|i| @category.find(i).name}
+      - else
+        - popular_items = ["シャネル", "ルイヴィトン", "シュプリーム", "ナイキ"]
+
       .popular-item-tag
         %h2.popular-item-tag__title
           = "人気の#{tag_name}"
         %div.popular-item-tag__list--box
           %ul.popular-item-tag__list
-            - for num in 1..4 do
+            - popular_items.each do |popular_item|
               %li.popular-item-tag__a-list 
                 = link_to (), class: 'popular-item-tag__link' do
-                  = "#{tag_name}#{num}"
+                  = "#{popular_item}"
       .new-items
-        - for num in 1..4 do
+        - popular_items.each do |popular_item|
           .new-items__box
             .new-items__title
               %h3.new-items__item-tag
-                = "#{tag_name}#{num}新着アイテム"
+                = "#{popular_item}新着アイテム"
               = link_to (), class: 'new-items__see-more' do
                 もっとみる
                 ＞
             .new-items__list
               .new-items__position
-                = render partial: "item-profile", collection: @items, as: "item"
+                -# = render partial: "item-profile", collection: @items, as: "item"
+                = render partial: "item-profile", locals: {category: @category}, collection: @items, as: "item"
