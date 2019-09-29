@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   layout "application"
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(10).order("created_at DESC")
   end
 
   def new
