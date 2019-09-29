@@ -100,7 +100,7 @@
             .items-forms__price--profit
               販売利益
             #your-profit.items-forms__price--profit
-              300,000
+              \-
       .items-container__inner--content
         %p
           = link_to "禁止されている出品", "#"
@@ -115,7 +115,6 @@
           また、出品をもちまして
           = link_to "加盟店規約", ""
           に同意したことになります。
-        %button.items-forms__content__submit
-          出品する
+        = f.submit "出品する", class: "items-forms__content__submit"
         %button.items-forms__content__return
           もどる
