@@ -39,4 +39,11 @@ Rails.application.routes.draw do
   
   # 商品取引
   get 'transactions', to:'transactions#index'
+
+  namespace :api, format: 'html' do
+    get 'categories/parent_select'
+    get 'categories/child_select'
+    get 'categories/grand_child_select'
+  end
+
 end
