@@ -1,0 +1,7 @@
+.items-forms__separator
+= label 'item[transact]', :deliver_method, "配送の方法", class: "items-forms__content__label"
+%span.items-forms__content__necessary
+  必須
+.items-forms__content__select-wrap
+  = select 'item[transact]', :deliver_method, @options.map { |k, v| [t("enums.transact.delivery_method.#{k}"), v] }, include_blank: "---"
+  = fa_icon "chevron-down"

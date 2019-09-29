@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    get 'transacts/delivery_method'
+  end
   devise_scope :user do
     get 'signup/registration/info' => 'users/registrations#user_info', as: :user_registration_info
     get 'signup/registration/sms_confirmation' => 'users/registrations#sms_confirmation', as: :user_sms_confirmation
@@ -44,6 +47,7 @@ Rails.application.routes.draw do
     get 'categories/parent_select'
     get 'categories/child_select'
     get 'categories/grand_child_select'
+    get 'transacts/delivery_method'
   end
 
 end

@@ -21,7 +21,7 @@ $(function() {
       $('#children-select-box').append(html);
     })
     .fail(function() {
-      alert('カテゴリの取得に失敗しました。')
+      alert('Internal Error')
     })
   })
   $(document).on('change', '#category-children', function() {
@@ -43,7 +43,7 @@ $(function() {
       $('#grand-children-select-box').append(html);
     })
     .fail(function(){
-      alert('カテゴリの取得に失敗しました。')
+      alert('Internal Error')
     })
   })
   $(document).on('change', '#item_category_id', function() {
@@ -73,7 +73,7 @@ $(function() {
     // console.log(isNaN(price))
     $('#commission-fee').empty();
     $('#your-profit').empty();
-    if (isNaN(price) || Number(price) < 300) {
+    if (isNaN(price) || Number(price) < 300 || Number(price) > 9999999) {
       $('#commission-fee').append('-');
       $('#your-profit').append('-');
       return
@@ -83,6 +83,28 @@ $(function() {
     $('#commission-fee').append(fee);
     $('#your-profit').append(profit)
 
+  })
+
+  // function for delivery_method selecting
+  $(document).on('change', '#item_transact_attributes_bearing', function() {
+    var bearing = $(this).val();
+    if(bearing == "") {
+      $('#delivery_method-wrapper').empty();
+      return
+    } 
+    $.ajax({
+      url: '/api/transacts/delivery_method',
+      type: 'GET',
+      dataType: 'html',
+      data: { bearing: bearing }
+    })
+    .done(function(html) {
+      $('#delivery_method-wrapper').empty();
+      $('#delivery_method-wrapper').append(html);
+    })
+    .fail(function() {
+      alert('Internal Error')
+    })
   })
 
   // prevent submit by ENTER

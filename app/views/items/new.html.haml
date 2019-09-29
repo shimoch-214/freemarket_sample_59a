@@ -64,6 +64,8 @@
             .items-forms__content__select-wrap
               = i.select :bearing, Transact.bearings.map { |k, v| [t("enums.transact.bearing.#{k}"), v] }, include_blank: "---"
               = fa_icon "chevron-down"
+            -# ここに配送方法のセレクトボックスを挿入
+            #delivery_method-wrapper
             .items-forms__separator
             = i.label :prefecture_id, "発送元の地域", class: "items-forms__content__label"
             %span.items-forms__content__necessary
