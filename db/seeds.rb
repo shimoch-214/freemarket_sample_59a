@@ -140,7 +140,7 @@ require 'csv'
 
 
 # # Usersテーブル：ダミー登録
-# 3.times do |u|
+# 10.times do |u|
 #   User.create!(
 #     email: Faker::Internet.email,
 #     password: "asdfghjk"
@@ -149,13 +149,17 @@ require 'csv'
 
 # # itemsテーブル：ダミー登録
 # image_file_path = Dir.glob('/Users/miurashintaro/projects/freemarket_sample_59a/app/assets/images/item_image_sample/*')
+# grandchild_category = Category.where("ancestry LIKE ?", "%/%").pluck(:id)
+# brand_name = ["シャネル", "ルイヴィトン", "シュプリーム", "ナイキ", "NOブランド"]
 # item_num = 300
 # item_num.times do |i|
+#   # sizing_num = Category.find(grandchild_category).sizing_id
 #   item = Item.create!(
 #     price: rand(100..99999),
-#     name: Faker::Name.name ,
-#     category_id: rand(3..20),
+#     name: Faker::Games::Pokemon.name,
+#     category_id: grandchild_category.sample,
 #     sizing_id: rand(2..11),
+#     brand: brand_name.sample,
 #     description: Faker::Creature::Animal.name,
 #     condition: rand(0..5)
 #   )
