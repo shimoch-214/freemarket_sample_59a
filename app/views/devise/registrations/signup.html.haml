@@ -1,0 +1,11 @@
+.signup-page 
+  .signup-page__title
+    %p.registration 新規会員登録
+  .signup-page__form
+    %input.signup-page__form__mail{type: 'submit', value: 'メールアドレスで登録する',id:'mail',url:"user_sessions_new_path"} 
+    %label{for:'mail'}
+      = image_tag "email.png", size: "23x18",class:"mail-icon"
+    %input.signup-page__form__facebook{type: 'submit', value: 'Facebookで登録する'} 
+    =fa_icon 'facebook-official',class:"facebook-icon"
+    %input.signup-page__form__google{type: 'submit', value: 'Googleで登録する'} 
+      = image_tag "google-icon.png", size: "30x20",class:"google-icon"
