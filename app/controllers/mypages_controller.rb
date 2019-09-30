@@ -1,4 +1,5 @@
 class MypagesController < ApplicationController
+  
   def show
   end
 
@@ -14,6 +15,7 @@ class MypagesController < ApplicationController
   def edit_identification
   end
 
-  def logout   
+  def logout 
+
   end
 end
