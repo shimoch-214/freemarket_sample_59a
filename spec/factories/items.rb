@@ -6,8 +6,8 @@ FactoryBot.define do
     condition     { Faker::Number.within(range: 0..5) }
     category_id   { 3 }
     sizing_id     { 4 }
-    after(:build) do |instance|
-      build(:transact, item: instance) unless instance.transact
+    after(:build) do |item|
+      build(:transact, item: item) unless item.transact
     end
   end
 end

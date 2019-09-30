@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :api do
-    get 'transacts/delivery_method'
-  end
   devise_scope :user do
     get 'registrations/signup/info' => 'users/registrations#new', as: :user_registration_info
     get 'sessions/signin' => 'users/sessions#new',as: :user_sessions_new
@@ -51,6 +48,10 @@ Rails.application.routes.draw do
     get 'categories/parent_select'
     get 'categories/child_select'
     get 'categories/grand_child_select'
+    get 'transacts/delivery_method'
+  end
+
+  namespace :api do
     get 'transacts/delivery_method'
   end
 

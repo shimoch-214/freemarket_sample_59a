@@ -39,7 +39,7 @@ class Transact < ApplicationRecord
 
   # validations
   validates_presence_of :item
-  validates :seller_id, presence: true
+  validates_presence_of :seller
   validates :bearing, presence: true
   validates :delivery_method, presence: true
   validates :prefecture_id, presence: true
@@ -48,15 +48,15 @@ class Transact < ApplicationRecord
 
   # custom validate
   def valid_delivery_method
-    if bearing == 'seller_side'
-      unless Transact.delivery_methods_for_seller.keys.include?(delivery_method)
+    if bearing == 'buyer_side'
+      unless Transact.delivery_methods_for_buyer_side.keys.include?(delivery_method)
         errors.add(:delivery_method)
       end
     end
   end
 
   # methods
-  def self.delivery_methods_for_seller
+  def self.delivery_methods_for_buyer_side
     Transact.delivery_methods.slice(:pending, :yu_mail, :yu_pack, :kuroneko)
   end
 

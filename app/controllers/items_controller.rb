@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.transact.seller = User.find(1) # そのうちcurrent_userに変更
+    @item.transact.seller = current_user
     if @item.save
       redirect_to :root
     else

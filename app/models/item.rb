@@ -27,6 +27,7 @@ class Item < ApplicationRecord
   }
   validates :name, length: { in: 1..40 }
   validates :description, length: { in: 1..1000 }
+  validates :condition, presence: true
   validates :category_id, presence: true
   validate  :category_cannot_have_children, if: :category_id?
   validate  :presence_of_sizeing_if_category_has_size, if: :category_id?

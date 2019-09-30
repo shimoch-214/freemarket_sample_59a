@@ -8,19 +8,23 @@
 
 require 'csv'
 
-CSV.foreach('db/csv/categories.csv', headers: true) do |row|
-  row['ancestry'] = nil if row['ancestry'] == "NULL"
-  Category.create!(
-    ancestry: row['ancestry'],
-    name: row['name']
-  )
-end
-
 CSV.foreach('db/csv/sizes.csv', headers: true) do |row|
   row['ancestry'] = nil if row['ancestry'] == "NULL"
   Sizing.create(
-    ancestry: row['ancestry'],
-    name: row['name']
+    ancestry:       row['ancestry'],
+    name:           row['name']
   )
 end
+
+CSV.foreach('db/csv/categories.csv', headers: true) do |row|
+  row['ancestry'] = nil if row['ancestry'] == "NULL"
+  row['sizing_id'] = nil if row['sizing_id'] == 'NULL'
+  Category.create!(
+    ancestry:       row['ancestry'],
+    name:           row['name'],
+    sizing_id:      row['sizing_id']
+  )
+end
+
+
 

@@ -70,7 +70,6 @@ $(function() {
   // function to confirme price
   $('#item_price').on('keyup', function() {
     var price = $(this).val();
-    // console.log(isNaN(price))
     $('#commission-fee').empty();
     $('#your-profit').empty();
     if (isNaN(price) || Number(price) < 300 || Number(price) > 9999999) {
