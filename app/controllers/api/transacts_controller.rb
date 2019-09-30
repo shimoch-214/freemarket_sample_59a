@@ -2,10 +2,10 @@ class Api::TransactsController < ApplicationController
   layout false
 
   def delivery_method
-    if !ActiveRecord::Type::Boolean.new.cast(bearing_params[:bearing])
-      @options = Transact.delivery_methods
+    if bearing_params[:bearing] == 'seller_side'
+      @options = Transact.delivery_methods_for_seller
     else
-      @options = Transact.delivery_methods.slice(:pending, :yu_mail, :yu_pack, :kuroneko)
+      @options = Transact.delivery_methods
     end
   end
 

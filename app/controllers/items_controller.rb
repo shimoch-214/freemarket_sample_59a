@@ -7,8 +7,35 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.new(item_params)
+    @item.transact.seller = User.find(1) # そのうちcurrent_userに変更
+    if @item.save
+      redirect_to :root
+    else
+      render :new
+    end
   end
 
   def show
   end
+
+
+  private
+  def item_params
+    params.require(:item).permit(
+      :name,
+      :description,
+      :category_id,
+      :sizing_id,
+      :condition,
+      :price,
+      transact_attributes: [
+        :bearing,
+        :delivery_method,
+        :prefecture_id,
+        :ship_days
+      ]
+    )
+  end
+
 end

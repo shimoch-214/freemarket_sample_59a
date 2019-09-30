@@ -49,7 +49,7 @@
           %span.items-forms__content__necessary
             必須
           .items-forms__content__select-wrap
-            = f.select :condition, Item.conditions.map { |k, v| [t("enums.item.condition.#{k}"), v] }, include_blank: "---"
+            = f.select :condition, Item.conditions.map { |k, v| [t("enums.item.condition.#{k}"), k] }, include_blank: "---"
             = fa_icon "chevron-down"
 
       .items-container__inner--content-sep
@@ -62,7 +62,7 @@
             %span.items-forms__content__necessary
               必須
             .items-forms__content__select-wrap
-              = i.select :bearing, Transact.bearings.map { |k, v| [t("enums.transact.bearing.#{k}"), v] }, include_blank: "---"
+              = i.select :bearing, Transact.bearings.map { |k, v| [t("enums.transact.bearing.#{k}"), k] }, include_blank: "---"
               = fa_icon "chevron-down"
             -# ここに配送方法のセレクトボックスを挿入
             #delivery_method-wrapper
@@ -78,7 +78,7 @@
             %span.items-forms__content__necessary
               必須
             .items-forms__content__select-wrap
-              = i.select :ship_days, Transact.ship_days.map { |k, v| [t("enums.transact.ship_days.#{k}"), v] }, include_blank: "---"
+              = i.select :ship_days, Transact.ship_days.map { |k, v| [t("enums.transact.ship_days.#{k}"), k] }, include_blank: "---"
               = fa_icon "chevron-down"
       .items-container__inner--content-sep
         %h3.items-container__inner--headsub
