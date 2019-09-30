@@ -6,12 +6,10 @@ feature 'sign_in', type: :feature do
   end
 
   scenario 'login' do
-visit new_user_session_path
+    visit new_user_session_path
     fill_in 'user_email', with: "foo@example.com"
     fill_in 'user_password', with:"12345678"
     find('input[name="commit"]').click
     expect(current_path).to eq root_path
   end
-
-  
 end
