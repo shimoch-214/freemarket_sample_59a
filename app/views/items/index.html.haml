@@ -4,6 +4,8 @@
       %h2
         = image_tag 'index_keyvisual_sample.png'
     - @popular_items.each do |tag_name, genres|
+      - tag_name = "カテゴリー" if tag_name == :category
+      - tag_name = "ブランド" if tag_name == :brand
       .popular-item-tag
         %h2.popular-item-tag__title
           = "人気の#{tag_name}"
