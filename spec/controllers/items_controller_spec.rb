@@ -4,9 +4,7 @@ RSpec.describe ItemsController, type: :controller do
 
   describe 'GET #index' do
     # it "@itemsに人気カテゴリー・ブランドのitemレコードが紐付いている" do
-    #   items = create_list(:item, 60) 
-    #   get :index
-    #   expect(assigns(:items)).to match(tweets.sort{ |a, b| b.created_at <=> a.created_at } )
+      # ブランドテーブル実装後に記述
     # end
 
     it "indexテンプレートを表示する" do
