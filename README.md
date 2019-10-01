@@ -85,6 +85,7 @@
 |birth_year|string|null: false|
 |birth_month|string|null: false|
 |birth_day|string|null: false|
+|user|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :user
 
