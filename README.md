@@ -61,7 +61,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string|null: false|
-|prefecture|string|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building|string| |
@@ -78,7 +78,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string| |
-|prefecture|string| |
+|prefecture_id|integer| |
 |city|string| |
 |street|string| |
 |building|string| |
