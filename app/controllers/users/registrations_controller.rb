@@ -2,18 +2,22 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "application-user"
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def configure_sign_up_params
+    # devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
+  end
+
   # GET /resource/sign_up
-    def new
-      super
-    end
+  def new
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -61,7 +65,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def user_info
-    
+    @user = User.new
   end
 
   def sms_confirmation
@@ -72,6 +76,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
   end
   def credit_registration
-    
   end
 end

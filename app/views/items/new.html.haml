@@ -33,17 +33,25 @@
           %span.items-forms__content__necessary
             必須
           .items-forms__content__select-wrap
-            -# = f.collection_select :category_id, Category.roots, :id, :name, include_blank: "---"
-            - options = options_for_select(Category.roots.map{|ele| [ele.name, ele.id]})
-            = select_tag :parent_id, options, include_blank: "---"
+            - options = options_for_select(Category.roots.map{ |ele| [ele.name, ele.id]})
+            = select_tag :parent_id, options, include_blank: "---", id: "category-parent"
             = fa_icon "chevron-down"
-          .items-forms__content.items-forms__separator
+          -# ここに子供のセレクトボックスを挿入
+          .items-forms__content__select-wrap#children-select-box
+          -# ここに孫のセレクトボックスを挿入
+          .items-forms__content__select-wrap#grand-children-select-box
+          -# ここにサイズのセレクトボックスを挿入
+          #sizing-wrapper
+          
+
+          .items-forms__separator
           = f.label :condition, "商品の状態", class: "items-forms__content__label"
           %span.items-forms__content__necessary
             必須
           .items-forms__content__select-wrap
-            = f.select :condition, Item.conditions.map { |k, v| [t("enums.item.condition.#{k}"), v] }, include_blank: "---"
+            = f.select :condition, Item.conditions.map { |k, v| [t("enums.item.condition.#{k}"), k] }, include_blank: "---"
             = fa_icon "chevron-down"
+
       .items-container__inner--content-sep
         = f.fields_for :transact do |i|
           %h3.items-container__inner--headsub
@@ -54,8 +62,10 @@
             %span.items-forms__content__necessary
               必須
             .items-forms__content__select-wrap
-              = i.select :bearing, Transact.bearings.map { |k, v| [t("enums.transact.bearing.#{k}"), v] }, include_blank: "---"
+              = i.select :bearing, Transact.bearings.map { |k, v| [t("enums.transact.bearing.#{k}"), k] }, include_blank: "---"
               = fa_icon "chevron-down"
+            -# ここに配送方法のセレクトボックスを挿入
+            #delivery_method-wrapper
             .items-forms__separator
             = i.label :prefecture_id, "発送元の地域", class: "items-forms__content__label"
             %span.items-forms__content__necessary
@@ -68,7 +78,7 @@
             %span.items-forms__content__necessary
               必須
             .items-forms__content__select-wrap
-              = i.select :ship_days, Transact.ship_days.map { |k, v| [t("enums.transact.ship_days.#{k}"), v] }, include_blank: "---"
+              = i.select :ship_days, Transact.ship_days.map { |k, v| [t("enums.transact.ship_days.#{k}"), k] }, include_blank: "---"
               = fa_icon "chevron-down"
       .items-container__inner--content-sep
         %h3.items-container__inner--headsub
@@ -92,7 +102,7 @@
             .items-forms__price--profit
               販売利益
             #your-profit.items-forms__price--profit
-              300,000
+              \-
       .items-container__inner--content
         %p
           = link_to "禁止されている出品", "#"
@@ -107,7 +117,6 @@
           また、出品をもちまして
           = link_to "加盟店規約", ""
           に同意したことになります。
-        %button.items-forms__content__submit
-          出品する
+        = f.submit "出品する", class: "items-forms__content__submit"
         %button.items-forms__content__return
           もどる

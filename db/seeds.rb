@@ -8,19 +8,21 @@
 
 require 'csv'
 
-# CSV.foreach('db/csv/categories.csv', headers: true) do |row|
-#   row['ancestry'] = nil if row['ancestry'] == "NULL"
-#   Category.create!(
-#     ancestry: row['ancestry'],
-#     name: row['name']
-#   )
-# end
-
 # CSV.foreach('db/csv/sizes.csv', headers: true) do |row|
 #   row['ancestry'] = nil if row['ancestry'] == "NULL"
 #   Sizing.create(
-#     ancestry: row['ancestry'],
-#     name: row['name']
+#     ancestry:       row['ancestry'],
+#     name:           row['name']
+#   )
+# end
+
+# CSV.foreach('db/csv/categories.csv', headers: true) do |row|
+#   row['ancestry'] = nil if row['ancestry'] == "NULL"
+#   row['sizing_id'] = nil if row['sizing_id'] == 'NULL'
+#   Category.create!(
+#     ancestry:       row['ancestry'],
+#     name:           row['name'],
+#     sizing_id:      row['sizing_id']
 #   )
 # end
 
@@ -137,7 +139,6 @@ require 'csv'
 # vehicle.children[6].children[0].update(sizing_id: 106)
 
 # Category.where(name: "その他").update_all(sizing_id: nil)
-
 
 # # Usersテーブル：ダミー登録
 # 10.times do |u|

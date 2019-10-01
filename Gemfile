@@ -39,11 +39,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec'
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
   gem 'faker'
   # for automatic deploy
   gem 'capistrano'
@@ -88,3 +87,4 @@ gem 'ancestry'
 gem 'rails-i18n', '~> 5.1'
 gem 'enum_help' 
 gem 'kaminari'
+gem "jquery-rails"

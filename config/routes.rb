@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
   devise_scope :user do
-    get 'signup/registration/info' => 'users/registrations#user_info', as: :user_registration_info
+    get 'registrations/signup/info' => 'users/registrations#new', as: :user_registration_info
+    get 'sessions/signin' => 'users/sessions#new',as: :user_sessions_new
     get 'signup/registration/sms_confirmation' => 'users/registrations#sms_confirmation', as: :user_sms_confirmation
     get 'signup/registration/user_adress' => 'users/registrations#user_adress', as: :user_registration_adress
-    # get 'signup/registration' => 'users/registrations#user_payment', as: :user_registration_payment
-    get 'signup/registration/user_complete' => 'users/registrations#user_complete', as: :user_registration_complete
-    get 'sessions/log_in' => 'users/sessions#new'
-    get 'registrations/sign_up' => 'users/registrations#new'
-    get 'registrations/credit_registration' => 'users/registrations#credit_registration'
     
+    # get 'signup/registration' => 'users/registrations#user_payment', as: :user_registration_payment
+    # get 'signup/registration/user_complete' => 'users/registrations#user_complete', as: :user_registration_complete
+    # get 'sessions/log_in' => 'users/sessions#new'
+    # get 'registrations/sign_up' => 'users/registrations#new'
+    # get 'registrations/credit_registration' => 'users/registrations#credit_registration'
+
   end
 
   devise_for :users,controllers:{
@@ -30,6 +32,8 @@ Rails.application.routes.draw do
       get 'identification', to: 'mypages#edit_identification'
       # メルカリのログアウトページurlは'/logout'になっているが、一旦ここに作る。
       get 'logout'
+      # クレジットカード関連
+      resource :card , only: [:show, :edit]
     end
   end
 
@@ -40,4 +44,16 @@ Rails.application.routes.draw do
   
   # 商品取引
   get 'transactions', to:'transactions#index'
+
+  namespace :api, format: 'html' do
+    get 'categories/parent_select'
+    get 'categories/child_select'
+    get 'categories/grand_child_select'
+    get 'transacts/delivery_method'
+  end
+
+  namespace :api do
+    get 'transacts/delivery_method'
+  end
+
 end

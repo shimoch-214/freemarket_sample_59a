@@ -14,8 +14,11 @@
   .card-list{
     display: flex;
     margin-top: 8px;
-    &--item {
-      margin-left: 8px;
+    &--item{
+      margin-right: 8px;
+      img{
+        height: 20px;
+      } 
     }
   }
 }
