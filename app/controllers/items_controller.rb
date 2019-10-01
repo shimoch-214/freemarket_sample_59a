@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to :root
     else
-      render :new
+      render 'new'
     end
   end
 

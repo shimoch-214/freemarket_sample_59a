@@ -19,7 +19,7 @@ class Transact < ApplicationRecord
     click_post:   7,
     yu_packet:    8
   }
-  enum bearing: {
+  enum bearing: { 
     seller_side: false,
     buyer_side:  true
   }
@@ -40,9 +40,10 @@ class Transact < ApplicationRecord
   # validations
   validates_presence_of :item
   validates_presence_of :seller
+  validates_presence_of :prefecture
   validates :bearing, presence: true
+  validate  :status_has_to_be_zero, on: :create 
   validates :delivery_method, presence: true
-  validates :prefecture_id, presence: true
   validates :ship_days, presence: true
   validate  :valid_delivery_method, if: :bearing? && :delivery_method?
 
@@ -54,6 +55,18 @@ class Transact < ApplicationRecord
       end
     end
   end
+
+  def status_has_to_be_zero
+    if status_before_type_cast.to_i != 0
+      errors.add(:status)
+    end
+  end
+
+  # def prefecture_exist
+  #   unless Prefecture.data.include?(prefecture.attributes)
+  #     errors.add(:prefecture_id)
+  #   end
+  # end
 
   # methods
   def self.delivery_methods_for_buyer_side

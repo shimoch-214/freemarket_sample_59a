@@ -30,7 +30,7 @@ class Item < ApplicationRecord
   validates :condition, presence: true
   validates :category_id, presence: true
   validate  :category_cannot_have_children, if: :category_id?
-  validate  :presence_of_sizeing_if_category_has_size, if: :category_id?
+  validate  :presence_of_sizing_if_category_has_size, if: :category_id?
   validate  :sizing_has_to_be_child, if: :sizing_id?
 
   # custom validate
@@ -40,7 +40,7 @@ class Item < ApplicationRecord
     end
   end
 
-  def presence_of_sizeing_if_category_has_size
+  def presence_of_sizing_if_category_has_size
     if category.sizing
       unless sizing
         errors.add(:sizing_id)
