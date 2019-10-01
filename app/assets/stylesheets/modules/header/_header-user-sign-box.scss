@@ -1,0 +1,32 @@
+.header-user-sign-box{
+  display: flex;
+  %a-setting{
+    display: block;
+    font-size: 14px;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    border-radius: 4px;
+    padding: 4.5px 10px;
+  }
+  &__sinup{
+    text-align: center;
+    a{
+      @extend %a-setting;
+      background-color: rgb(234, 53, 45);
+      color: rgb(255, 255, 255);
+      border-color: rgb(234, 53, 45);
+    }
+  }
+  &__login{
+    text-align: center;
+    margin-left: 11px;
+    a{
+      @extend %a-setting;
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 149, 238);
+      border-color: rgb(0, 149, 238);
+      transition: all 0.3s ease-out 0s;
+    }
+  }
+}
