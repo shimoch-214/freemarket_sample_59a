@@ -3,10 +3,10 @@
     %p.registration-title 会員情報入力
   .user-info__form
     = form_for(resource, as: resource_name, url: user_registration_path) do |f|
-      .user-info__form--nickname
-        =f.label :nickname, "ニックネーム", class:"nickname"
-        %span.form-require 必須
-        =f.text_field :nickname, class:"input-nickname",placeholder:"例) メルカリ太郎"
+      -# .user-info__form--nickname
+      -#   =f.label :nickname, "ニックネーム", class:"nickname"
+      -#   %span.form-require 必須
+      -#   =f.text_field :nickname, class:"input-nickname",placeholder:"例) メルカリ太郎"
       .user-info__form--email
         =f.label :email, "メールアドレス", class:"email"
         %span.form-require 必須
