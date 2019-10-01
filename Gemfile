@@ -85,6 +85,7 @@ gem 'devise'
 gem 'active_hash'
 gem 'ancestry'
 gem 'rails-i18n', '~> 5.1'
-gem 'enum_help' 
+gem 'enum_help'
 gem 'kaminari'
 gem "jquery-rails"
+gem 'gretel'
