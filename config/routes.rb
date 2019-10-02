@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   resources :items, only: :create
   
   # 商品取引
-  get 'transactions', to:'transactions#index'
+  get 'transactions', to: 'transactions#index'
 
+  # カテゴリー検索
+  get 'category', to: 'categories#index'
 end

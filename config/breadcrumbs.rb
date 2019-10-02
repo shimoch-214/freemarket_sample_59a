@@ -42,3 +42,8 @@ crumb :edit do
   link "クレジットカード情報入力"
   parent :card
 end
+
+crumb :category do
+  link "カテゴリー一覧", category_path
+  parent :root
+end
