@@ -26,7 +26,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |email|string|null: false, index: true, unique: true|
-|phone_number|string|null: false|
+|phone_number|string|null: false, unique; true|
 |avator_image|string| |
 |password|string| |
 |password_confirmation|string| |
@@ -79,10 +79,11 @@
 |birth_year|string|null: false|
 |birth_month|string|null: false|
 |birth_day|string|null: false|
+|user|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :user
 
-## transactionsテーブル
+## transactsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item|references|null: false, foreign_key: true|
@@ -107,11 +108,11 @@ belongs_to :user
 |------|----|-------|
 |name|string|null: false, unique: true|
 ### Association
-- belongs_to :transaction
+- belongs_to :transact
 - has_many :items
 
 
-## credit_cardsテーブル
+## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user|references|null: false, foreign_key: true|
@@ -224,4 +225,3 @@ Things you may want to cover:
 
 * ...
 
-sasa

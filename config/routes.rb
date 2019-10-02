@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   }
 
   resources :upload_tests, only: [:index, :create]
-  root 'products#index'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'items#index'
 
   # mypage routings
   resource :mypage, only: :show do
@@ -37,8 +38,9 @@ Rails.application.routes.draw do
   end
 
   # item exhibiting
+
   get 'sell', to: 'items#new', as: 'item_exhibit'
-  resources :items, only: :create
+  resources :items, only: [:index, :new, :create, :show]
   
   # 商品取引
   get 'transactions', to:'transactions#index'

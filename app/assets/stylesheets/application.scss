@@ -9,9 +9,6 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *= require_self
- *= require dropzone/dropzone
- *= require dropzone/basic
  */
 
 @import "config/reset";
@@ -35,6 +32,7 @@
 @import "./modules/header/site-name";
 @import "./modules/header/item-search";
 @import "./modules/header/item-tag";
+@import "./modules/header/header-user-sign-box";
 @import "./modules/header/user-list";
 @import "./modules/header/profile";
 @import "./modules/header/go-sell";
