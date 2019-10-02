@@ -17,7 +17,7 @@
                 ドラッグアンドドロップ
                 %br/
                 またはクリックしてファイルをアップロード
-                = img.file_field :name, class: 'items-image-upload__hidden active-input'
+                = img.file_field :name, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png'
       .items-container__inner--content
         .items-forms__content
           = f.label :name, "商品名", class: "items-forms__content__label"
