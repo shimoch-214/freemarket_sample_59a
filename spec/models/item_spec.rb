@@ -46,7 +46,7 @@ RSpec.describe Item, type: :model do
       end
       it 'without a sizing when the category does not have sizing_id' do
         item = build(:item, sizing_id: nil)
-        item.category = Category.where('sizing_id is null').sample
+        item.category = Category.where('sizing_id is null').where("ancestry Like '%/%'").sample
         expect(item).to be_valid
       end
     end
@@ -135,6 +135,18 @@ RSpec.describe Item, type: :model do
         item.sizing = Sizing.find(Sizing.roots.map{|ele| ele.id}.select{|ele| ele != item.category.sizing.id}.sample)
         item.valid?
         expect(item.errors[:sizing_id]).to include('は不正な値です')
+      end
+      it 'without transact' do
+        item = build(:item)
+        item.transact = nil
+        item.valid?
+        expect(item.errors[:transact]).to include('を入力してください')
+      end
+      it 'without images' do
+        item = build(:item)
+        item.images = []
+        item.valid?
+        expect(item.errors[:images]).to include('画像が投稿されていません')
       end
     end
   end
