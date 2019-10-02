@@ -86,4 +86,5 @@ gem 'active_hash'
 gem 'ancestry'
 gem 'rails-i18n', '~> 5.1'
 gem 'enum_help' 
-gem "jquery-rails"
+gem 'jquery-rails'
+gem 'dropzonejs-rails'
