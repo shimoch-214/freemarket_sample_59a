@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :upload_tests, only: [:index, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'products#index'
+  root 'items#index'
 
   # mypage routings
   resource :mypage, only: :show do
@@ -38,12 +38,25 @@ Rails.application.routes.draw do
   end
 
   # item exhibiting
+
   get 'sell', to: 'items#new', as: 'item_exhibit'
-  resources :items, only: :create
+  resources :items, only: [:index, :new, :create, :show]
   
   # 商品取引
   get 'transactions', to: 'transactions#index'
 
   # カテゴリー検索
   get 'category', to: 'categories#index'
+  
+  namespace :api, format: 'html' do
+    get 'categories/parent_select'
+    get 'categories/child_select'
+    get 'categories/grand_child_select'
+    get 'transacts/delivery_method'
+  end
+
+  namespace :api do
+    get 'transacts/delivery_method'
+  end
+
 end

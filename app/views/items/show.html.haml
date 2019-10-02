@@ -1,2 +1,155 @@
-%h1 Items#show
-%p Find me in app/views/items/show.html.haml
+%section.show-items
+  %h1.show-items__name
+    ガンプラ
+  .show-items__content
+    .show-items__photo
+      //jQcuery_大画像を横並べにして小画像をマウスオンするとその画像にスライドする
+      .show-items__photo--parent
+        .show-items__photo-size-parent
+          .show-items__photo-size-parent--list
+
+            - for num in 1..10 do
+              .show-items__photo-size-parent--size
+                .show-items__photo-size-parent--config
+                  = image_tag 'sample_image_gandam.jpg'
+
+      .show-items__photo--child
+        - for num in 1..10 do
+          .show-items__photo-size-child--list
+            %span
+            .show-items__photo-size-child--size
+              = image_tag 'sample_image_gandam.jpg'
+
+    %table.show-items__detail-tabel
+      %tbody
+        %tr
+          %th
+            出品者
+          %td
+            = link_to () do
+              アムロ・レイ
+            .show-items__detail-tabel--evaluation
+              %div
+                = fa_icon 'arrow-up', class: 'show-items__rank--up'
+                %span 7
+              %div
+                = fa_icon'arrow-right', class: 'show-items__rank--normal'
+                %span 0
+              %div
+                = fa_icon'arrow-down',  class: 'show-items__rank--down'
+                %span 0
+        %tr
+          %th
+            カテゴリー
+          %td
+            = link_to () do
+              おもちゃ・ホビー・グッズ
+            %br
+            = link_to () do
+              = fa_icon('chevron-right')
+              おもちゃ
+            %br
+            = link_to () do
+              = fa_icon('chevron-right')
+              模型/プラモデル
+        %tr
+          %th
+            ブランド	
+          %td
+        %tr
+          %th
+            商品の状態
+          %td
+            目立った傷や汚れなし
+        %tr
+          %th
+            配送料の負担
+          %td
+            送料込み(出品者負担)
+        %tr
+          %th
+            配送の方法
+          %td
+            らくらくメルカリ便
+        %tr
+          %th
+            配送元地域	
+          %td
+            = link_to () do
+              神奈川県
+        %tr
+          %th
+            発送日の目安
+          %td
+            1~2日で発送
+
+  .show-items__price-box
+    %span.show-items__price-box--price
+      ¥1080
+    %span.show-items__price-box--tax
+      (税込)
+    %span.show-items__price-box--shipping-fee
+      送料込み
+  = link_to '購入画面に進む',(), class: 'show-items__buy-botton'
+  .show-items__text
+    %p.show-items__text--inner
+      ■最新フォーマットにより、組みやすさを向上しつつ大幅な可動を実現。2001年に発売された「HGUC RX-78-2 ガンダム」と比べ、パーツ数はほぼ同数ながら可動箇所は1.5倍以上。
+      ■可動箇所の増加だけでなく、可動範囲も大幅に向上。アニメシーンさながらの迫力のポーズが可能に。
+      ■ランナーは組みやすさを考慮した配置を実現。くさびゲートを採用し、ゲート跡が目立たない仕様に。
+      ■肘、膝の二重関節により片膝立ちやビーム・サーベルを抜く動作の再現が可能。
+      ■腰部の左右への回転や前屈、肩部の上下可動を実現。
+      ■ビーム・ライフル、ビーム・サーベルのほか、腰部にマウント可能なハイパー・バズーカも付属。
+      ■武器持ち手（左右）、平手パーツ（左右）でさまざまな表現が可能。
+
+      成形品×5、ホイルシール×1、組立説明書×1成形品×5、ホイルシール×1、組立説明書×1
+      成形品×5、ホイルシール×1、組立説明書×1
+  .show-items__botton-container
+    .show-items__botton-container-left
+      %button.show-items__like-botton
+        = fa_icon('heart')
+        %span
+          いいね!
+        %span
+          72
+      = link_to (), class: 'show-items__report-link' do
+        = fa_icon('flag')
+        %span
+          不適切な商品の報告
+    .show-items__botton-container-right
+      = link_to (), class: 'show-items__safe-link' do
+        = fa_icon('lock')
+        %span
+          あんしん・あんぜんへの取り組み
+
+//コメント欄を追加
+
+%ul.item-link-nav
+  %li.item-link-nav__prev
+    = link_to (), class: 'item-link-nav__prev--link' do
+      = fa_icon('chevron-left')
+      前のアイテム
+  %li.item-link-nav__next
+    = link_to (), class: 'item-link-nav__next--link' do
+      次のアイテム
+      = fa_icon('chevron-right')
+
+.social-media
+  %ul.social-media__box
+    %li
+      = link_to (), class: 'social-media__facebook' do
+        = fa_icon('facebook-square')
+    %li
+      = link_to (), class: 'social-media__twitter' do
+        = fa_icon('twitter-square')
+    %li
+      = link_to (), class: 'social-media__pinterest' do
+        = fa_icon('pinterest-square')
+
+.item-proposal
+  - ['アムロ・レイさんのその他の出品', 'カテゴリー　その他の商品'].each do |title|
+    %section.item-in-user-profile
+      %h2.item-in-user-profile__title
+        = link_to (), class: 'item-in-user-profile__title--link' do
+          = "#{title}"
+      .item-in-user-profile__box
+        = render partial: "item-box", collection: (1..6).to_a
