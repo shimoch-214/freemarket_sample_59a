@@ -23,10 +23,12 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    seller_item_id = Transact.where(seller_id: @item.seller.id).pluck(:id)
-    @user_items =Item.where(id: seller_item_id).page(params[:page]).per(6).order("created_at DESC")
-    
-    @category_items = Item.where(category_id: @item.category.sibling_ids).page(params[:page]).per(6).order("created_at DESC")
+    seller_item_ids = Transact.where(seller_id: @item.seller.id).pluck(:id)
+    @user_items =Item.where(id: seller_item_ids).page(params[:page]).per(6).order("created_at DESC")
+    category_item_ids = @item.category.sibling_ids
+    category_item_ids.delete(@item.category.id)
+    @category_items = Item.where(category_id: category_item_ids).page(params[:page]).per(6).order("created_at DESC")
+    # binding.pry
   end
 
 
