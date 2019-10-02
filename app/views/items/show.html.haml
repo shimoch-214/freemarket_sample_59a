@@ -143,12 +143,13 @@
       = link_to (), class: 'social-media__pinterest' do
         = fa_icon('pinterest-square')
 
+= @item.category.name
 .item-proposal
   - [@user_items, @category_items].each_with_index do |items, index|
     %section.item-in-user-profile
       %h2.item-in-user-profile__title
         = link_to (), class: 'item-in-user-profile__title--link' do
-          = "#{items.first.seller.email}さんのその他の出品" if index == 0
-          = "#{@item.category.name}（#{items.first.category.root.name}）その他の商品" if index == 1
+          = "#{items.first.seller.email}さんのその他の出品" if index == 0 && items.length != 0
+          = "#{items.first.category.name}（#{items.first.category.root.name}）その他の商品" if index == 1 && items.length != 0
       .item-in-user-profile__box
         = render partial: "item-box", collection: items, as: "item"
