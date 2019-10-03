@@ -96,11 +96,14 @@
       (税込)
     %span.show-items__price-box--shipping-fee
       送料込み
-  - if @item.transact.status_before_type_cast == 0 
-    = link_to '購入画面に進む',(), class: 'show-items__buy-botton'
-  - else
-    .show-items__not-buy-botton
-      売り切れました
+
+  - unless @item.seller.id == current_user.id
+    - if @item.transact.status_before_type_cast == 0 
+      = link_to '購入画面に進む',(), class: 'show-items__buy-botton'
+    - else
+      .show-items__not-buy-botton
+        売り切れました
+
   .show-items__text
     %p.show-items__text--inner
       = @item.description
@@ -122,15 +125,15 @@
         %span
           あんしん・あんぜんへの取り組み
 
-//アイテム編集・削除
-.items-status
-  = link_to (), class: 'items-status__edit' do
-    商品の編集
-  %p or
-  .items-status__exhibit
-    出品を一旦停止する
-  %button.items-status__delete
-    この商品を削除する
+-# //アイテム編集・削除・・・商品の編集ページ作成時にコメントアウトを外す＆マイページからアクセスしたときのみ表示させる
+-# .items-status
+-#   = link_to (), class: 'items-status__edit' do
+-#     商品の編集
+-#   %p or
+-#   .items-status__exhibit
+-#     出品を一旦停止する
+-#   %button.items-status__delete
+-#     この商品を削除する
 
 //コメント欄を追加
 
@@ -158,13 +161,18 @@
         = fa_icon('pinterest-square')
 
 .item-proposal
-  - [@user_items, @category_items].each_with_index do |items, index|
-    %section.item-in-user-profile
+  %section.item-in-user-profile
+    - if @user_items.length != 0 && @item.seller.id != current_user.id
       %h2.item-in-user-profile__title
         = link_to (), class: 'item-in-user-profile__title--link' do
-          = "#{items.first.seller.email}さんのその他の出品" if index == 0 && items.length != 0
-          = "#{items.first.category.name}（#{items.first.category.root.name}）その他の商品" if index == 1 && items.length != 0
+          = "#{@user_items.first.seller.email}さんのその他の出品"
       .item-in-user-profile__box
-        = render partial: "item-box", collection: items, as: "item"
-
-  
+        = render partial: "item-box", collection: @user_items, as: "item"
+        
+  %section.item-in-user-profile
+    - if @category_items.length != 0
+      %h2.item-in-user-profile__title
+        = link_to (), class: 'item-in-user-profile__title--link' do
+          = "#{@category_items.first.category.name}（#{@category_items.first.category.root.name}）その他の商品"
+      .item-in-user-profile__box
+        = render partial: "item-box", collection: @category_items, as: "item"
