@@ -16,6 +16,5 @@ class MypagesController < ApplicationController
   end
 
   def logout 
-
   end
 end

@@ -35,6 +35,11 @@ class ItemsController < ApplicationController
     # binding.pry
   end
 
+  def edit
+  end
+
+  def destroy
+  end
 
   private
   def item_params
