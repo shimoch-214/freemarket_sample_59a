@@ -5,35 +5,28 @@
 |------|----|-------|
 |price|integer|null: false, index: true|
 |name|string|null: false, index: true|
-|user|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key:true|
-|bland|references|foreign_key: true|
-|size|references|foreign_key: true|
-|description|text|default: "商品の説明はありません"|
+|bland|string||
+|sizing|references|foreign_key: true|
+|category|references|foreign_key: true|
+|description|text|null: false|
 |condition|integer|null: false, index: true|
 ### Association
-- belongs_to :user
-- belongs_to :payment
-- belongs_to :brand
-- has_one :transactions
-- has_many :comments
-- has_many :likes
-- has_many :images
-- has_many :messages
+- belongs_to :brand(ブランド機能未実装)
+- has_one :transact
+- has_many :comments(コメント機能未実装)
+- has_many :likes(お気に入り機能未実装)
+- has_many :images, dependent: :destroy
 - has_many :categories
 - has_many :blands
-- has_many :sizes
-- has_many :comments 
-- has_many :messages
-- has_many :likes
-- has_many :images
+- has_many :sizing
 
 
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |email|string|null: false, index: true, unique: true|
-|phone_number|string|null: false|
+|phone_number|string|null: false, unique; true|
 |avator_image|string| |
 |password|string| |
 |password_confirmation|string| |
@@ -42,10 +35,12 @@
 |nickname|string|null: false|
 ### Association
 - has_one :credit_cards
-- has_many :items
+- has_many  :sell_items, class_name: 'Item', through: :sell_transacts, source: :item
+- has_many  :buy_items, class_name: 'Item', through: :buy_transacts, source: :item
 - has_one :addresses
 - has-one :identifications
-- has_many :transactions 
+- has_many  :sell_transacts, class_name: 'Transact', foreign_key: :seller_id
+- has_many  :buy_transacts, class_name: 'Transact', foreign_key: :buyer_id
 - has_many :ratings
 - has_many :comments 
 - has_many :likes
@@ -84,10 +79,11 @@
 |birth_year|string|null: false|
 |birth_month|string|null: false|
 |birth_day|string|null: false|
+|user|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :user
 
-## transactionsテーブル
+## transactsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item|references|null: false, foreign_key: true|
@@ -96,13 +92,15 @@ belongs_to :user
 |delivery_method|integer|null: false|
 |bearing|boolean|null: false|
 |ship_days|integer|null: false|
-|payment|references|null: false|
-|status|integer| |
-|parchased_at|date| |
+|payment|references|null: false|(未実装)
+|status|integer|defauot: 0|
+|parchased_at|date||
 ### Association
 - belongs_to :item
-- belongs_to :user
-- has_many :payments
+- belongs_to :seller, class_name: 'User', foreign_key: :seller_id
+- belongs_to :buyer, class_name: 'User', foreign_key: :buyer_id, optional: true
+- has_many :payments(未実装)
+- has_many :messages(未実装)
 
 
 ## paymentsテーブル
@@ -110,11 +108,11 @@ belongs_to :user
 |------|----|-------|
 |name|string|null: false, unique: true|
 ### Association
-- belongs_to :transaction
+- belongs_to :transact
 - has_many :items
 
 
-## credit_cardsテーブル
+## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user|references|null: false, foreign_key: true|
@@ -179,14 +177,14 @@ belongs_to :user
 |Column|Type|Options|
 |------|----|-------|
 |ancestry|string| |
-|size|references|foreign_key: true|
+|sizing|references|foreign_key: true|
 |name|string|null: false|
 ### Association
 - has_many :items
-- belongs_to :size
+- belongs_to :sizings
 
 
-## sizesテーブル
+## sizingテーブル
 |Column|Type|Options|
 |------|----|-------|
 |ancestry|string| |
@@ -227,4 +225,3 @@ Things you may want to cover:
 
 * ...
 
-sasa

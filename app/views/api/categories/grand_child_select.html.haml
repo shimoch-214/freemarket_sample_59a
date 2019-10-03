@@ -1,0 +1,8 @@
+.items-forms__separator
+= label :item, :sizing_id, "サイズ", class: "items-forms__content__label"
+%span.items-forms__content__necessary
+  必須
+.items-forms__content__select-wrap
+  - options = options_for_select(@sizing.children.map{ |ele| [ele.name, ele.id]})
+  = select :item, :sizing_id, options, include_blank: "---"
+  = fa_icon("chevron-down")
