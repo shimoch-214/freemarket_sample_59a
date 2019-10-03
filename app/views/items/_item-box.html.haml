@@ -1,7 +1,9 @@
 %section.item-box
   = link_to item_path(item), class: 'item-box__link' do
     %figure.item-box__photo
+      = render partial: "item-sold"
       = image_tag "#{item.images.first.name}"
+      
     .item-box__body
       %h3.item-box__name
         = item.name
