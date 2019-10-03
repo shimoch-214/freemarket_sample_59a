@@ -9,6 +9,7 @@ $(function() {
     child_photo.css({opacity: .3});
     $(this).css({opacity: .9});
     var index_chilled = child_photo.index(this);
+    parent_photo.stop();
     parent_photo.animate({left:`${index_chilled * -300}px`}, { duration: 'slow'});
   })
 })
