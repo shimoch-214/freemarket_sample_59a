@@ -79,11 +79,11 @@ def popular_items(popular_genre)
     if item_tag == :category
       genre.each do |a_genre|
         grandchild_ids = Category.where(name: a_genre).first.indirect_ids
-        items[a_genre] = Item.where(category_id: grandchild_ids).page(params[:page]).per(10).order("created_at DESC")
+        items[a_genre] = Item&.where(category_id: grandchild_ids).page(params[:page]).per(10).order("created_at DESC")
       end
     else
       genre.each do |a_genre|
-        items[a_genre] = Item.where(brand: a_genre).page(params[:page]).per(10).order("created_at DESC")
+        items[a_genre] = Item&.where(brand: a_genre).page(params[:page]).per(10).order("created_at DESC")
       end
     end
   end

@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     get 'registrations/signup/adress' => 'users/registrations#user_adress', as: :user_adress
     get 'registrations/signup/payment'=> 'users/registrations#user_payment', as: :user_payment
     get 'registrations/signup/complete'=> 'users/registrations#create', as: :registration_complete
-    get 'sessions/signin' => 'users/sessions#new',as: :user_sessions_new   
+    get 'sessions/signin' => 'users/sessions#new',as: :user_sessions_new
+    get 'registrations/sign_up' => 'users/registrations#sign_up',as: :user_sign_up 
   end
 
   devise_for :users,controllers:{
