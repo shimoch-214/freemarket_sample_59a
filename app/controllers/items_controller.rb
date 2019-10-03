@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  layout "application"
+  layout "application-user", only: :new
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @popular_items = popular_items_setting
@@ -9,15 +10,17 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.build_transact
+    @item.images.build
   end
 
   def create
     @item = Item.new(item_params)
     @item.transact.seller = current_user
     if @item.save
-      redirect_to :root
+      redirect_to item_path(@item)
     else
-      render :new
+      @item.images.build if @item.images.empty?
+      render 'new'
     end
   end
 
@@ -47,6 +50,9 @@ class ItemsController < ApplicationController
         :delivery_method,
         :prefecture_id,
         :ship_days
+      ],
+      images_attributes: [
+        :name
       ]
     )
   end
