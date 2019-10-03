@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many  :sell_items, class_name: 'Item', through: :sell_transacts, source: :item
   has_many  :buy_items, class_name: 'Item', through: :buy_transacts, source: :item
           
-
   validates :password, presence: true, length: { minimum: 7 ,maximum:128 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # 空白がないことを確認、emailのフォーマットの検証、一意性の検証
