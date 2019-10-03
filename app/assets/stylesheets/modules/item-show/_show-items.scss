@@ -84,6 +84,7 @@
       max-height: none;
       cursor: pointer;
       opacity: .4;
+      cursor: default;
     }
     &--size{
       overflow: hidden;
@@ -179,6 +180,12 @@
     @include btn-default($bgc:#ea352d);
     font-size: 24px;
     font-weight: bold;
+  }
+  &__not-buy-botton{
+    @include btn-default($bgc:#888);
+    font-size: 24px;
+    font-weight: bold;
+    cursor: not-allowed;
   }
   &__text{
     padding: 32px 0 0;
