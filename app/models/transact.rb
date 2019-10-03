@@ -62,12 +62,6 @@ class Transact < ApplicationRecord
     end
   end
 
-  # def prefecture_exist
-  #   unless Prefecture.data.include?(prefecture.attributes)
-  #     errors.add(:prefecture_id)
-  #   end
-  # end
-
   # methods
   def self.delivery_methods_for_buyer_side
     Transact.delivery_methods.slice(:pending, :yu_mail, :yu_pack, :kuroneko)

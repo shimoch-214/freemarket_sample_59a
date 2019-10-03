@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.transact.seller = current_user
     if @item.save
-      redirect_to :root
+      redirect_to item_path(@item)
     else
       @item.images.build if @item.images.empty?
       render 'new'
