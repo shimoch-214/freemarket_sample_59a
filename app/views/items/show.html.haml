@@ -3,7 +3,6 @@
     = @item.name
   .show-items__content
     .show-items__photo
-      //jQcuery_大画像を横並べにして小画像をマウスオンするとその画像にスライドする
       .show-items__photo--parent
         .show-items__photo-size-parent
           = render partial: "item-sold" unless @item.transact.status_before_type_cast == 0 
