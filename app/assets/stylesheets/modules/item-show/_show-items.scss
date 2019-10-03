@@ -38,7 +38,9 @@
     overflow: hidden;
     position: relative;
     &--list{
-      left: 0px;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 3000px;
       position: relative;
       display: flex;
@@ -46,7 +48,6 @@
     }
     &--size{
       min-height: 1px;
-      float: left;
       -webkit-backface-visibility: hidden;
       -webkit-tap-highlight-color: transparent;
       -webkit-touch-callout: none;
