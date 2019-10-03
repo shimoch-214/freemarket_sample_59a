@@ -2,7 +2,7 @@
   position: relative;
   
   width: 220px;
-  margin: 0 0px 20px 0;
+  margin: 0 20px 20px 0;
   background: #fff;
   &__link{
     display: block;
@@ -76,4 +76,8 @@
       color: #ccc;
     }
   }
+}
+
+.item-box:nth-child(3n) {
+  margin-right: 0;
 }
