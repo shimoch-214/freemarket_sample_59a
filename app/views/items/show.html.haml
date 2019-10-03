@@ -123,6 +123,16 @@
         %span
           あんしん・あんぜんへの取り組み
 
+//アイテム編集・削除
+.items-status
+  = link_to (), class: 'items-status__edit' do
+    商品の編集
+  %p or
+  .items-status__exhibit
+    出品を一旦停止する
+  %button.items-status__delete
+    この商品を削除する
+
 //コメント欄を追加
 
 //リンク先のアイテムは、@item.idの±1
@@ -157,3 +167,5 @@
           = "#{items.first.category.name}（#{items.first.category.root.name}）その他の商品" if index == 1 && items.length != 0
       .item-in-user-profile__box
         = render partial: "item-box", collection: items, as: "item"
+
+  
