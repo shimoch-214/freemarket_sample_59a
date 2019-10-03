@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
+  let(:item) { create(:item) }
 
   # describe 'GET #index' do
   #   # it "@itemsに人気カテゴリー・ブランドのitemレコードが紐付いている" do
@@ -14,9 +15,12 @@ RSpec.describe ItemsController, type: :controller do
   # end
 
   describe 'GET #show' do
-    # it "@itemにparams[:id]のitemレコードが紐付いている" do
-      # ブランドテーブル実装後に記述
-    # end
+    before do
+      get :index
+    end
+    it "@itemにparams[:id]のitemレコードが紐付いている" do
+      expect(assigns(:item)).to eq item
+    end
 
     # it "@user_itemsにparams[:id]を出品したユーザーの他のitemレコードが紐付いている" do
       # ブランドテーブル実装後に記述
