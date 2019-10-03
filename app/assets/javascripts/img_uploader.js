@@ -34,7 +34,6 @@ $(function(){
     var reader = new FileReader();
     reader.onload = function() {
       var html = buildItem(reader.result)
-      console.log(count)
       $(html).insertBefore($('#image-previews-container').children('label'))
     }
     reader.readAsDataURL(file);
