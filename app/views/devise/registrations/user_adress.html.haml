@@ -1,4 +1,6 @@
 .user-adress
   .user-adress__title
     %p.input-adress 住所入力
-  =render partial: "devise/registrations/adress"
+    = form_for(@user, url: user_payment_path ,method: :get) do |f|
+      = f.fields_for :adress do |a|
+        =render partial: "devise/registrations/adress",locals:{f:f ,a:a}
