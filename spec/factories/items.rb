@@ -8,6 +8,7 @@ FactoryBot.define do
     sizing_id     { 4 }
     after(:build) do |item|
       build(:transact, item: item) unless item.transact
+      item.images << FactoryBot.build(:image)
     end
   end
 end

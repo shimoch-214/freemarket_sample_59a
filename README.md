@@ -5,29 +5,21 @@
 |------|----|-------|
 |price|integer|null: false, index: true|
 |name|string|null: false, index: true|
-|user|references|null: false, foreign_key: true|
-|transact|reference|null: false, foreign_key: true|
 |category|references|null: false, foreign_key:true|
-|bland|references|foreign_key: true|
+|bland|string||
 |sizing|references|foreign_key: true|
-|description|text|default: "商品の説明はありません"|
+|category|references|foreign_key: true|
+|description|text|null: false|
 |condition|integer|null: false, index: true|
 ### Association
-- belongs_to :user
-- belongs_to :payment
-- belongs_to :brand
+- belongs_to :brand(ブランド機能未実装)
 - has_one :transact
-- has_many :comments
-- has_many :likes
-- has_many :images
-- has_many :messages
+- has_many :comments(コメント機能未実装)
+- has_many :likes(お気に入り機能未実装)
+- has_many :images, dependent: :destroy
 - has_many :categories
 - has_many :blands
-- has_many :sizings
-- has_many :comments 
-- has_many :messages
-- has_many :likes
-- has_many :images
+- has_many :sizing
 
 
 ## usersテーブル
@@ -43,10 +35,12 @@
 |nickname|string|null: false|
 ### Association
 - has_one :credit_cards
-- has_many :items
+- has_many  :sell_items, class_name: 'Item', through: :sell_transacts, source: :item
+- has_many  :buy_items, class_name: 'Item', through: :buy_transacts, source: :item
 - has_one :addresses
 - has-one :identifications
-- has_many :transacts 
+- has_many  :sell_transacts, class_name: 'Transact', foreign_key: :seller_id
+- has_many  :buy_transacts, class_name: 'Transact', foreign_key: :buyer_id
 - has_many :ratings
 - has_many :comments 
 - has_many :likes
@@ -98,13 +92,15 @@ belongs_to :user
 |delivery_method|integer|null: false|
 |bearing|boolean|null: false|
 |ship_days|integer|null: false|
-|payment|references|null: false|
-|status|integer| |
-|parchased_at|date| |
+|payment|references|null: false|(未実装)
+|status|integer|defauot: 0|
+|parchased_at|date||
 ### Association
 - belongs_to :item
-- belongs_to :user
-- has_many :payments
+- belongs_to :seller, class_name: 'User', foreign_key: :seller_id
+- belongs_to :buyer, class_name: 'User', foreign_key: :buyer_id, optional: true
+- has_many :payments(未実装)
+- has_many :messages(未実装)
 
 
 ## paymentsテーブル
@@ -185,10 +181,10 @@ belongs_to :user
 |name|string|null: false|
 ### Association
 - has_many :items
-- belongs_to :sizing
+- belongs_to :sizings
 
 
-## sizingsテーブル
+## sizingテーブル
 |Column|Type|Options|
 |------|----|-------|
 |ancestry|string| |
