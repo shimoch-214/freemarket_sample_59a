@@ -12,7 +12,7 @@ before_save { self.email = email.downcase }
 
 validates :nickname, presence: true, length: { minimum: 1 ,maximum:20  }
 validates :password, presence: true, length: { minimum: 7 ,maximum:128 }
-VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-# 空白がないことを確認、emailのフォーマットの検証、一意性の検証
-validates :email, presence: true, format: {with: VALID_EMAIL_REGEX },uniqueness: true         
+validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },uniqueness: true
+validates :phone_number, presence: true, format: { with: /\A0[7-9]0-?\d{4}-?\d{4}\z/ }, length: { minimum:11 ,maximum:11},uniqueness: {case_sensitive:false}
+validates :profile, length: {maximum:1000},allow_blank: true         
 end
