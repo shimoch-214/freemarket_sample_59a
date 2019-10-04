@@ -1,0 +1,21 @@
+.search-results{
+  width: 700px;
+  &__keyword{
+
+    &span{
+
+    }
+  }
+  &__count{
+
+  }
+  &__items{
+    width: auto;
+    margin: 0 auto;
+  }
+  &__box{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 20px;
+  }
+}

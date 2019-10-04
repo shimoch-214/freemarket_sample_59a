@@ -1,0 +1,14 @@
+%main.search-item
+  .search-item__side
+  .search-item__content
+    %section.search-results
+      %h2.search-results__keyword
+        = "#{@keyword}"
+        = "新着商品" if @keyword.blank?
+        %span の検索結果
+      .search-results__count
+        // kaminariメソッド使用
+        = "1 - #{@items.size} 件"
+      .search-results__items
+        .search-results__box
+          = render partial: "item-profile", collection: @items, as: "item"

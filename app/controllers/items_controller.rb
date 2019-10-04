@@ -41,6 +41,11 @@ class ItemsController < ApplicationController
   def destroy
   end
 
+  def search
+    @items = Item.where('name LIKE ? OR description LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(132).order("created_at DESC")
+    @keyword = params[:keyword]
+  end
+
   private
   def item_params
     params.require(:item).permit(
