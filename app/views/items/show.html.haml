@@ -136,7 +136,6 @@
 //モーダルウィンドウ削除確認画面
 .modal
   .modal__bg
-  = form_for [@item] do |f|
     .modal__inner
       .modal-body
         .modal-body__confirmation 確認
@@ -148,7 +147,8 @@
         本当に削除しますか？
       .cancel-btn
         キャンセル
-      = f.button '削除する', class: 'delete-btn', method: :delete
+      = link_to item_path(@item), method: :delete, class: 'delete-btn' do
+        削除する
 
 //コメント欄を追加
 

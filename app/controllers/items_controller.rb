@@ -32,15 +32,15 @@ class ItemsController < ApplicationController
     category_item_ids = @item.category.sibling_ids
     category_item_ids.delete(@item.category.id)
     @category_items = Item.where(category_id: category_item_ids).page(params[:page]).per(6).order("created_at DESC")
-    # binding.pry
   end
 
   def edit
   end
 
   def destroy
-    @item = Item.find(id: params[:id])
-    @item.destroy if current_user.id == 
+    @item = Item.find(params[:id])
+    @item.destroy if current_user == @item.seller
+    redirect_to mypage_path(@item)
   end
 
   private
