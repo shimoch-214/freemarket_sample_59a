@@ -1,4 +1,4 @@
-class TransactionsController < ApplicationController
+class TransactsController < ApplicationController
   layout 'application-user'
   def index
    render 'create'

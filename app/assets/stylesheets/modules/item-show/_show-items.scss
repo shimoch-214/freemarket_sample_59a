@@ -270,7 +270,7 @@
     display: block;
     text-align: center;
   }
-  &__delete{
+  &__delete-btn{
     margin-bottom: 16px;
     background: #aaa;
     border: 1px solid #aaa;
@@ -278,5 +278,6 @@
     font-size: 14px;
     line-height: 48px;
     width: 100%;
+    outline: 0;
   }
 }

@@ -39,6 +39,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(id: params[:id])
+    @item.destroy if current_user.id == 
   end
 
   private

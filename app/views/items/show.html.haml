@@ -125,13 +125,30 @@
 
 //アイテム編集・削除
 .items-status
-  = link_to (), class: 'items-status__edit' do
+  = link_to edit_item_path, class: 'items-status__edit' do
     商品の編集
   %p or
   .items-status__exhibit
     出品を一旦停止する
-  %button.items-status__delete
+  %button.items-status__delete-btn{id: 'open-modal'}
     この商品を削除する
+
+//モーダルウィンドウ削除確認画面
+.modal
+  .modal__bg
+  = form_for [@item] do |f|
+    .modal__inner
+      .modal-body
+        .modal-body__confirmation 確認
+        削除すると二度と復活できません。
+        %br
+        削除する代わりに停止することもできます。
+        %br
+        %br
+        本当に削除しますか？
+      .cancel-btn
+        キャンセル
+      = f.button '削除する', class: 'delete-btn', method: :delete
 
 //コメント欄を追加
 
