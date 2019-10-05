@@ -23,7 +23,6 @@
         .search-results__box
           = render partial: "item-profile", collection: @items, as: "item"
 
-      - unless @keyword.blank? || @items.limit_value == 24
-        a
+      -# - unless @keyword.blank? || @items.limit_value == 24
       = paginate @items, window: 2
       
