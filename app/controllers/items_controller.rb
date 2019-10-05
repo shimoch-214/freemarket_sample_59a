@@ -42,8 +42,12 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.where('name LIKE ? OR description LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(132).order("created_at DESC")
     @keyword = params[:keyword]
+    item = Item.where('name LIKE ? OR description LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(132).order("created_at DESC")
+    if item.blank? || @keyword.blank?
+      item = Item.page(params[:page]).per(24).order("created_at DESC")
+    end
+    @items = item
   end
 
   private
