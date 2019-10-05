@@ -1,107 +1,65 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "application-user"
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:phone_number])
+  def sign_up
+    previous_url
   end
 
-  # GET /resource/sign_up
-  def new
-    super
-  end
-
-  # POST /resource
-    def create
-      super
-    end
-
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource
-  # def update
-  #   super
-  # end
-
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
-
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
-
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
   def user_info
+    session.delete(:params)
     @user = User.new
     @user.build_identification
+  end
+
+  def user_info_facebook
+    session.delete(:params)
+    user = build_sns_confirmed_user('facebook')
+    render 'user_info'
+  end
+
+  def user_info_google
+    session.delete(:params)
+    user = build_sns_confirmed_user('google')
+    render 'user_info'
   end
 
   def phone_number
     @user = User.new
     @user.build_identification
-    session[:params] = user_params.to_h
-    session[:params][:identification_attributes][:birthday]=birthday_join
+    session[:params] = user_params
+    session[:params]["identification_attributes"]["birthday"] = birthday_join
   end
   
-  def user_adress
+  def user_address
     @user = User.new
-    @user.build_adress
-    session[:params].merge!(user_params.to_h)
+    @user.build_address
+    session[:params].merge!(user_params)
   end
 
   def user_payment
     @user = User.new
-    session[:params].merge!(user_params.to_h)
+    session[:params].merge!(user_params)
   end
 
   def create
     @user = User.new(session[:params])
-    @user.identification[:zip_code] = @user.adress[:zip_code]
-    @user.identification[:city] = @user.adress[:city]
-    @user.identification[:street] = @user.adress[:street]
-    @user.identification[:building] = @user.adress[:building]
-    @user.identification[:prefecture_id] = @user.adress[:prefecture_id]
+    @user.identification[:zip_code] = @user.address[:zip_code]
+    @user.identification[:city] = @user.address[:city]
+    @user.identification[:street] = @user.address[:street]
+    @user.identification[:building] = @user.address[:building]
+    @user.identification[:prefecture_id] = @user.address[:prefecture_id]
       if @user.save
-        render 'create'
-        session[:id] = @user.id
-        sign_in User.find(session[:id]) unless user_signed_in?
-    else
+        session.delete(:params)
+        sign_in @user unless user_signed_in?
+        redirect_to registration_complete_path
+      else
         render 'user_info'
     end
+  end
+
+  def complete
   end
 
   private
@@ -121,7 +79,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :first_name_kana,
         :birthday
       ],
-      adress_attributes: [
+      address_attributes: [
         :id, 
         :last_name, 
         :first_name, 
@@ -133,6 +91,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :street, 
         :building, 
         :phone_number_sub
+      ],
+      sns_confirmation_attributes: [
+        :provider,
+        :uid,
+        :email
       ]
     )
   end
@@ -142,6 +105,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
     return if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
     Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
   end
-  def sign_up
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :phone_number])
   end
+
+  def build_sns_confirmed_user(provider)
+    @user = User.new(email: session["devise.#{provider}_data"]['info']['email'])
+    @user.build_identification
+    @user.build_sns_confirmation( provider: session["devise.#{provider}_data"]['provider'],
+                                  uid: session["devise.#{provider}_data"]['uid'],
+                                  email: session["devise.#{provider}_data"]['info']['email'])
+    session[:params] = @user.attributes
+    session[:params]['sns_confirmation_attributes'] = @user.sns_confirmation.attributes
+    @user
+  end
+
+  def previous_url
+    session[:previous_url] = request.original_url
+  end
+
 end

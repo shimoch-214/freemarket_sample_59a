@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
 
   devise_scope :user do
-    get 'registrations/signup/info' => 'users/registrations#user_info', as: :user_info
-    get 'registrations/signup/phone_number'=> 'users/registrations#phone_number', as: :user_phone_number
-    get 'registrations/signup/adress' => 'users/registrations#user_adress', as: :user_adress
-    get 'registrations/signup/payment'=> 'users/registrations#user_payment', as: :user_payment
-    get 'registrations/signup/complete'=> 'users/registrations#create', as: :registration_complete
-    get 'sessions/signin' => 'users/sessions#new',as: :user_sessions_new
-    get 'registrations/sign_up' => 'users/registrations#sign_up',as: :user_sign_up 
+    post   'signup/registration' => 'users/registrations#user_info', as: :user_info
+    get    'signup/registration/facebook' => 'users/registrations#user_info_facebook', as: :user_info_facebook
+    get    'signup/registration/google' => 'users/registrations#user_info_google', as: :user_info_google
+    post   'signup/sms_confirmation'=> 'users/registrations#phone_number', as: :user_phone_number
+    post   'signup/address' => 'users/registrations#user_address', as: :user_address
+    post   'signup/payment' => 'users/registrations#user_payment', as: :user_payment
+    get    'signup/complete' => 'users/registrations#complete', as: :registration_complete
+    get    'sign_up' => 'users/registrations#sign_up', as: :user_sign_up 
+    get    'login' => 'users/sessions#new', as: :user_sessions_new
+    get    'logout' => 'users/sessions#logout', as: :user_session_logout
   end
 
-  devise_for :users,controllers:{
+  devise_for :users,controllers: {
     registrations: 'users/registrations',
-    sessions:'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   resources :upload_tests, only: [:index, :create]
@@ -26,8 +30,6 @@ Rails.application.routes.draw do
       get 'notification'
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
-      # メルカリのログアウトページurlは'/logout'になっているが、一旦ここに作る。
-      get 'logout'
       # クレジットカード関連
       resource :card , only: [:show, :edit]
     end
@@ -39,16 +41,12 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create, :show]
   
   # 商品取引
-  get 'transactions', to:'transactions#index'
+  get 'transacts', to:'transacts#index'
 
   namespace :api, format: 'html' do
     get 'categories/parent_select'
     get 'categories/child_select'
     get 'categories/grand_child_select'
-    get 'transacts/delivery_method'
-  end
-
-  namespace :api do
     get 'transacts/delivery_method'
   end
 

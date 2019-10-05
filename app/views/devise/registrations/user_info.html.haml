@@ -2,7 +2,7 @@
   .user-info__input-registration
     %p.registration-title 会員情報入力
   .user-info__form
-    = form_for(@user, url: user_phone_number_path ,method: :get) do |f|
+    = form_for(@user, url: user_phone_number_path) do |f|
       .user-info__form--nickname
         =f.label :nickname, "ニックネーム", class:"nickname"
         %span.form-require 必須
@@ -11,14 +11,16 @@
         =f.label :email, "メールアドレス", class:"email"
         %span.form-require 必須
         =f.text_field :email, class:"input-email",placeholder:"PC・携帯どちらでも可"       
-      .user-info__form--password
-        = f.label :password, "パスワード", class:"password"
-        %span.form-require 必須
-        =f.password_field :password,class:"input-password",placeholder:"7文字以上"
-      .user-info__form--password-confirmation
-        =f.label :password_confirmation, "パスワード(確認用)" ,class:"password-confirmation"
-        %span.form-require 必須
-        =f.password_field :password_confirmation, class:"input-password-confirmation",placeholder:"7文字以上"
+      -# sns認証時にpasswordを求めない
+      - if @user.password_required?
+        .user-info__form--password
+          = f.label :password, "パスワード", class:"password"
+          %span.form-require 必須
+          =f.password_field :password,class:"input-password",placeholder:"7文字以上"
+        .user-info__form--password-confirmation
+          =f.label :password_confirmation, "パスワード(確認用)" ,class:"password-confirmation"
+          %span.form-require 必須
+          =f.password_field :password_confirmation, class:"input-password-confirmation",placeholder:"7文字以上"
       .user-info__form--identification
         %label.identification 本人確認
         %p.identification--xplanation 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
@@ -53,8 +55,6 @@
         %span.next--explanation に同意したものとみなします
         = f.submit "次へ進む", class:"input-next"
       .user-info__form--text-right
-        =link_to"#",class:"user-info__form--text-right--link" do
+        =link_to "#",class:"user-info__form--text-right--link" do
           本人情報の登録について
           =fa_icon 'angle-right', class:'icon'
-
-    
