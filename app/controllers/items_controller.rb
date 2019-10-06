@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   layout "application-user", only: :new
-  before_action :authenticate_user!, only: [:new, :create]
+  # before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @popular_items = popular_items_setting
@@ -32,6 +32,7 @@ class ItemsController < ApplicationController
     category_item_ids = @item.category.sibling_ids
     category_item_ids.delete(@item.category.id)
     @category_items = Item.where(category_id: category_item_ids).page(params[:page]).per(6).order("created_at DESC")
+    # @transact_status = Transact.where(status: 0).map{ |tran| tran.item }
   end
 
   def edit
@@ -39,7 +40,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    @item.destroy if current_user == @item.seller
+    @item.destroy
     redirect_to mypage_path(@item)
   end
 
@@ -53,10 +54,13 @@ class ItemsController < ApplicationController
       :condition,
       :price,
       transact_attributes: [
+        :seller_id,
+        :buyer_id,
         :bearing,
         :delivery_method,
         :prefecture_id,
-        :ship_days
+        :ship_days,
+        :status
       ],
       images_attributes: [
         :name
