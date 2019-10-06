@@ -9,6 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_info
     session.delete(:params)
+    session[:params] = {}
     @user = User.new
     @user.build_identification
   end
@@ -26,21 +27,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def phone_number
-    @user = User.new
-    @user.build_identification
-    session[:params] = user_params
+    session[:params].merge!(user_params)
     session[:params]["identification_attributes"]["birthday"] = birthday_join
+    @user = User.new(session[:params])
+    unless @user.validation_in_phone_number.empty?
+      render 'user_info'
+    end
+    @user = User.new(session[:params])
   end
   
   def user_address
-    @user = User.new
-    @user.build_address
     session[:params].merge!(user_params)
+    @user = User.new(session[:params])
+    unless @user.validation_in_user_address.empty?
+      render 'phone_number'
+    end
+    @user = User.new(session[:params])
+    @user.build_address
   end
 
   def user_payment
-    @user = User.new
     session[:params].merge!(user_params)
+    @user = User.new(session[:params])
+    unless @user.validation_in_user_payment.empty?
+      render 'user_address'
+    end
+    @user = User.new(session[:params])
   end
 
   def create
@@ -55,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_in @user unless user_signed_in?
         redirect_to registration_complete_path
       else
-        render 'user_info'
+        render 'user_payment'
     end
   end
 
@@ -91,11 +103,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :street, 
         :building, 
         :phone_number_sub
-      ],
-      sns_confirmation_attributes: [
-        :provider,
-        :uid,
-        :email
       ]
     )
   end

@@ -18,11 +18,13 @@ class User < ApplicationRecord
 
   before_save { self.email = email.downcase }
 
-  # validates :nickname, presence: true, length: { minimum: 1 ,maximum:20  }
-  # validates :password, presence: true, length: { minimum: 7 ,maximum:128 }
-  # validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },uniqueness: true
-  # validates :phone_number, presence: true, format: { with: /\A0[7-9]0-?\d{4}-?\d{4}\z/ }, length: { minimum:11 ,maximum:11},uniqueness: {case_sensitive:false}
-  # validates :profile, length: {maximum:1000},allow_blank: true         
+  validates_presence_of :identification
+  validates_presence_of :address
+  validates :nickname, presence: true, length: { minimum: 1 ,maximum:20  }
+  validates :password, presence: true, length: { minimum: 7 ,maximum:128 }
+  validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },uniqueness: true
+  validates :phone_number, presence: true, format: { with: /\A0[7-9]0-?\d{4}-?\d{4}\z/ }, length: { minimum:11 ,maximum:11},uniqueness: {case_sensitive:false}
+  validates :profile, length: {maximum:1000},allow_blank: true         
 
   # methods for omniauth
   def self.from_omniauth(auth)
@@ -37,7 +39,40 @@ class User < ApplicationRecord
     sns.user
   end
 
+  # methods for step validation
+  def validation_in_phone_number
+    valid?
+    errors.messages.slice(:nickname,
+                          :email,
+                          :password,
+                          :password_confirmation,
+                          :"identification.first_name",
+                          :"identification.last_name",
+                          :"identification.first_name_kana",
+                          :"identification.last_name_kana",
+                          :"identification.birthday")
+  end
 
+  def validation_in_user_address
+    valid?
+    errors.messages.slice(:phone_number)
+  end
+
+  def validation_in_user_payment
+    valid?
+    errors.messages.slice(:"address.first_name",
+                          :"address.last_name",
+                          :"address.first_name_kana",
+                          :"address.last_name_kana",
+                          :"address.zip_code",
+                          :"address.prefecture_id",
+                          :"address.city",
+                          :"address.street",
+                          :"address.building",
+                          :"address.phone_number_sub")
+  end
+
+  # override Devise methods
   def password_required?
     super && sns_confirmation.nil?
   end
