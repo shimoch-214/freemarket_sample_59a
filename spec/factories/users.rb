@@ -1,10 +1,14 @@
 FactoryBot.define do
+  password = Faker::Internet.password(min_length: 8, max_length: 128)
   factory :user do
-    nickname              {"ゆーか"}
-    email                 {"yuka@gmail.com"}
-    password              {"yuka1234"}
-    password_confirmation {"yuka1234"}
-    phone_number          {"09012345678"}
-        
+    nickname              { Faker::Lorem.characters(number: 10) }
+    email                 { Faker::Internet.email }
+    password              { password }
+    password_confirmation { password }
+    phone_number          { "090#{Faker::Number.number(digits: 8)}" }
+    after(:build) do |user|
+      build(:identification, user: user) unless user.identification
+      build(:address, user: user) unless user.address
+    end
   end
 end

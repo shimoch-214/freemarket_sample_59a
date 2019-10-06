@@ -50,15 +50,15 @@ RSpec.describe User do
       user.valid?
       expect(user.errors[:password][0]).to include("は128文字以内で入力してください")
     end
-    it "is invalid without a password_confirmation although with a password" do
+    it "is invalid without a password_confirmation although a password exist" do
       user = build(:user, password_confirmation: "")
       user.valid?
-      expect(user.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
+      expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
     end
     it "is invalid without password_confirmation that is diffenret from password" do
     user = build(:user, password:"aaaaaaa",password_confirmation:"bbbbbbb")
     user.valid?
-    expect(user.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
+    expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
     end
     it "is invalid with password_confirmation correspond to password" do
       user = build(:user, password:"aaaaaaa",password_confirmation:"aaaaaaa")
