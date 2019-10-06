@@ -2,7 +2,7 @@
   .header__menu
     .header__menu--paragraph1
       .site-name
-        = link_to (), class: 'site-name__logo' do
+        = link_to root_path, class: 'site-name__logo' do
           = image_tag "header", class: 'site-name__image'
       = form_tag( '', method: :get, class: 'item-search') do
         = text_field_tag :name, '', class: 'item-search__field', placeholder: '何かお探しですか？'
