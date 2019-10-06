@@ -100,7 +100,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         session[:id] = @user.id
         sign_in User.find(session[:id]) unless user_signed_in?
     else
-        render 'user_info'
+
     end
   end
 
