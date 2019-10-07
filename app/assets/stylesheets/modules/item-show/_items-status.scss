@@ -1,0 +1,40 @@
+.items-status{
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  background-color: #fff;
+  &__edit{
+    margin: 16px 0;
+    background: #ea352d;
+    border: 1px solid #ea352d;
+    color: #fff;
+    font-size: 14px;
+    line-height: 48px;
+    display: block;
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
+  &__exhibit{
+    margin: 16px 0;
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: #fff;
+    font-size: 14px;
+    line-height: 48px;
+    display: block;
+    text-align: center;
+  }
+  &__delete{
+    margin-bottom: 16px;
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: #fff;
+    font-size: 14px;
+    line-height: 48px;
+    width: 100%;
+  }
+}

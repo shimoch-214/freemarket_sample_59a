@@ -2,58 +2,59 @@
   .user-info__input-registration
     %p.registration-title 会員情報入力
   .user-info__form
-    .user-info__form--nickname
-      %label.nickname ニックネーム
-      %span.form-require 必須
-      %input.input-nickname{type:"text",placeholder:"例) メルカリ太郎"}
-    .user-info__form--email
-      %label.email メールアドレス
-      %span.form-require 必須
-      %input.input-email{type:"email",placeholder:"PC・携帯どちらでも可"}
-    .user-info__form--password
-      %label.password パスワード
-      %span.form-require 必須
-      %input.input-password{type:"password",placeholder:"7文字以上"}
-    .user-info__form--password-confirmation
-      %label.password-confirmation パスワード(確認)
-      %span.form-require 必須
-      %input.input-password-confirmation{type:"password-confirmation",placeholder:"7文字以上"}
-    .user-info__form--identification
-      %label.identification 本人確認
-      %p.identification--xplanation 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-    .user-info__form--name
-      %label.name お名前(全角)
-      %span.form-require 必須
-      .input-form
-        %input.input-family-name{type:"text",placeholder:"例) 例) 山田"}
-        %input.input-first-name{type:"text",placeholder:"例) 彩"}
-    .user-info__form--name-kana
-      %label.name-kana お名前カナ(全角)
-      %span.form-require 必須
-      .input-form
-        %input.input-family-name-kana{type:"text",placeholder:"例) ヤマダ"}
-        %input.input-first-name-kana{type:"text",placeholder:"例) アヤ"}
-    .user-info__form--birthday
-      =form_for(:session, url: "#") do |f|
-        %label.birthday 生年月日
+    = form_for(@user, url: user_phone_number_path ,method: :get) do |f|
+      .user-info__form--nickname
+        =f.label :nickname, "ニックネーム", class:"nickname"
         %span.form-require 必須
-        .input-form
-          != sprintf(f.date_select(:birthday, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),content_tag(:span, "年", class: 'select-date'),content_tag(:span, "月", class: 'select-date'))+content_tag(:span, "日", class: 'select-date')
-          = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon1"
-          = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon2"
-          = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon3"
-    .user-info__form--text
-      %p.text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
-    .user-info__form--recaptcha
-      ロボットは未実装
-    .user-info__form--next
-      %span.next--explanation 「次へ進む」のボタンを押すことにより、
-      %a.terms-of-service{href:"#"} 利用規約
-      %span.next--explanation に同意したものとみなします
-      %input.input-next{type: 'submit', value: '次へ進む'} 
-    .user-info__form--text-right
-      =link_to"#",class:"user-info__form--text-right--link" do
-        本人情報の登録について
-        =fa_icon 'angle-right', class:'icon'
+        =f.text_field :nickname, class:"input-nickname",placeholder:"例) メルカリ太郎"
+      .user-info__form--email
+        =f.label :email, "メールアドレス", class:"email"
+        %span.form-require 必須
+        =f.text_field :email, class:"input-email",placeholder:"PC・携帯どちらでも可"       
+      .user-info__form--password
+        = f.label :password, "パスワード", class:"password"
+        %span.form-require 必須
+        =f.password_field :password,class:"input-password",placeholder:"7文字以上"
+      .user-info__form--password-confirmation
+        =f.label :password_confirmation, "パスワード(確認用)" ,class:"password-confirmation"
+        %span.form-require 必須
+        =f.password_field :password_confirmation, class:"input-password-confirmation",placeholder:"7文字以上"
+      .user-info__form--identification
+        %label.identification 本人確認
+        %p.identification--xplanation 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+      = f.fields_for :identification do |i|
+        .user-info__form--name
+          = i.label :last_name, "お名前(全角)", class:"name"
+          %span.form-require 必須
+          .input-form
+            =i.text_field :last_name, class:"input-last-name", placeholder:"例) 山田" 
+            =i.text_field :first_name, class:"input-first-name", placeholder:"例) 彩" 
+        .user-info__form--name-kana
+          = i.label :last_name_kana,"お名前カナ(全角)", class:"name-kana"
+          %span.form-require 必須
+          .input-form
+            =i.text_field :last_name_kana, class:"input-last-name-kana", placeholder:"例) ヤマダ" 
+            =i.text_field :first_name_kana, class:"input-first-name-kana", placeholder:"例) アヤ" 
+        .user-info__form--birthday
+          %label.birthday 生年月日
+          %span.form-require 必須
+          .input-form
+            != sprintf(i.date_select(:birthday, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),content_tag(:span, "年", class: 'select-date'),content_tag(:span, "月", class: 'select-date'))+content_tag(:span, "日", class: 'select-date')
+            = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon1"
+            = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon2"
+            = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon3"
+      .user-info__form--text
+        %p.text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+      .user-info__form--recaptcha
+        ロボットは未実装
+      .user-info__form--next
+        %span.next--explanation 「次へ進む」のボタンを押すことにより、
+        %a.terms-of-service{href:"#"} 利用規約
+        %span.next--explanation に同意したものとみなします
+        = f.submit "次へ進む", class:"input-next"
+      .user-info__form--text-right
+        =link_to"#",class:"user-info__form--text-right--link" do
+          本人情報の登録について
+          =fa_icon 'angle-right', class:'icon'
 
     

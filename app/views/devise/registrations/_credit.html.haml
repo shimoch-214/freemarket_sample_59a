@@ -7,20 +7,20 @@
       %input.card-number--input{type: "text",id: 'card-number', maxlength: "16", placeholder: "半角数字のみ"}
       .registration-error{type: "hidden", value: "必須項目です"}
       %ul.card-list
-        %li.card-list--item{ style: "margin-left: 0;"}
-          = image_tag "visa.svg", width:"49", height:"20"
         %li.card-list--item
-          = image_tag "master-card.svg", width:"34", height:"20"
-        %li.card-list--item  
-          = image_tag "saison-card.svg", width:"30", height:"20"
-        %li.card-list--item  
-          = image_tag "jcb.svg", width:"32", height:"20"
+          = image_tag "visa.svg"
         %li.card-list--item
-          = image_tag "american_express.svg", width:"21", height:"20"
+          = image_tag "master-card.svg"
         %li.card-list--item
-          = image_tag "dinersclub.svg", width:"32", height:"20"
-        %li.card-list--item 
-          = image_tag "discover.svg", width:"32", height:"20"
+          = image_tag "saison-card.svg"
+        %li.card-list--item
+          = image_tag "jcb.svg"
+        %li.card-list--item
+          = image_tag "american_express.svg"
+        %li.card-list--item
+          = image_tag "dinersclub.svg"
+        %li.card-list--item
+          = image_tag "discover.svg"
     
     .card-form__box__expire
       %label.box-group--label 有効期限
@@ -42,7 +42,7 @@
             %option{value: "11"}11
             %option{value: "12"}12
           %i.card-form-expire-icon
-            = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon5"
+            = image_tag "arrow-bottom.png", class:"arrow-bottom-icon5"
           %span{class: "month"} 月
         .card-expire__select-year
           %select.expire-select--year#exp_year{name: "exp_year", type: "text"}
@@ -58,20 +58,22 @@
             %option{value: "2028"}28
             %option{value: "2029"}29
           %i.card-form-expire-icon
-            = image_tag "arrow-bottom.png", size: "16x10",class:"arrow-bottom-icon6"
+            = image_tag "arrow-bottom.png", class:"arrow-bottom-icon6"
           %span{class:"year"} 年
 
     .card-form__box__security-code
       %label.box-group--label{for: "security-code"} セキュリティーコード
       %span.input-require
         必須
-      %input.payment__security-code{type: "text", id: "security-code", placeholder: "カード背面４桁もしくは３桁の番号"}
+      %input.payment__security-code{type: "text", id: "security-code", maxlength: "4", placeholder: "カード背面４桁もしくは３桁の番号"}
       .question-form
         %span.question-form__mark ?
         %span.question-form__text 
           カード裏面の番号とは？
-
-    .card-form__box__add
-      追加する
+    -if request.path_info = user_payment_path
+      = f.submit "次へ進む", class:"card-form__box__add"
+    -else
+      .card-form__box__add
+        追加する
 
 
