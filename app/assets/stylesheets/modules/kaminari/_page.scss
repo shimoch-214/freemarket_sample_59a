@@ -1,0 +1,36 @@
+.page{
+  display: flex;
+  justify-content: space-between;
+  &__left{
+    width: 88px;
+    display: flex;
+    a{
+      font-size: 180%;
+    }
+  }
+  &__center{
+    display: flex;
+  }
+  &__right{
+    width: 88px;
+    display: flex;
+    a{
+      font-size: 180%;
+    }
+  }
+  &__box{
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  line-height: 42px;
+  a{
+    display: block;
+    color: #333;
+    text-align:center
+  }
+  }
+}
