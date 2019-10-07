@@ -34,6 +34,20 @@ require 'rails_helper'
     #   get :index
     #   expect(response).to render_template :index
     # end
-#   end
+  # end
 
-# end
+  describe 'DELETE #destroy' do
+    let!(:item) { FactoryBot.create :item }
+
+    it 'itemテーブルからitemレコードを削除する' do
+      expect {
+        delete :destroy, params: { id: item.id }
+      }.to change(Item, :count).by(-1)
+    end
+
+    it '商品削除後にマイページに遷移する' do
+      delete :destroy, params: { id: item.id}
+      expect( response ).to redirect_to(mypage_path)
+    end
+  end
+end

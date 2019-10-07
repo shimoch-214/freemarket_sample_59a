@@ -28,7 +28,7 @@
           %td
             = link_to () do
               // userテーブルにnicknameカラム追加後@item.seller.nicknameに修正
-              = @item.seller.email
+              = @item.seller.nickname
             .show-items__detail-tabel--evaluation
               %div
                 = fa_icon 'arrow-up', class: 'show-items__rank--up'
@@ -80,9 +80,7 @@
             配送元地域	
           %td
             = link_to () do
-              -# addressesテーブル実装後に記述
-              -# = @item.seller.addresses.prefecture
-              神奈川県
+              = @item.transact.prefecture.name
         %tr
           %th
             発送日の目安
@@ -97,7 +95,7 @@
     %span.show-items__price-box--shipping-fee
       送料込み
 
-  - unless @item.seller.id == current_user.id
+  - unless @item.seller.id == current_user&.id
     - if @item.transact.status_before_type_cast == 0 
       = link_to '購入画面に進む', transacts_path, class: 'show-items__buy-botton'
     - else
@@ -124,6 +122,33 @@
         = fa_icon('lock')
         %span
           あんしん・あんぜんへの取り組み
+
+//アイテム編集・削除
+- if (current_user == @item.seller) && (@item.transact.status_before_type_cast == 0)
+  .items-status
+    = link_to edit_item_path, class: 'items-status__edit' do
+      商品の編集
+    %p or
+    .items-status__exhibit
+      出品を一旦停止する
+    %button.items-status__delete-btn{id: 'open-modal'}
+      この商品を削除する
+
+  .modal
+    .modal__bg
+      .modal__inner
+        .modal-body
+          .modal-body__confirmation 確認
+          削除すると二度と復活できません。
+          %br
+          削除する代わりに停止することもできます。
+          %br
+          %br
+          本当に削除しますか？
+        .cancel-btn
+          キャンセル
+        = link_to item_path(@item), method: :delete, class: 'delete-btn' do
+          削除する
 
 -# //アイテム編集・削除・・・商品の編集ページ作成時にコメントアウトを外す＆マイページからアクセスしたときのみ表示させる
 -# .items-status
@@ -162,10 +187,10 @@
 
 .item-proposal
   %section.item-in-user-profile
-    - if @user_items.length != 0 && @item.seller.id != current_user.id
+    - if @user_items.length != 0 && @item.seller.id != current_user&.id
       %h2.item-in-user-profile__title
         = link_to (), class: 'item-in-user-profile__title--link' do
-          = "#{@user_items.first.seller.email}さんのその他の出品"
+          = "#{@user_items.first.seller.nickname}さんのその他の出品"
       .item-in-user-profile__box
         = render partial: "item-box", collection: @user_items, as: "item"
         
