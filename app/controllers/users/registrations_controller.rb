@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "application-user"
+  # before_action :check_captcha, only: :phone_number
   before_action :configure_sign_up_params, only: [:create]
   before_action :reject_signed_in_user, except: [:complete]
   # before_action :configure_account_update_params, only: [:update]
@@ -31,6 +32,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:params].merge!(user_params)
     session[:params]["identification_attributes"]["birthday"] = birthday_join
     @user = User.new(session[:params])
+    # validation for recaptcha
+    # unless @user.validation_in_phone_number || verify_recaptcha(model: @user)
     unless @user.validation_in_phone_number
       render 'user_info'
     end
@@ -137,4 +140,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def reject_signed_in_user
     redirect_to root_path if user_signed_in?
   end
+
 end

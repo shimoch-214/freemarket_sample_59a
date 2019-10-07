@@ -89,6 +89,7 @@ gem 'enum_help'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'gretel'
+gem 'recaptcha'
 
 # sns authenticate
 gem 'omniauth'
