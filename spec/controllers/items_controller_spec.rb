@@ -33,17 +33,19 @@ RSpec.describe ItemsController, type: :controller do
   # end
 
   describe 'DELETE #destroy' do
+    let!(:item) { FactoryBot.create :item }
+
     it 'itemテーブルからitemレコードを削除する' do
-      # binding.pry
-      item = build(:item)
-      item.save
-      delete :destroy, params: {id: item}
-      expect{ item.destroy }.to change{Item.count}.by(-1)
+      expect {
+        delete :destroy, params: { id: item.id }
+      }.to change(Item, :count).by(-1)
     end
 
-    # it '商品削除後にマイページに遷移する'
-    # expect( response ).to redirect_to(mypage_path)
-    # end
+    it '商品削除後にマイページに遷移する' do
+      delete :destroy, params: { id: item.id}
+      expect( response ).to redirect_to(mypage_path)
+    end
+
     # it 'itemを削除するとimagesテーブルの紐づくレコードも削除される' do
     # end
     # it 'itemを削除するとimagesテーブルの紐づくレコードも削除される' do

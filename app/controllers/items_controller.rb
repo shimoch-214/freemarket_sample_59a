@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to mypage_path(@item)
+    redirect_to mypage_path
   end
 
   private
