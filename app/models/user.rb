@@ -50,12 +50,12 @@ class User < ApplicationRecord
                           :"identification.last_name",
                           :"identification.first_name_kana",
                           :"identification.last_name_kana",
-                          :"identification.birthday")
+                          :"identification.birthday").empty?
   end
 
   def validation_in_user_address
     valid?
-    errors.messages.slice(:phone_number)
+    errors.messages.slice(:phone_number).empty?
   end
 
   def validation_in_user_payment
@@ -69,7 +69,7 @@ class User < ApplicationRecord
                           :"address.city",
                           :"address.street",
                           :"address.building",
-                          :"address.phone_number_sub")
+                          :"address.phone_number_sub").empty?
   end
 
   # override Devise methods

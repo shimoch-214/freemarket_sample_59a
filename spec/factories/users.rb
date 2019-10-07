@@ -10,5 +10,10 @@ FactoryBot.define do
       build(:identification, user: user) unless user.identification
       build(:address, user: user) unless user.address
     end
+    trait :with_sns do
+      after(:build) do |user|
+        build(:sns_confirmation, user: user) unless user.sns_confirmation
+      end
+    end
   end
 end

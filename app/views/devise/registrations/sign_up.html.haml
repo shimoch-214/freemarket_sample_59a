@@ -2,7 +2,7 @@
   .signup-page__title
     %p.registration 新規会員登録
   .signup-page__form
-    = link_to 'メールアドレスで登録する', user_info_path, class: 'signup-page__form__mail', id: 'mail', method: :post
+    = link_to 'メールアドレスで登録する', user_info_path, class: 'signup-page__form__mail', id: 'mail'
     %label{for:'mail'}
       = image_tag "email.png", size: "23x18",class:"mail-icon"
     = link_to 'Facebookで登録する', user_facebook_omniauth_authorize_path, class: "signup-page__form__facebook"

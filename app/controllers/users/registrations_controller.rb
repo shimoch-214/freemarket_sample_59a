@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "application-user"
   before_action :configure_sign_up_params, only: [:create]
+  before_action :reject_signed_in_user, except: [:complete]
   # before_action :configure_account_update_params, only: [:update]
 
   def sign_up
@@ -30,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:params].merge!(user_params)
     session[:params]["identification_attributes"]["birthday"] = birthday_join
     @user = User.new(session[:params])
-    unless @user.validation_in_phone_number.empty?
+    unless @user.validation_in_phone_number
       render 'user_info'
     end
     @user = User.new(session[:params])
@@ -39,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def user_address
     session[:params].merge!(user_params)
     @user = User.new(session[:params])
-    unless @user.validation_in_user_address.empty?
+    unless @user.validation_in_user_address
       render 'phone_number'
     end
     @user = User.new(session[:params])
@@ -49,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def user_payment
     session[:params].merge!(user_params)
     @user = User.new(session[:params])
-    unless @user.validation_in_user_payment.empty?
+    unless @user.validation_in_user_payment
       render 'user_address'
     end
     @user = User.new(session[:params])
@@ -109,7 +110,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def birthday_join
     date = params[:birthday]
-    return if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
+    return unless date
+    return if date["birthday(1i)"].empty? || date["birthday(2i)"].empty? || date["birthday(3i)"].empty?
     Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
   end
 
@@ -132,4 +134,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:previous_url] = request.original_url
   end
 
+  def reject_signed_in_user
+    redirect_to root_path if user_signed_in?
+  end
 end

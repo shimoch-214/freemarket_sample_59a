@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_scope :user do
-    post   'signup/registration' => 'users/registrations#user_info', as: :user_info
+    get    'signup/registration' => 'users/registrations#user_info', as: :user_info
     get    'signup/registration/facebook' => 'users/registrations#user_info_facebook', as: :user_info_facebook
     get    'signup/registration/google' => 'users/registrations#user_info_google', as: :user_info_google
     post   'signup/sms_confirmation'=> 'users/registrations#phone_number', as: :user_phone_number
