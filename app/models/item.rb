@@ -2,7 +2,6 @@ class Item < ApplicationRecord
 
   # associations
   has_many    :images, dependent: :destroy
-  # accepts_nested_attributes_for :images, reject_if: lambda {|img| img[:name].blank?}
   accepts_nested_attributes_for :images
   has_one     :transact, dependent: :destroy, class_name: 'Transact', inverse_of: :item
   accepts_nested_attributes_for :transact
@@ -63,5 +62,11 @@ class Item < ApplicationRecord
   end
 
   # method
+  def add_images(ids)
+    ids = ids.split(',').map{ |id| id.to_i }
+    ids.each do |id|
+      images << Image.find(id)
+    end
+  end
 
 end

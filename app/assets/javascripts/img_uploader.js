@@ -1,5 +1,6 @@
 $(function(){
   var count = 0;
+  var image_ids = new Array
   function modifyUploader(count) {
     if (count < 4){
       $(`.items-image-upload__label-has${count}`)
@@ -59,7 +60,9 @@ $(function(){
       .done(function(html) {
         $(html).insertBefore($('#image-previews-container').children('label'));
         modifyUploader(count);
-        count += 1
+        image_ids.push($(html).attr('data-id'));
+        $('#image_ids').val(image_ids);
+        count += 1;
       })
       .fail(function() {
         alert('sorry, failed');
@@ -81,6 +84,12 @@ $(function(){
     .done(function() {
       li.remove();
       deleteImage(count);
+      for(i=0; i < image_ids.length; i++) {
+        if (id == image_ids[i]) {
+          image_ids.splice(i, 1);
+        }
+      }
+      $('#image_ids').val(image_ids);
       count -= 1;
     })
     .fail(function() {

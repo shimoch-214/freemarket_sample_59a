@@ -10,12 +10,12 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.build_transact
-    # @item.images.build
   end
 
   def create
     @item = Item.new(item_params)
     @item.transact.seller = current_user
+    @item.add_images(params[:image_ids])
     if @item.save
       redirect_to item_path(@item)
     else

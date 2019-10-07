@@ -26,6 +26,7 @@
               %br/
               またはクリックしてファイルをアップロード
               = file_field_tag :images, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png', multiple: true
+              = text_field_tag :image_ids, '', style: 'display: none'
       .items-container__inner--content
         .items-forms__content
           = f.label :name, "商品名", class: "items-forms__content__label"
