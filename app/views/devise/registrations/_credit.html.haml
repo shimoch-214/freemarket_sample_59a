@@ -70,8 +70,10 @@
         %span.question-form__mark ?
         %span.question-form__text 
           カード裏面の番号とは？
-
-    .card-form__box__add
-      追加する
+    -if request.path_info = user_payment_path
+      = f.submit "次へ進む", class:"card-form__box__add"
+    -else
+      .card-form__box__add
+        追加する
 
 

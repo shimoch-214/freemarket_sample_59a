@@ -2,7 +2,7 @@
   .header__menu
     .header__menu--paragraph1
       .site-name
-        = link_to root_path, class: 'site-name__logo' do
+        = link_to items_path, class: 'site-name__logo' do
           = image_tag "header", class: 'site-name__image'
       = form_tag( '', method: :get, class: 'item-search') do
         = text_field_tag :name, '', class: 'item-search__field', placeholder: '何かお探しですか？'
@@ -27,7 +27,7 @@
       - unless user_signed_in?
         .header-user-sign-box
           .header-user-sign-box__sinup
-            = link_to '新規会員登録', user_registration_info_path, class: 'header-user-sign-box__sinup--link'
+            = link_to '新規会員登録', user_sign_up_path, class: 'header-user-sign-box__sinup--link'
           .header-user-sign-box__login
             = link_to 'ログイン', user_sessions_new_path, class: 'header-user-sign-box__login--link'
       - else

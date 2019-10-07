@@ -13,11 +13,11 @@
 |condition|integer|null: false, index: true|
 ### Association
 - belongs_to :brand(ブランド機能未実装)
+- belongs_to :category
 - has_one :transact
 - has_many :comments(コメント機能未実装)
 - has_many :likes(お気に入り機能未実装)
 - has_many :images, dependent: :destroy
-- has_many :categories
 - has_many :blands
 - has_many :sizing
 
@@ -55,7 +55,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string|null: false|
-|prefecture|string|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building|string| |
@@ -72,7 +72,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string| |
-|prefecture|string| |
+|prefecture_id|integer| |
 |city|string| |
 |street|string| |
 |building|string| |
@@ -180,8 +180,9 @@ belongs_to :user
 |sizing|references|foreign_key: true|
 |name|string|null: false|
 ### Association
-- has_many :items
 - belongs_to :sizings
+- has_many :items
+
 
 
 ## sizingテーブル
