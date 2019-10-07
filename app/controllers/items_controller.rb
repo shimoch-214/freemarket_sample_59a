@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.build_transact
-    @item.images.build
+    # @item.images.build
   end
 
   def create

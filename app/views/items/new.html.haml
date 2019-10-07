@@ -10,14 +10,22 @@
             必須
         %p.items-image-upload__notice
           最大10枚までアップロードできます
-        = f.fields_for :images do |img|
-          .items-image-upload__dropbox
-            %ul#image-previews-container
-              = img.label :name, class: 'items-image-upload__label-has0' do
-                ドラッグアンドドロップ
-                %br/
-                またはクリックしてファイルをアップロード
-                = img.file_field :name, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png'
+        -# = f.fields_for :images do |img|
+        -#   .items-image-upload__dropbox
+        -#     %ul#image-previews-container
+        -#       = img.label :name, class: 'items-image-upload__label-has0' do
+        -#         ドラッグアンドドロップ
+        -#         %br/
+        -#         またはクリックしてファイルをアップロード
+        -#         = img.file_field :name, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png'
+        -# = f.fields_for :images do |img|
+        .items-image-upload__dropbox
+          %ul#image-previews-container
+            = label_tag :images, class: 'items-image-upload__label-has0' do
+              ドラッグアンドドロップ
+              %br/
+              またはクリックしてファイルをアップロード
+              = file_field_tag :images, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png', multiple: true
       .items-container__inner--content
         .items-forms__content
           = f.label :name, "商品名", class: "items-forms__content__label"

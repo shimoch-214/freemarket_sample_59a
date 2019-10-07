@@ -2,7 +2,8 @@ class Item < ApplicationRecord
 
   # associations
   has_many    :images, dependent: :destroy
-  accepts_nested_attributes_for :images, reject_if: lambda {|img| img[:name].blank?}
+  # accepts_nested_attributes_for :images, reject_if: lambda {|img| img[:name].blank?}
+  accepts_nested_attributes_for :images
   has_one     :transact, dependent: :destroy, class_name: 'Transact', inverse_of: :item
   accepts_nested_attributes_for :transact
   belongs_to  :category

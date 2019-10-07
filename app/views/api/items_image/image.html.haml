@@ -1,0 +1,8 @@
+%li.sell-upload-item{data: {id: @image.id}}
+  %figure.sell-upload-item__figure
+    = image_tag @image.name.url, class: 'sell-upload-item__image'
+  .sell-upload-item__button
+    %a.sell-upload-item__button--edit
+      編集
+    %a.sell-upload-item__button--delete
+      削除
