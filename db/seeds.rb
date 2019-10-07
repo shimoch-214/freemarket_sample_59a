@@ -148,7 +148,7 @@ Category.where(name: "その他").update_all(sizing_id: nil)
 #   )
 # end
 
-# # itemsテーブル：ダミー登録
+# itemsテーブル：ダミー登録
 # image_file_path = Dir.glob('/Users/miurashintaro/projects/freemarket_sample_59a/app/assets/images/item_image_sample/*')
 # grandchild_category = Category.where("ancestry LIKE ?", "%/%").pluck(:id)
 # brand_name = ["シャネル", "ルイヴィトン", "シュプリーム", "ナイキ", "NOブランド"]
@@ -171,6 +171,9 @@ Category.where(name: "その他").update_all(sizing_id: nil)
 #     ship_days: rand(0..2),
 #     status: rand(0..5),
 #     prefecture_id: rand(1..47)
+#   )
+#   item.create_image!(
+#     name: 100,
 #   )
 #   if item.transact.status.to_i > 0
 #     item.transact.buyer = User.find(2)
