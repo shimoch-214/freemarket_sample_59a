@@ -32,7 +32,9 @@
       padding:32px 64px;
       position: relative;
       &__Facebook{
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background: #385185;
         color: #fff;
         font-size: 14px;
@@ -40,8 +42,6 @@
         height:50px;
         width:326px;
         border: 1px solid transparent;
-        
-        
       }
       .icon{
         color: #fff;
@@ -54,7 +54,6 @@
       
 
       &__Google{
-        text-align: center;
         color: #333;
         font-size: 14px;
         margin: 16px 0 0;
@@ -62,9 +61,11 @@
         background: #fff url("google-icon.png") no-repeat  ;
         background-position:5%;
         background-size:30px 20px;
-        
         height:50px;
         width:326px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       &__mail{
         #user_email{
