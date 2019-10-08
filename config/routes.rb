@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
       # クレジットカード関連
-      resource :card , only: [:show, :edit]
+      resource :card , only: [:show, :edit,]
     end
   end
 
@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   
   # 商品取引
   get 'transacts/:id', to:'transacts#buy', as: 'transacts'
+  # クレジット支払い
+  post 'pay/:id', to: 'transacts#pay', as: 'pay'
 
   namespace :api, format: 'html' do
     get 'categories/parent_select'
