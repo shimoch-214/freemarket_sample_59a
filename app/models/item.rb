@@ -69,4 +69,16 @@ class Item < ApplicationRecord
     end
   end
 
+  def add_category(category_params)
+    unless category
+      if category_params[:child_id].present?
+        self.category = Category.find(category_params[:child_id])
+      elsif category_params[:parent_id].present?
+        self.category = Category.find(category_params[:parent_id])
+      else
+        self.category = nil
+      end
+    end
+  end
+
 end

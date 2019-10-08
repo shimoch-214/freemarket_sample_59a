@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  layout "application-user", only: :new
+  layout "application-user", only: [:new, :create]
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item)
     else
-      @item.images.build if @item.images.empty?
+      @item.add_category(category_params)
       render 'new'
     end
   end
@@ -61,10 +61,14 @@ class ItemsController < ApplicationController
         :prefecture_id,
         :ship_days,
         :status
-      ],
-      images_attributes: [
-        :name
       ]
+    )
+  end
+
+  def category_params
+    params.permit(
+      :parent_id,
+      :child_id,
     )
   end
 

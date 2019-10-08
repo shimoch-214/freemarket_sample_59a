@@ -10,18 +10,11 @@
             必須
         %p.items-image-upload__notice
           最大10枚までアップロードできます
-        -# = f.fields_for :images do |img|
-        -#   .items-image-upload__dropbox
-        -#     %ul#image-previews-container
-        -#       = img.label :name, class: 'items-image-upload__label-has0' do
-        -#         ドラッグアンドドロップ
-        -#         %br/
-        -#         またはクリックしてファイルをアップロード
-        -#         = img.file_field :name, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png'
-        -# = f.fields_for :images do |img|
         .items-image-upload__dropbox
           %ul#image-previews-container
-            = label_tag :images, class: 'items-image-upload__label-has0' do
+            - @item.images.each do |image|
+              = render partial: 'api/items_image/image_list', locals: { image: image }
+            = label_tag :images, class: "items-image-upload__label-has#{modify_label(@item.images.size)}" do
               ドラッグアンドドロップ
               %br/
               またはクリックしてファイルをアップロード
@@ -45,18 +38,8 @@
           = f.label :category_id, "カテゴリー名", class: "items-forms__content__label"
           %span.items-forms__content__necessary
             必須
-          .items-forms__content__select-wrap
-            - options = options_for_select(Category.roots.map{ |ele| [ele.name, ele.id]})
-            = select_tag :parent_id, options, include_blank: "---", id: "category-parent"
-            = fa_icon "chevron-down"
-          -# ここに子供のセレクトボックスを挿入
-          .items-forms__content__select-wrap#children-select-box
-          -# ここに孫のセレクトボックスを挿入
-          .items-forms__content__select-wrap#grand-children-select-box
-          -# ここにサイズのセレクトボックスを挿入
-          #sizing-wrapper
+          = category_builder(@item.category, @item.sizing)
           
-
           .items-forms__separator
           = f.label :condition, "商品の状態", class: "items-forms__content__label"
           %span.items-forms__content__necessary

@@ -1,6 +1,13 @@
 $(function(){
+  // initialize on loading
   var count = 0;
   var image_ids = new Array
+  $('#image-previews-container').children('li').each(function(i, img){
+    image_ids.push($(img).attr('data-id'));
+    count += 1;
+  })
+  $('#image_ids').val(image_ids);
+
   function modifyUploader(count) {
     if (count < 4){
       $(`.items-image-upload__label-has${count}`)

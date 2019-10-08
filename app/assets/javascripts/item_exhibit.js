@@ -24,7 +24,7 @@ $(function() {
       alert('Internal Error')
     })
   })
-  $(document).on('change', '#category-children', function() {
+  $(document).on('change', '#category-child', function() {
     var childId = $(this).val();
     if (childId == '' ) {
       $('#sizing-wrapper').empty();
