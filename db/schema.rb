@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(version: 2019_10_04_070704) do
     t.text "profile"
     t.integer "card_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

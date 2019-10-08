@@ -1,0 +1,22 @@
+.reciever-address
+  .reciever-address__box
+    %h3.reciever-address__box--label
+      配送先
+    %address.reciever-address__box--detail
+      = "〒#{current_user.address.zip_code}"
+      %br
+      = current_user.address.prefecture.name
+      %span<>
+      = current_user.address.city
+      %span<>
+      = current_user.address.street
+      %br
+      %span<>
+      = current_user.address.first_name
+      %span<>
+      = current_user.address.last_name
+    .reciever-address__box--change
+      %span.change-button
+      変更する
+      %i.arrow-right
+        = fa_icon 'chevron-right'

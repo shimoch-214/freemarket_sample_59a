@@ -1,10 +1,10 @@
 class TransactsController < ApplicationController
   layout 'application-user'
-  def index
-   render 'create'
 
+
+  def buy
+    @item = Item.find(params[:id])
+    @user = User.find(params[:id])
   end
-  def create
-    
-  end
+
 end

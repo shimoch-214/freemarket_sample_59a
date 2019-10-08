@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create, :show, :edit, :destroy]
   
   # 商品取引
-  get 'transacts', to:'transacts#index'
+  get 'transacts/:id', to:'transacts#buy', as: 'transacts'
 
   namespace :api, format: 'html' do
     get 'categories/parent_select'
