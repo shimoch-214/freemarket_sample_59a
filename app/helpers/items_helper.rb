@@ -74,4 +74,19 @@ module ItemsHelper
       return parent_html + child_html + grand_child_html + sizing_html
     end
   end
+
+  def delivery_method_builder(bearing, delivery_method)
+    if bearing
+      content_tag :div, id: 'delivery_method-wrapper' do
+        if bearing == 'seller_side'
+          options = Transact.delivery_methods
+        elsif bearing == 'buyer_side'
+          options = Transact.delivery_methods_for_buyer_side
+        end
+        render partial: 'api/transacts/delivery_method_selector', locals: { options: options, delivery_method: delivery_method}
+      end
+    else
+      content_tag(:div, '', id: 'delivery_method-wrapper')
+    end
+  end
 end
