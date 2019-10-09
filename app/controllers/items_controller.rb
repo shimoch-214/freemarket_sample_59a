@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   layout "application-user", only: [:new, :create, :edit, :update]
   before_action :get_item, only: [:edit, :update, :show, :destroy]
-  before_action :move_to_sign_in, except: [:index, :show], unless: :user_signed_in?
+  before_action :move_to_sign_in, except: [:index, :show, :search], unless: :user_signed_in?
   before_action :current_user_is_seller?, only: [:edit, :update, :destroy]
   before_action :status_is_zero?, only: [:edit, :update, :destroy] 
 
@@ -53,6 +53,15 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to mypage_path
+  end
+
+  def search
+    @keyword = params[:keyword]
+    item = Item.where('name LIKE ? OR description LIKE ?', "%#{@keyword}%", "%#{@keyword}%").page(params[:page]).per(132).order("created_at DESC")
+    if item.blank? || @keyword.blank?
+      item = Item.page(params[:page]).per(24).order("created_at DESC")
+    end
+    @items = item
   end
 
   private
