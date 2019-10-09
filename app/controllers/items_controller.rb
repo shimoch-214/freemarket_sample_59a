@@ -49,7 +49,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    if @item.transact.status_before_type_cast == 0
+      @item.destroy
+    else
+      flash.now[:alert] = '不正な操作です'
+    end
     redirect_to mypage_path
   end
 
