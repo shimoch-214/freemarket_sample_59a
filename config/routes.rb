@@ -49,7 +49,9 @@ Rails.application.routes.draw do
 
   # カテゴリー検索
   get 'category', to: 'categories#index'
-  
+  get '/category/:id' ,to: 'categories#show', as: :category_show
+
+
   namespace :api, format: 'html' do
     get 'categories/parent_select'
     get 'categories/child_select'

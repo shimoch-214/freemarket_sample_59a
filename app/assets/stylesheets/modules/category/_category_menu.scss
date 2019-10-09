@@ -1,21 +1,20 @@
-.parent-category{
+.parents-category{
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   width: 224px;
   height:616px;
   display: none;
   position: relative;
-  .parent{
+  .parent {
     &:hover{
       background: #ea352d;
-      color: #fff;
+      color:#fff;
     }
     font-size: 14px;
     padding: 0px 16px;
     line-height: 44px;
-    color: #333;
-    
-    .child{
+    color: #333;  
+    .children{
       background-color: rgb(255, 255, 255);
       box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
       display: none;
@@ -32,7 +31,7 @@
         line-height: 14px;
         color: #333;
       }
-      .grandchild{
+      .grandchildren{
         background-color: rgb(255, 255, 255);
         box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
         display: none;
