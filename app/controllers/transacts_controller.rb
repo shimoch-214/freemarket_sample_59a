@@ -10,7 +10,7 @@ class TransactsController < ApplicationController
       card: params['payjp-token'],
       currency: 'jpy'
     )
-    redirect_to 'item_path'
+    redirect_to(item_path)
   end
 
   def buy_complete
