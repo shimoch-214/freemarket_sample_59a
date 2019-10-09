@@ -1,3 +1,2 @@
 - options = options_for_select(@child.children.map{ |ele| [ele.name, ele.id]})
-= select :item, :category_id, options, include_blank: "---"
-= fa_icon("chevron-down")
+= render partial: 'api/categories/select', locals: { options: options, model: :item, attr: :category_id  }
