@@ -1,0 +1,14 @@
+.search-item{
+  margin: 40px auto 0;
+  width: 1020px;
+  padding: 0 0 40px;
+  display: flex;
+  &__side{
+    width: 280px;
+    margin: 0 40px 0 0;
+  }
+  &__content{
+    width: 700px;
+  }
+  
+}

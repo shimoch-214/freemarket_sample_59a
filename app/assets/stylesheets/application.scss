@@ -61,6 +61,9 @@
 @import "./modules/item-show/modal";
 @import "./modules/item-show/items-status";
 
+@import "./modules/item-search/search-results";
+@import "./modules/item-search/search-item";
+
 @import "./modules/mypages/mypage-contents";
 @import "./modules/mypages/side-bar";
 @import "./modules/mypages/mypage-user-icon";
@@ -77,3 +80,5 @@
 
 @import "./modules/category/categories";
 @import "./modules/category/category_menu";
+@import "./modules/kaminari/page";
+@import "./modules/kaminari/current";

@@ -1,0 +1,29 @@
+%main.search-item
+  .search-item__side
+  .search-item__content
+    %section.search-results
+      - unless @keyword.blank?
+        %h2.search-results__keyword
+          = "#{@keyword}"
+          %span.search-results__keyword--answer の検索結果
+
+        - if @items.limit_value == 24
+          %p.search-results__keyword--not-match 該当する商品が見つかりません。検索条件を変えて、再度お試しください。
+        - else
+          .search-results__keyword--count
+            - page_num = params[:page].to_i
+            - page_num = 1 if params[:page].blank?
+            = item_num = @items.limit_value * (page_num  - 1) + 1
+            = "- #{item_num + @items.length - 1}件表示"
+
+      %h3.search-results__new-item
+        = "新着商品" if @keyword.blank? || @items.limit_value == 24
+
+      .search-results__items
+        .search-results__box
+          = render partial: "item-profile", collection: @items, as: "item"
+
+      .search-results__page
+        - unless @keyword.blank? || @items.limit_value == 24
+          = paginate @items, window: 2
+      

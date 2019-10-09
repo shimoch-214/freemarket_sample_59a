@@ -44,6 +44,15 @@ class ItemsController < ApplicationController
     redirect_to mypage_path
   end
 
+  def search
+    @keyword = params[:keyword]
+    item = Item.where('name LIKE ? OR description LIKE ?', "%#{@keyword}%", "%#{@keyword}%").page(params[:page]).per(132).order("created_at DESC")
+    if item.blank? || @keyword.blank?
+      item = Item.page(params[:page]).per(24).order("created_at DESC")
+    end
+    @items = item
+  end
+
   private
   def item_params
     params.require(:item).permit(
