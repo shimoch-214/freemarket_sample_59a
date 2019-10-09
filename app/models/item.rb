@@ -57,8 +57,8 @@ class Item < ApplicationRecord
   end
 
   def has_images
-    errors.add(:images, '画像が投稿されていません') if images.size < 1
-    errors.add(:imgaes, '画像は10枚までです') if images.size > 10
+    errors.add(:images, 'が投稿されていません') if images.size < 1
+    errors.add(:imgaes, 'は10枚までです') if images.size > 10
   end
 
   # method

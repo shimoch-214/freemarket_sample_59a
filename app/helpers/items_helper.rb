@@ -9,16 +9,20 @@ module ItemsHelper
     end
   end
 
-  def category_builder(category, sizing)
+  def category_builder(item)
+    category = item.category
+    sizing = item.sizing
     div_children = content_tag(:div, '', class: 'items-forms__content__select-wrap', id: 'children-select-box')
     div_grand_children = content_tag(:div, '', class: 'items-forms__content__select-wrap', id: 'grand-children-select-box')
     div_sizing = content_tag(:div, '', id: 'sizing-wrapper')
+    category_errors = render partial: 'shared/error_messages', locals: { resource: item, attr: :category_id }
+    sizing_errors = render partial: 'shared/error_messages', locals: { resource: item, attr: :sizing_id }
     if category.nil?
       parents = options_for_select(Category.roots.map{ |ele| [ele.name, ele.id]})
       parent_html = content_tag :div, class: 'items-forms__content__select-wrap' do
         render partial: 'api/categories/select_tag', locals: { options: parents, resource: 'parent' }
       end
-      return  parent_html + div_children + div_grand_children + div_sizing
+      return  parent_html + div_children + div_grand_children + category_errors + div_sizing
     elsif category.depth == 0
       parents = options_for_select(Category.roots.map{ |ele| [ele.name, ele.id]}, selected: category.id)
       children = options_for_select(category.children.map{ |ele| [ele.name, ele.id]})
@@ -28,7 +32,7 @@ module ItemsHelper
       child_html = content_tag :div, class: 'items-forms__content__select-wrap', id: 'children-select-box' do
         render partial: 'api/categories/select_tag', locals: { options: children, resource: 'child' }
       end
-      return parent_html + child_html + div_grand_children + div_sizing
+      return parent_html + child_html + div_grand_children + category_errors + div_sizing
     elsif category.depth == 1
       parents = options_for_select(Category.roots.map{ |ele| [ele.name, ele.id]}, selected: category.parent.id)
       children = options_for_select(category.siblings.map{ |ele| [ele.name, ele.id]}, selected: category.id)
@@ -43,9 +47,9 @@ module ItemsHelper
         render partial: 'api/categories/select', locals: { options: grand_children, model: :item, attr: :category_id }
       end
       if category.has_children?
-        return parent_html + child_html + grand_child_html + div_sizing
+        return parent_html + child_html + grand_child_html + category_errors + div_sizing
       else
-        return parent_html + child_html + div_grand_children + div_sizing
+        return parent_html + child_html + div_grand_children + category_errors + div_sizing
       end
     elsif category.depth == 2
       parents = options_for_select(Category.roots.map{ |ele| [ele.name, ele.id]}, selected: category.root.id)
@@ -71,7 +75,7 @@ module ItemsHelper
           end
         end
       end
-      return parent_html + child_html + grand_child_html + sizing_html
+      return parent_html + child_html + grand_child_html + category_errors + sizing_html + sizing_errors
     end
   end
 
