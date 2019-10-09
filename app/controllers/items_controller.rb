@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   layout "application-user", only: [:new, :create]
-  # before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @popular_items = popular_items_setting
@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.transact.seller = current_user
     @item.add_images(params[:image_ids])
+    binding.pry
     if @item.save
       redirect_to item_path(@item)
     else
@@ -32,7 +33,6 @@ class ItemsController < ApplicationController
     category_item_ids = @item.category.sibling_ids
     category_item_ids.delete(@item.category.id)
     @category_items = Item.where(category_id: category_item_ids).page(params[:page]).per(6).order("created_at DESC")
-    # @transact_status = Transact.where(status: 0).map{ |tran| tran.item }
   end
 
   def edit
