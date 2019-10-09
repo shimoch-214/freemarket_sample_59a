@@ -1,0 +1,6 @@
+.credit-registration
+  .credit-registration__title
+    %p.payment 支払い方法
+    = form_for(@user, url: user_registration_path) do |f|
+      =render partial:"devise/registrations/credit",locals:{f:f}
+    

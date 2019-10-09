@@ -4,9 +4,9 @@
       %p.explanation アカウントをお持ちでない方はこちら
       %input.login-page__login-box__sign-up__submit{type: 'submit', value: '新規会員登録'} 
     .login-page__login-box__login
-      %input.login-page__login-box__login__Facebook{type: 'submit', value: 'Facebookでログイン'} 
-      =fa_icon 'facebook-official',class:"icon"
-      %input.login-page__login-box__login__Google{type: 'submit', value: 'Googleでログイン'} 
+      = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, class: 'login-page__login-box__login__Facebook'
+      = fa_icon 'facebook-official',class:"icon"
+      = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, class: 'login-page__login-box__login__Google'
       .login-page__login-box__login__mail
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .field-input

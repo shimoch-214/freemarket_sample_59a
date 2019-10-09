@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   layout "application-user", only: :new
-  before_action :authenticate_user!, only: [:new, :create]
+  # before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @popular_items = popular_items_setting
@@ -25,8 +25,24 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    seller_item_ids = Transact.where(seller_id: @item.seller.id).pluck(:id)
+    seller_item_ids.delete(@item.id)
+    @user_items =Item.where(id: seller_item_ids).page(params[:page]).per(6).order("created_at DESC")
+    category_item_ids = @item.category.sibling_ids
+    category_item_ids.delete(@item.category.id)
+    @category_items = Item.where(category_id: category_item_ids).page(params[:page]).per(6).order("created_at DESC")
+    # @transact_status = Transact.where(status: 0).map{ |tran| tran.item }
   end
 
+  def edit
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to mypage_path
+  end
 
   private
   def item_params
@@ -38,10 +54,13 @@ class ItemsController < ApplicationController
       :condition,
       :price,
       transact_attributes: [
+        :seller_id,
+        :buyer_id,
         :bearing,
         :delivery_method,
         :prefecture_id,
-        :ship_days
+        :ship_days,
+        :status
       ],
       images_attributes: [
         :name
@@ -66,11 +85,11 @@ def popular_items(popular_genre)
     if item_tag == :category
       genre.each do |a_genre|
         grandchild_ids = Category.where(name: a_genre).first.indirect_ids
-        items[a_genre] = Item.where(category_id: grandchild_ids).page(params[:page]).per(10).order("created_at DESC")
+        items[a_genre] = Item&.where(category_id: grandchild_ids).page(params[:page]).per(10).order("created_at DESC")
       end
     else
       genre.each do |a_genre|
-        items[a_genre] = Item.where(brand: a_genre).page(params[:page]).per(10).order("created_at DESC")
+        items[a_genre] = Item&.where(brand: a_genre).page(params[:page]).per(10).order("created_at DESC")
       end
     end
   end

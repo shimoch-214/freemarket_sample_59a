@@ -1,0 +1,22 @@
+.item-sold{
+  &__box{
+    border-top: 50px solid #ea352d;
+    border-right: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 50px solid #ea352d;
+    position: absolute;
+    z-index: 2;
+    
+  }
+
+  &__text{
+    color: #FFF;
+    letter-spacing: 2px;
+    font-weight: 550;
+    position: absolute;
+    left: -52px;
+    bottom: 0px;
+    transform:rotate(-45deg);
+    font-size: 24px;
+  }
+}
