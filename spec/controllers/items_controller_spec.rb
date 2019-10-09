@@ -34,7 +34,7 @@ RSpec.describe ItemsController, type: :controller do
     #   get :index
     #   expect(response).to render_template :index
     # end
-#   end
+  # end
 
   describe 'GET #index' do
   before do
@@ -74,6 +74,21 @@ RSpec.describe ItemsController, type: :controller do
     it "searchテンプレートを表示する" do
       get :search
       expect(response).to render_template :search
+    end
+  end
+end
+  describe 'DELETE #destroy' do
+    let!(:item) { FactoryBot.create :item }
+
+    it 'itemテーブルからitemレコードを削除する' do
+      expect {
+        delete :destroy, params: { id: item.id }
+      }.to change(Item, :count).by(-1)
+    end
+
+    it '商品削除後にマイページに遷移する' do
+      delete :destroy, params: { id: item.id}
+      expect( response ).to redirect_to(mypage_path)
     end
   end
 end

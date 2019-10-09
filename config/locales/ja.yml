@@ -33,3 +33,6 @@ ja:
       previous: <i class="fa fa-angle-left"></i>
       next: <i class="fa fa-angle-right"></i>
       truncate: ""
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA認証に失敗しました'

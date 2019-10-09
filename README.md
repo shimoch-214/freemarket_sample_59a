@@ -13,13 +13,13 @@
 |condition|integer|null: false, index: true|
 ### Association
 - belongs_to :brand(ブランド機能未実装)
-- has_one :transact
+- belongs_to :category
+- has_one :transact, dependent: :destroy, class_name: 'Transact', inverse_of: :item
 - has_many :comments(コメント機能未実装)
 - has_many :likes(お気に入り機能未実装)
 - has_many :images, dependent: :destroy
-- has_many :categories
-- has_many :blands
-- has_many :sizing
+- belongs_to :blands
+- belongs_to :sizing
 
 
 ## usersテーブル
@@ -41,6 +41,7 @@
 - has-one :identifications
 - has_many  :sell_transacts, class_name: 'Transact', foreign_key: :seller_id
 - has_many  :buy_transacts, class_name: 'Transact', foreign_key: :buyer_id
+- has_one :sns_confirmation, class_name: 'SnsConfirmation', dependent: :destroy
 - has_many :ratings
 - has_many :comments 
 - has_many :likes
@@ -55,7 +56,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string|null: false|
-|prefecture|string|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building|string| |
@@ -72,7 +73,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string| |
-|prefecture|string| |
+|prefecture_id|integer| |
 |city|string| |
 |street|string| |
 |building|string| |
@@ -82,6 +83,18 @@
 |user|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :user
+
+## sns_confirmationテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user|reference|foreign_key:true, null: false|
+|uid|string|null: false|
+|provider|string|null: false|
+|email|string|null: false|
+
+### Association
+belongs_to :user, optional: true
 
 ## transactsテーブル
 |Column|Type|Options|
@@ -180,8 +193,9 @@ belongs_to :user
 |sizing|references|foreign_key: true|
 |name|string|null: false|
 ### Association
-- has_many :items
 - belongs_to :sizings
+- has_many :items
+
 
 
 ## sizingテーブル

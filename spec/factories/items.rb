@@ -5,7 +5,7 @@ FactoryBot.define do
     description   { Faker::Lorem.characters(number: 100) }
     condition     { Faker::Number.within(range: 0..5) }
     category_id   { 3 }
-    sizing_id     { 4 }
+    sizing_id     { 2 }
     after(:build) do |item|
       build(:transact, item: item) unless item.transact
       item.images << FactoryBot.build(:image)

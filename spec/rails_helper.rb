@@ -62,4 +62,10 @@ RSpec.configure do |config|
   # to use FactoryBot methods without a Constant
   config.include FactoryBot::Syntax::Methods
 
+  # omniauth mock for test enviroment
+  OmniAuth.config.test_mode = true
+  config.include OmniauthTest
+
+  # devise mapping for test enviroment
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
