@@ -1,0 +1,56 @@
+.parent-category{
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  width: 224px;
+  height:616px;
+  display: none;
+  position: relative;
+  .parent{
+    &:hover{
+      background: #ea352d;
+      color: #fff;
+    }
+    font-size: 14px;
+    padding: 0px 16px;
+    line-height: 44px;
+    color: #333;
+    
+    .child{
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+      display: none;
+      width: 224px;
+      height:616px;
+      position: absolute;
+      left:223px;
+      top:0px;
+      .category-child{
+        &:hover{
+          background-color: rgb(239, 239, 239);
+        }
+        padding: 8px 16px;
+        line-height: 14px;
+        color: #333;
+      }
+      .grandchild{
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        display: none;
+        width: 320px;
+        height:616px;
+        position: absolute;
+        left:223px;
+        top:0px;
+        .category-grandchild{
+          &:hover{
+            background-color: rgb(239, 239, 239);
+          }
+          padding: 8px 16px;
+          line-height: 14px;
+        }
+      }
+    }
+    
+  }
+  
+}

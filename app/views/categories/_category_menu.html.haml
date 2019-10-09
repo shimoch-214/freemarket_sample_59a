@@ -1,0 +1,13 @@
+%ul.parent-category
+  - Category.roots.each do |parent|
+    %li.parent{id:"#{parent.id}"}
+      = parent.name
+      %ul.child
+        - parent.children.each do |child|
+          %li.category-child{id: "#{child.id}"}
+            =child.name
+            %ul.grandchild
+              - child.children.each do |grandchild|
+                %li.category-grandchild{id: "#{grandchild.id}"}
+                  =grandchild.name
+

@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_082343) do
+ActiveRecord::Schema.define(version: 2019_10_03_070209) do
+
+  create_table "adresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "last_name_kana", null: false
+    t.string "zip_code", null: false
+    t.string "city", null: false
+    t.string "street", null: false
+    t.string "building", null: false
+    t.string "phone_number_sub"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "prefecture_id", null: false
+    t.index ["user_id"], name: "index_adresses_on_user_id"
+  end
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -26,6 +43,23 @@ ActiveRecord::Schema.define(version: 2019_09_28_082343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sizing_id"], name: "index_categories_on_sizing_id"
+  end
+
+  create_table "identifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "last_name_kana", null: false
+    t.string "zip_code"
+    t.string "city"
+    t.string "street"
+    t.string "building"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.date "birthday", null: false
+    t.integer "prefecture_id"
+    t.index ["user_id"], name: "index_identifications_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -92,12 +126,20 @@ ActiveRecord::Schema.define(version: 2019_09_28_082343) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname", null: false
+    t.string "phone_number", null: false
+    t.string "avator_image"
+    t.text "profile"
+    t.integer "card_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "adresses", "users"
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "sizings"
+  add_foreign_key "identifications", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "sizings"
