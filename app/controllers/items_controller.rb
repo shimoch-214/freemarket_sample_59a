@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   layout "application-user", only: [:new, :create]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :search]
 
   def index
     @popular_items = popular_items_setting
@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.transact.seller = current_user
     @item.add_images(params[:image_ids])
-    binding.pry
     if @item.save
       redirect_to item_path(@item)
     else
@@ -42,6 +41,15 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to mypage_path
+  end
+
+  def search
+    @keyword = params[:keyword]
+    item = Item.where('name LIKE ? OR description LIKE ?', "%#{@keyword}%", "%#{@keyword}%").page(params[:page]).per(132).order("created_at DESC")
+    if item.blank? || @keyword.blank?
+      item = Item.page(params[:page]).per(24).order("created_at DESC")
+    end
+    @items = item
   end
 
   private
