@@ -98,10 +98,6 @@ class ItemsController < ApplicationController
     redirect_to user_sessions_new_path
   end
 
-  def move_to_root_path
-
-  end
-
   def current_user_is_seller?
     unless current_user.id == @item.seller.id
       flash.now[:danger] = '不正なリクエストです' 
