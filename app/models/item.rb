@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many    :images, dependent: :destroy
   accepts_nested_attributes_for :images
   has_one     :transact, dependent: :destroy, class_name: 'Transact', inverse_of: :item
-  accepts_nested_attributes_for :transact
+  accepts_nested_attributes_for :transact, update_only: true
   belongs_to  :category
   belongs_to  :sizing, optional: true
   delegate    :seller, :buyer, to: :transact

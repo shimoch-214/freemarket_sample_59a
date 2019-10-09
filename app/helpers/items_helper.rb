@@ -93,4 +93,12 @@ module ItemsHelper
       content_tag(:div, '', id: 'delivery_method-wrapper')
     end
   end
+
+  def modify_button_message(action)
+    if %w(edit update).include?(action)
+      %w(変更する キャンセル)
+    else
+      %w(出品する もどる)
+    end
+  end
 end

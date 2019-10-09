@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  layout "application-user", only: [:new, :create]
+  layout "application-user", only: [:new, :create, :edit, :update]
   before_action :authenticate_user!, except: [:index]
+  before_action :get_item, only: [:edit, :update, :show, :destroy]
 
   def index
     @popular_items = popular_items_setting
@@ -16,17 +17,15 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.transact.seller = current_user
     @item.add_images(params[:image_ids])
-    binding.pry
     if @item.save
       redirect_to item_path(@item)
     else
       @item.add_category(category_params)
-      render 'new'
+      render :new
     end
   end
 
   def show
-    @item = Item.find(params[:id])
     seller_item_ids = Transact.where(seller_id: @item.seller.id).pluck(:id)
     seller_item_ids.delete(@item.id)
     @user_items =Item.where(id: seller_item_ids).page(params[:page]).per(6).order("created_at DESC")
@@ -36,15 +35,29 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    render :new
+  end
+
+  def update
+    @item.add_images(params[:image_ids])
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      @item.add_category(category_params)
+      render :new
+    end
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
     redirect_to mypage_path
   end
 
   private
+  def get_item
+    @item = Item.find(params[:id])
+  end
+
   def item_params
     params.require(:item).permit(
       :name,
@@ -54,13 +67,10 @@ class ItemsController < ApplicationController
       :condition,
       :price,
       transact_attributes: [
-        :seller_id,
-        :buyer_id,
         :bearing,
         :delivery_method,
         :prefecture_id,
         :ship_days,
-        :status
       ]
     )
   end
