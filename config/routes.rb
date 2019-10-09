@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   # item exhibiting
 
   get 'sell', to: 'items#new', as: 'item_exhibit'
-  resources :items
+  resources :items, except: [:new]
   
   # 商品取引
   get 'transacts/:id', to:'transacts#buy', as: 'transacts'
