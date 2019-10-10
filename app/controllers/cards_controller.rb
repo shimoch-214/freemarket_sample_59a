@@ -2,34 +2,20 @@ class CardsController < ApplicationController
   require 'payjp'
   before_action :set_card
 
-  def show
+  def index
     if current_user.cards.blank?
       render 'mypages/edit_card'
     else
       Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
-      @card_brand = @default_card_information.brand
-      case @card_brand
-        when "Visa"
-          @card_src = "visa.svg"
-        when "JCB"
-          @card_src = "jcb.svg"
-        when "MasterCard"
-          @card_src = "master-card.svg"
-        when "American Express"
-          @card_src = "american_express.svg"
-        when "Diners Club"
-          @card_src = "dinersclub.svg"
-        when "Discover"
-          @card_src = "discover.svg"
-      end
+      set_brand
       render 'mypages/edit_card'
     end
   end
 
   # クレジットカード情報入力
-  def edit
+  def new
     @card = current_user.cards.first
     if @card
       redirect_to card_path unless @card
@@ -51,7 +37,7 @@ class CardsController < ApplicationController
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save!
-        redirect_to card_path(@card)
+        redirect_to cards_path
       else
         render 'mypages/create_card'
       end
@@ -64,11 +50,30 @@ class CardsController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete
-      redirect_to card_path(@card)
+      redirect_to cards_path
   end
+
+  private
 
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
 
+  def set_brand
+    @card_brand = @default_card_information.brand
+    case @card_brand
+      when "Visa"
+        @card_src = "visa.svg"
+      when "JCB"
+        @card_src = "jcb.svg"
+      when "MasterCard"
+        @card_src = "master-card.svg"
+      when "American Express"
+        @card_src = "american_express.svg"
+      when "Diners Club"
+        @card_src = "dinersclub.svg"
+      when "Discover"
+        @card_src = "discover.svg"
+    end
+  end
 end
