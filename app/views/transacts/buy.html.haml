@@ -1,3 +1,4 @@
+-# %script{"data-key"=>"pk_test_50682211a79cb20179a84c3c"}
 %main.payment-confirmation
   %section.payment-confirmation__box
     %h2.payment-confirmation__box__content
@@ -22,9 +23,9 @@
               支払い金額
             .payment-box__price
               = "¥#{@item.price}"
-          %button.parchase-submit{type:'submit'}
-            = form_tag( action: :pay, method: :post) do
-              %script.payjp-button{ type: "text/javascript", src: "https://checkout.pay.jp", "data-text" => "購入する", "data-key" => "pk_test_50682211a79cb20179a84c3c"}
+          = form_tag(action: :pay, method: :post) do
+            %button 購入する
+
     %section.payment-confirmation__box__shipping-address
       = render partial: "reciever-address"
 
@@ -34,14 +35,23 @@
           %h3.payment-method__box--label
             支払い方法
           %address.payment-method__box--detail
-            **** **** ****
-            %br 
-            ** / **
-            %br
-            = image_tag 'jcb.svg', width: '20px', height: '15px'
+            - if current_user.cards.blank?
+              %br /
+            - else
+              .user-credit-card
+                .user-credit-card__box
+                  = "**** **** **** " + @default_card_information.last4
+                  %br
+                  - exp_month = @default_card_information.exp_month.to_s
+                  - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                  = exp_month + " / " + exp_year
+                  %br
+                  = image_tag @card_src, height: '14px'
           .payment-method__box--change
-            %span.change-button
-            変更する
+            %span.change-button 
+              変更する
             %i.arrow-right
               = fa_icon 'chevron-right'
-
+-# %script{type: "text/javascript", src: "https://js.pay.jp/"}
+-# :javascript
+-#   Payjp.setPublicKey('pk_test_50682211a79cb20179a84c3c');

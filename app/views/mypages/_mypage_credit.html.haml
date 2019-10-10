@@ -12,12 +12,13 @@
           = image_tag 'card-icon.png', width: '17.5px', height: '14px'
         .add-content
           クレジットカードを追加する
+          
     = link_to 'https://www.mercari.com/jp/help_center/category/6/',class: 'credit-card--about' do
       %span.payment-method
         支払い方法について    
       %i.payment-method-icon
         = fa_icon 'chevron-right'
-        
+
   - else
     .user-credit-card
       .user-credit-card__box

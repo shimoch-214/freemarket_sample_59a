@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  require "payjp"
+  require 'payjp'
   # before_action :set_card
 
   def show
@@ -31,26 +31,31 @@ class CardsController < ApplicationController
 
   # クレジットカード情報入力
   def edit
-    render 'mypages/create_card'
-    card = Card.where(user_id: current_user.id)
-    redirect_to "/mypage/card" if card.present?
+    # @card = Card.where(user_id: current_user.id)
+    @card = current_user.cards.first
+    if @card
+      redirect_to card_path unless @card
+    else
+      render 'mypages/create_card'
+    end
   end
 
   # 入力した情報をDBに保存
   def create
     Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
     if params['payjp-token'].blank?
-      redirect_to action: "edit"
+      render 'mypages/create_card'
     else
       customer = Payjp::Customer.create(
         email: current_user.email,
-        card: params['payjp-token']
+        card: params['payjp-token'],
+        metadata: {user_id: current_user.id}
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      if @card.save
-        redirect_to "/mypage/card"
+      if @card.save!
+        redirect_to card_path(@card)
       else
-        redirect_to action: "create"
+        render 'mypages/create_card'
       end
     end
   end
