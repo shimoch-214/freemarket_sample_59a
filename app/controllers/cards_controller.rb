@@ -6,7 +6,7 @@ class CardsController < ApplicationController
     if current_user.cards.blank?
       render 'mypages/edit_card'
     else
-      Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
       set_brand
@@ -26,7 +26,7 @@ class CardsController < ApplicationController
 
   # 入力した情報をDBに保存
   def create
-    Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if params['payjp-token'].blank?
       render 'mypages/create_card'
     else
@@ -46,7 +46,7 @@ class CardsController < ApplicationController
 
   #PayjpとCardデータベースを削除
   def destroy
-      Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete

@@ -8,7 +8,7 @@ class TransactsController < ApplicationController
     @item = set_item
     @item.transact.buyer = current_user
     card = current_user.cards.first
-    Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     Payjp::Charge.create(
       amount: @item.price,
       customer: card.customer_id,
@@ -26,13 +26,15 @@ class TransactsController < ApplicationController
       @item = set_item
     else  
       @item = set_item
-      Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       @card = Card.where(user_id: current_user.id).first
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
       set_brand
     end
   end
+
+  private
 
   def set_item
     @item = Item.find(params[:id])
