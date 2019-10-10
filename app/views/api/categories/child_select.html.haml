@@ -1,0 +1,2 @@
+- options = options_for_select(@child.children.map{ |ele| [ele.name, ele.id]})
+= render partial: 'api/categories/select', locals: { options: options, model: :item, attr: :category_id  }

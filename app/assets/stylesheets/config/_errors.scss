@@ -1,0 +1,33 @@
+.field_with_errors {
+  display: contents;
+  input[id*='user'], select[id*='user'], select[id*='birthday'] {
+    border: 1px solid #ea352d;
+    &:focus {
+      outline: 0;
+      border: 1px solid #57a2ff;
+    }
+  }
+}
+
+.input-form {
+  .field_with_errors {
+    display: contents;
+    input[id*='user'], select[id*='user'], select[id*='birthday'] {
+      border: 1px solid #ea352d;
+      &:focus {
+        outline: 0;
+        border: 1px solid #57a2ff;
+      }
+    }
+  }
+}
+
+.error-messages {
+  margin-top: 8px;
+  list-style: none;
+  &__list {
+    color: #ea352d;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}

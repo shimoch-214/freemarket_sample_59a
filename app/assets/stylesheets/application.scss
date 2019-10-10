@@ -14,6 +14,7 @@
 @import "config/reset";
 @import "font-awesome";
 @import "config/mixin";
+@import "config/errors";
 
 
 @import "./modules/devise/footer-user";
@@ -24,7 +25,7 @@
 @import "./modules/devise/login-page";
 @import "./modules/devise/signup-page";
 @import "./modules/devise/sms-confirmation";
-@import "./modules/devise/user-adress";
+@import "./modules/devise/user-address";
 @import "./modules/devise/user-complete";
 @import "./modules/devise/edit-credit";
 
@@ -32,6 +33,7 @@
 @import "./modules/header/site-name";
 @import "./modules/header/item-search";
 @import "./modules/header/item-tag";
+@import "./modules/header/header-user-sign-box";
 @import "./modules/header/user-list";
 @import "./modules/header/profile";
 @import "./modules/header/go-sell";
@@ -49,12 +51,18 @@
 @import "./modules/top-page/new-items";
 @import "./modules/top-page/item-profile";
 
-@import "./modules/item-show/item-show";
+@import "./modules/item-show/show-items";
 @import "./modules/item-show/item-link-nav";
 @import "./modules/item-show/social-media";
 @import "./modules/item-show/item-proposal";
 @import "./modules/item-show/item-in-user-profile";
 @import "./modules/item-show/item-box";
+@import "./modules/item-show/item-sold";
+@import "./modules/item-show/modal";
+@import "./modules/item-show/items-status";
+
+@import "./modules/item-search/search-results";
+@import "./modules/item-search/search-item";
 
 @import "./modules/mypages/mypage-contents";
 @import "./modules/mypages/side-bar";
@@ -69,3 +77,10 @@
 @import "./modules/items/items-container";
 @import "./modules/items/items-image-upload";
 @import "./modules/items/items-forms";
+
+@import "./modules/category/categories";
+@import "./modules/category/category_menu";
+@import "./modules/category/category-show";
+
+@import "./modules/kaminari/page";
+@import "./modules/kaminari/current";

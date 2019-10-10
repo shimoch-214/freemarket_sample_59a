@@ -166,7 +166,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  config.password_length = 7..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -260,8 +260,6 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-<<<<<<< Updated upstream
-=======
   config.omniauth :facebook,
                   # Rails.application.credentials.facebook[:access_key_id],
                   # Rails.application.credentials.facebook[:secret_access_key],
@@ -277,8 +275,7 @@ Devise.setup do |config|
                   "1111111111111",
                   "1111111111111",
                   scope: 'email'
->>>>>>> Stashed changes
-
+                  
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

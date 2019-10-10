@@ -1,27 +1,30 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    get 'items/image'
+  end
   devise_scope :user do
-    get 'registrations/signup/info' => 'users/registrations#new', as: :user_registration_info
-    get 'sessions/signin' => 'users/sessions#new',as: :user_sessions_new
-    get 'signup/registration/sms_confirmation' => 'users/registrations#sms_confirmation', as: :user_sms_confirmation
-    get 'signup/registration/user_adress' => 'users/registrations#user_adress', as: :user_registration_adress
-    
-    # get 'signup/registration' => 'users/registrations#user_payment', as: :user_registration_payment
-    # get 'signup/registration/user_complete' => 'users/registrations#user_complete', as: :user_registration_complete
-    # get 'sessions/log_in' => 'users/sessions#new'
-    # get 'registrations/sign_up' => 'users/registrations#new'
-    # get 'registrations/credit_registration' => 'users/registrations#credit_registration'
-
+    get    'signup/registration' => 'users/registrations#user_info', as: :user_info
+    get    'signup/registration/facebook' => 'users/registrations#user_info_facebook', as: :user_info_facebook
+    get    'signup/registration/google' => 'users/registrations#user_info_google', as: :user_info_google
+    post   'signup/sms_confirmation'=> 'users/registrations#phone_number', as: :user_phone_number
+    post   'signup/address' => 'users/registrations#user_address', as: :user_address
+    post   'signup/payment' => 'users/registrations#user_payment', as: :user_payment
+    get    'signup/complete' => 'users/registrations#complete', as: :registration_complete
+    get    'sign_up' => 'users/registrations#sign_up', as: :user_sign_up 
+    get    'login' => 'users/sessions#new', as: :user_sessions_new
+    get    'logout' => 'users/sessions#logout', as: :user_session_logout
   end
 
-  devise_for :users,controllers:{
+  devise_for :users,controllers: {
     registrations: 'users/registrations',
-    sessions:'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   resources :upload_tests, only: [:index, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'products#index'
+  root 'items#index'
 
   # mypage routings
   resource :mypage, only: :show do
@@ -30,18 +33,34 @@ Rails.application.routes.draw do
       get 'notification'
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
-      # メルカリのログアウトページurlは'/logout'になっているが、一旦ここに作る。
-      get 'logout'
       # クレジットカード関連
       resource :card , only: [:show, :edit]
     end
   end
 
   # item exhibiting
+
   get 'sell', to: 'items#new', as: 'item_exhibit'
-  resources :items, only: :create
+  resources :items, except: [:new] do
+    collection do
+      get :search
+    end
+  end
   
   # 商品取引
-  get 'transactions', to:'transactions#index'
+  get 'transacts/:id', to:'transacts#buy', as: 'transacts'
+
+  # カテゴリー検索
+  resources :categories, only:[:show,:index]
+
+
+  namespace :api, format: 'html' do
+    get 'categories/parent_select'
+    get 'categories/child_select'
+    get 'categories/grand_child_select'
+    get 'transacts/delivery_method'
+    post 'items_image/image'
+    delete 'items_image/destroy'
+  end
 
 end

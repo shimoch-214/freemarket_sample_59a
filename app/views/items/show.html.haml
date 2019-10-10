@@ -1,2 +1,203 @@
-%h1 Items#show
-%p Find me in app/views/items/show.html.haml
+%section.show-items
+  %h1.show-items__name
+    = @item.name
+  .show-items__content
+    .show-items__photo
+      .show-items__photo--parent
+        .show-items__photo-size-parent
+          = render partial: "item-sold" unless @item.transact.status_before_type_cast == 0 
+          .show-items__photo-size-parent--list
+
+            - @item.images.each do |img|
+              .show-items__photo-size-parent--size
+                .show-items__photo-size-parent--config
+                  = image_tag "#{img.name}"
+
+      .show-items__photo--child
+        - @item.images.each do |img|
+          .show-items__photo-size-child--list
+            %span
+            .show-items__photo-size-child--size
+              = image_tag "#{img.name}"
+
+    %table.show-items__detail-tabel
+      %tbody
+        %tr
+          %th
+            出品者
+          %td
+            = link_to () do
+              // userテーブルにnicknameカラム追加後@item.seller.nicknameに修正
+              = @item.seller.nickname
+            .show-items__detail-tabel--evaluation
+              %div
+                = fa_icon 'arrow-up', class: 'show-items__rank--up'
+                %span 7
+              %div
+                = fa_icon'arrow-right', class: 'show-items__rank--normal'
+                %span 0
+              %div
+                = fa_icon'arrow-down',  class: 'show-items__rank--down'
+                %span 0
+        %tr
+          %th
+            カテゴリー
+          %td
+            = link_to () do
+              = @item.category.root.name
+            %br
+            = link_to () do
+              = fa_icon('chevron-right')
+              = @item.category.parent.name
+            %br
+            = link_to () do
+              = fa_icon('chevron-right')
+              = @item.category.name
+        %tr
+          %th
+            ブランド	
+          %td
+            = link_to () do
+              // burandテーブル実装後、記述書き換え
+              = @item.brand
+        %tr
+          %th
+            商品の状態
+          %td
+            = @item.condition_i18n
+        %tr
+          %th
+            配送料の負担
+          %td
+            = @item.transact.bearing_i18n
+        %tr
+          %th
+            配送の方法
+          %td
+            = @item.transact.delivery_method_i18n
+        %tr
+          %th
+            配送元地域	
+          %td
+            = link_to () do
+              = @item.transact.prefecture.name
+        %tr
+          %th
+            発送日の目安
+          %td
+            = @item.transact.ship_days_i18n
+
+  .show-items__price-box
+    %span.show-items__price-box--price
+      = "¥#{@item.price}"
+    %span.show-items__price-box--tax
+      (税込)
+    %span.show-items__price-box--shipping-fee
+      送料込み
+
+  - unless @item.seller.id == current_user&.id
+    - if @item.transact.status_before_type_cast == 0 
+      = link_to '購入画面に進む', transacts_path, class: 'show-items__buy-botton'
+    - else
+      .show-items__not-buy-botton
+        売り切れました
+
+  .show-items__text
+    %p.show-items__text--inner
+      = @item.description
+  .show-items__botton-container
+    .show-items__botton-container-left
+      %button.show-items__like-botton
+        = fa_icon('heart')
+        %span
+          いいね!
+        %span
+          72
+      = link_to (), class: 'show-items__report-link' do
+        = fa_icon('flag')
+        %span
+          不適切な商品の報告
+    .show-items__botton-container-right
+      = link_to (), class: 'show-items__safe-link' do
+        = fa_icon('lock')
+        %span
+          あんしん・あんぜんへの取り組み
+
+//アイテム編集・削除
+- if (current_user == @item.seller) && (@item.transact.status_before_type_cast == 0)
+  .items-status
+    = link_to edit_item_path(@item), class: 'items-status__edit' do
+      商品の編集
+    %p or
+    .items-status__exhibit
+      出品を一旦停止する
+    %button.items-status__delete-btn{id: 'open-modal'}
+      この商品を削除する
+
+  .modal
+    .modal__bg
+      .modal__inner
+        .modal-body
+          .modal-body__confirmation 確認
+          削除すると二度と復活できません。
+          %br
+          削除する代わりに停止することもできます。
+          %br
+          %br
+          本当に削除しますか？
+        .cancel-btn
+          キャンセル
+        = link_to item_path(@item), method: :delete, class: 'delete-btn' do
+          削除する
+
+-# //アイテム編集・削除・・・商品の編集ページ作成時にコメントアウトを外す＆マイページからアクセスしたときのみ表示させる
+-# .items-status
+-#   = link_to (), class: 'items-status__edit' do
+-#     商品の編集
+-#   %p or
+-#   .items-status__exhibit
+-#     出品を一旦停止する
+-#   %button.items-status__delete
+-#     この商品を削除する
+
+//コメント欄を追加
+
+//リンク先のアイテムは、@item.idの±1
+%ul.item-link-nav
+  %li.item-link-nav__prev
+    = link_to "/items/#{@item.id - 1}", class: 'item-link-nav__prev--link' do
+      = fa_icon('chevron-left')
+      前のアイテム
+  %li.item-link-nav__next
+    = link_to "/items/#{@item.id + 1}", class: 'item-link-nav__next--link' do
+      次のアイテム
+      = fa_icon('chevron-right')
+
+.social-media
+  %ul.social-media__box
+    %li
+      = link_to (), class: 'social-media__facebook' do
+        = fa_icon('facebook-square')
+    %li
+      = link_to (), class: 'social-media__twitter' do
+        = fa_icon('twitter-square')
+    %li
+      = link_to (), class: 'social-media__pinterest' do
+        = fa_icon('pinterest-square')
+
+.item-proposal
+  %section.item-in-user-profile
+    - if @user_items.length != 0 && @item.seller.id != current_user&.id
+      %h2.item-in-user-profile__title
+        = link_to (), class: 'item-in-user-profile__title--link' do
+          = "#{@user_items.first.seller.nickname}さんのその他の出品"
+      .item-in-user-profile__box
+        = render partial: "item-box", collection: @user_items, as: "item"
+        
+  %section.item-in-user-profile
+    - if @category_items.length != 0
+      %h2.item-in-user-profile__title
+        = link_to (), class: 'item-in-user-profile__title--link' do
+          = "#{@category_items.first.category.name}（#{@category_items.first.category.root.name}）その他の商品"
+      .item-in-user-profile__box
+        = render partial: "item-box", collection: @category_items, as: "item"

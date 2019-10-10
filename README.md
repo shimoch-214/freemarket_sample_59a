@@ -5,29 +5,21 @@
 |------|----|-------|
 |price|integer|null: false, index: true|
 |name|string|null: false, index: true|
-|user|references|null: false, foreign_key: true|
-|transact|reference|null: false, foreign_key: true|
 |category|references|null: false, foreign_key:true|
-|bland|references|foreign_key: true|
+|bland|string||
 |sizing|references|foreign_key: true|
-|description|text|default: "商品の説明はありません"|
+|category|references|foreign_key: true|
+|description|text|null: false|
 |condition|integer|null: false, index: true|
 ### Association
-- belongs_to :user
-- belongs_to :payment
-- belongs_to :brand
-- has_one :transact
-- has_many :comments
-- has_many :likes
-- has_many :images
-- has_many :messages
-- has_many :categories
-- has_many :blands
-- has_many :sizings
-- has_many :comments 
-- has_many :messages
-- has_many :likes
-- has_many :images
+- belongs_to :brand(ブランド機能未実装)
+- belongs_to :category
+- has_one :transact, dependent: :destroy, class_name: 'Transact', inverse_of: :item
+- has_many :comments(コメント機能未実装)
+- has_many :likes(お気に入り機能未実装)
+- has_many :images, dependent: :destroy
+- belongs_to :blands
+- belongs_to :sizing
 
 
 ## usersテーブル
@@ -43,10 +35,13 @@
 |nickname|string|null: false|
 ### Association
 - has_one :credit_cards
-- has_many :items
+- has_many  :sell_items, class_name: 'Item', through: :sell_transacts, source: :item
+- has_many  :buy_items, class_name: 'Item', through: :buy_transacts, source: :item
 - has_one :addresses
 - has-one :identifications
-- has_many :transacts 
+- has_many  :sell_transacts, class_name: 'Transact', foreign_key: :seller_id
+- has_many  :buy_transacts, class_name: 'Transact', foreign_key: :buyer_id
+- has_one :sns_confirmation, class_name: 'SnsConfirmation', dependent: :destroy
 - has_many :ratings
 - has_many :comments 
 - has_many :likes
@@ -61,7 +56,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string|null: false|
-|prefecture|string|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building|string| |
@@ -78,15 +73,28 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |zip_code|string| |
-|prefecture|string| |
+|prefecture_id|integer| |
 |city|string| |
 |street|string| |
 |building|string| |
 |birth_year|string|null: false|
 |birth_month|string|null: false|
 |birth_day|string|null: false|
+|user|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :user
+
+## sns_confirmationテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user|reference|foreign_key:true, null: false|
+|uid|string|null: false|
+|provider|string|null: false|
+|email|string|null: false|
+
+### Association
+belongs_to :user, optional: true
 
 ## transactsテーブル
 |Column|Type|Options|
@@ -97,13 +105,15 @@ belongs_to :user
 |delivery_method|integer|null: false|
 |bearing|boolean|null: false|
 |ship_days|integer|null: false|
-|payment|references|null: false|
-|status|integer| |
-|parchased_at|date| |
+|payment|references|null: false|(未実装)
+|status|integer|defauot: 0|
+|parchased_at|date||
 ### Association
 - belongs_to :item
-- belongs_to :user
-- has_many :payments
+- belongs_to :seller, class_name: 'User', foreign_key: :seller_id
+- belongs_to :buyer, class_name: 'User', foreign_key: :buyer_id, optional: true
+- has_many :payments(未実装)
+- has_many :messages(未実装)
 
 
 ## paymentsテーブル
@@ -183,11 +193,12 @@ belongs_to :user
 |sizing|references|foreign_key: true|
 |name|string|null: false|
 ### Association
+- belongs_to :sizings
 - has_many :items
-- belongs_to :sizing
 
 
-## sizingsテーブル
+
+## sizingテーブル
 |Column|Type|Options|
 |------|----|-------|
 |ancestry|string| |

@@ -1,0 +1,32 @@
+.top-page
+  .top-page__size
+    .top-image
+      %h2
+        = image_tag 'index_keyvisual_sample.png'
+    - @popular_items.each do |tag_name, genres|
+      - tag_name = "カテゴリー" if tag_name == :category
+      - tag_name = "ブランド" if tag_name == :brand
+      .popular-item-tag
+        %h2.popular-item-tag__title
+          = "人気の#{tag_name}"
+        %div.popular-item-tag__list--box
+          %ul.popular-item-tag__list
+            - genres.each do |genre|
+              %li.popular-item-tag__a-list 
+                = link_to (), class: 'popular-item-tag__link' do
+                  = "#{genre}"
+      .new-items
+        - genres.each do |genre|
+          .new-items__box
+            .new-items__title
+              %h3.new-items__item-tag
+                = "#{genre}新着アイテム"
+              = link_to (), class: 'new-items__see-more' do
+                もっとみる
+                ＞
+            .new-items__list
+              .new-items__position
+                = render partial: "item-profile", collection: @items[genre], as: "item"
+
+
+  

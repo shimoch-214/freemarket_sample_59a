@@ -2,21 +2,23 @@
   .header__menu
     .header__menu--paragraph1
       .site-name
-        = link_to (), class: 'site-name__logo' do
+        = link_to items_path, class: 'site-name__logo' do
           = image_tag "header", class: 'site-name__image'
-      = form_tag( '', method: :get, class: 'item-search') do
-        = text_field_tag :name, '', class: 'item-search__field', placeholder: '何かお探しですか？'
+      = form_tag( search_items_path, method: :get, class: 'item-search') do
+        - keyword = @keyword if controller.action_name = "search"
+        = text_field_tag :keyword, "#{keyword}", class: 'item-search__field', placeholder: '何かお探しですか？'
         = label_tag :search do
-          = fa_icon('search', class: 'item-search__submit')
+          = fa_icon('search', class: 'item-search__submit--icon')
         = submit_tag  '', :name => nil, class: 'item-search__submit', id: 'search'
 
     .header__menu--paragraph2
       .item-tag
         .item-tag__box
-          = link_to (), class: 'item-tag__category--name' do
+          = link_to (categories_path), class: 'item-tag__category--name' do
             = fa_icon('list-ul')
             カテゴリーから探す
           .item-tag__category--box
+            =render partial:"categories/category_menu" 
             //カテゴリーリスト追加予定
         .item-tag__box
           = link_to (), class: 'item-tag__brand--name' do
@@ -24,35 +26,41 @@
             ブランドから探す
           .item-tag__brand--box
             //ブランドリスト追加予定
-      %ul.user-list
-        %li.user-list__box
-          = link_to (), class: 'user-list__box--link' do
-            = fa_icon('heart')
-            いいね一覧
-          .user-list__box--box
-            %ul.user-list__box--list
-              %li.user-list__box--msg
-        %li.user-list__box
-          = link_to (), class: 'user-list__box--link' do
-            = fa_icon('bell')
-            お知らせ
-          .user-list__box--box
-            %ul.user-list__box--list
-              %li.user-list__box--msg
-        %li.user-list__box
-          = link_to (), class: 'user-list__box--link' do
-            = fa_icon('check')
-            やることリスト
-          .user-list__box--box
-            %ul.user-list__box--list
-              %li.user-list__box--msg
-        %li.user-list__box
-          = link_to mypage_path, class: 'user-list__box--link' do
-            = image_tag "member_photo_noimage_thumb.png", class: 'user-list__image'
-            マイページ
-          .user-list__box--box
+      - unless user_signed_in?
+        .header-user-sign-box
+          .header-user-sign-box__sinup
+            = link_to '新規会員登録', user_sign_up_path, class: 'header-user-sign-box__sinup--link'
+          .header-user-sign-box__login
+            = link_to 'ログイン', user_sessions_new_path, class: 'header-user-sign-box__login--link'
+      - else
+        %ul.user-list
+          %li.user-list__box
+            = link_to (), class: 'user-list__box--link' do
+              = fa_icon('heart')
+              いいね一覧
+            .user-list__box--box
+              %ul.user-list__box--list
+                %li.user-list__box--msg
+          %li.user-list__box
+            = link_to (), class: 'user-list__box--link' do
+              = fa_icon('bell')
+              お知らせ
+            .user-list__box--box
+              %ul.user-list__box--list
+                %li.user-list__box--msg
+          %li.user-list__box
+            = link_to (), class: 'user-list__box--link' do
+              = fa_icon('check')
+              やることリスト
+            .user-list__box--box
+              %ul.user-list__box--list
+                %li.user-list__box--msg
+          %li.user-list__box
+            = link_to mypage_path, class: 'user-list__box--link' do
+              = image_tag "member_photo_noimage_thumb.png", class: 'user-list__image'
+              マイページ
+            .user-list__box--box
 
-<<<<<<< Updated upstream
             .profile
               %figure.profile__image-and-user-name
                 .profile__image
@@ -98,7 +106,7 @@
                     = link_to (), class: 'item-status__past_transactions' do
                       購入した商品 - 過去の取引
   = breadcrumbs class: 'breadcrumbs', separator:'>', fragment_tag: :ul
-=======
+
               .profile
                 %figure.profile__image-and-user-name
                   .profile__image
@@ -143,5 +151,5 @@
                     %li.item-status__box
                       = link_to (), class: 'item-status__past_transactions' do
                         購入した商品 - 過去の取引
+
   = breadcrumbs class: 'breadcrumbs-bar', separator:'>', fragment_tag: :ul
->>>>>>> Stashed changes

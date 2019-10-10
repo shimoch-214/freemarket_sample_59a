@@ -1,0 +1,232 @@
+.user-address{
+  width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  &__title{
+    border-bottom: 1px solid #f5f5f5;
+    .input-address{
+      font-size: 22px;
+      padding: 32px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+    }
+  }
+  
+  &__form{
+    border-top: 1px solid #f5f5f5;
+    padding:40px 0px 64px 0px;
+    margin: 0 auto;
+    max-width: 343px;
+
+    &--name{
+      .name{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-require{
+        background: #ea352d;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-last-name{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+      .input-first-name{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+    }
+    &--name-kana{
+      margin-top: 32px;
+      .name-kana{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-require{
+        background: #ea352d;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-last-name-kana{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+      .input-first-name-kana{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+    }
+    &--zip-code{
+      margin-top: 32px;
+      .zip-code{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-require{
+        background: #ea352d;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-zip-code{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+    }
+    &--prefectures{
+      margin-top: 32px;
+      position: relative;
+      .prefectures{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-require{
+        background: #ea352d;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-Prefectures{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        color: #333;
+      }
+      .arrow-bottom-icon4{
+        position: absolute;
+        top:50px;
+        left:311px;
+        pointer-events: none;
+      }
+    }
+    &--city{
+      margin-top: 32px;
+      .city{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-require{
+        background: #ea352d;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-city{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+    }
+    &--street-number{
+      margin-top: 32px;
+      .street-number{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-require{
+        background: #ea352d;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-street-number{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+    }
+    &--building{
+      margin-top: 32px;
+      .building{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-arbitrary{
+        background: #ccc;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-building{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+
+    }
+    &--phone-number{
+      margin-top: 32px;
+      .phone-number{
+        font-weight: 600;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      }
+      .form-arbitrary{
+        background: #ccc;
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        display: inline-block;
+      }
+      .input-phone-number{
+        @include input-text-default($width: 100%, $height: 48px) ;
+        margin: 8px 0 0;
+      }
+    }
+    &--next{
+      .next{
+        @include btn-default($bgc:#ea352d) ;
+        margin-top: 32px;
+      }
+    }
+  }
+}

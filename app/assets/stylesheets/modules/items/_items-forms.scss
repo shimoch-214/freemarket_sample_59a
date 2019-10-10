@@ -59,7 +59,8 @@
       margin: 24px auto 0;
       background: #aaa;
       border: 1px solid #aaa;
-      color: #fff;
+      text-decoration: none !important;
+      color: #fff !important;
     }
   }
   &__price {

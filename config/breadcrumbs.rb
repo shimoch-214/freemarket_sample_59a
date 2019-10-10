@@ -42,13 +42,8 @@ crumb :edit do
   link "クレジットカード情報入力"
   parent :card
 end
-<<<<<<< Updated upstream
-=======
 
 crumb :category do
   link "カテゴリー一覧", categories_path
   parent :root
 end
-
-
->>>>>>> Stashed changes
