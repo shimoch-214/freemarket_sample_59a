@@ -34,7 +34,7 @@ end
 
 
 crumb :card do
-  link "支払い方法", card_path
+  link "支払い方法", cards_path
   parent :mypage
 end
 

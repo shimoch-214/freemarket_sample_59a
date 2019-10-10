@@ -15,7 +15,8 @@ class User < ApplicationRecord
   has_many  :buy_transacts, class_name: 'Transact', foreign_key: :buyer_id
   has_many  :sell_items, class_name: 'Item', through: :sell_transacts, source: :item
   has_many  :buy_items, class_name: 'Item', through: :buy_transacts, source: :item
-
+  has_many  :cards
+  
   before_save { self.email = email.downcase }
 
   validates_presence_of :identification
