@@ -23,8 +23,9 @@
               支払い金額
             .payment-box__price
               = "¥#{@item.price}"
-          = form_tag(action: :pay, method: :post) do
-            %button 購入する
+          - if current_user.cards.present?
+            = form_tag(action: :pay, method: :post) do
+              %button 購入する
 
     %section.payment-confirmation__box__shipping-address
       = render partial: "reciever-address"
@@ -52,6 +53,3 @@
               変更する
             %i.arrow-right
               = fa_icon 'chevron-right'
--# %script{type: "text/javascript", src: "https://js.pay.jp/"}
--# :javascript
--#   Payjp.setPublicKey('pk_test_50682211a79cb20179a84c3c');

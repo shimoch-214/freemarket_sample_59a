@@ -1,16 +1,15 @@
 class CardsController < ApplicationController
   require 'payjp'
-  # before_action :set_card
+  before_action :set_card
 
   def show
     if current_user.cards.blank?
       render 'mypages/edit_card'
     else
-      card = Card.where(user_id: current_user.id).first
       Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
-      @card_brand = @default_card_information.brand      
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
+      @card_brand = @default_card_information.brand
       case @card_brand
         when "Visa"
           @card_src = "visa.svg"
@@ -31,7 +30,6 @@ class CardsController < ApplicationController
 
   # クレジットカード情報入力
   def edit
-    # @card = Card.where(user_id: current_user.id)
     @card = current_user.cards.first
     if @card
       redirect_to card_path unless @card
@@ -62,16 +60,15 @@ class CardsController < ApplicationController
 
   #PayjpとCardデータベースを削除
   def delete
-    card = Card.where(user_id: current_user.id).first
-    Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    customer.delete
-    card.delete
-    redirect_to "/mypage/card"
+      Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      customer.delete
+      @card.delete
+      redirect_to card_path(@card)
   end
 
-  # def set_card
-  #   @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
-  # end
+  def set_card
+    @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
+  end
 
 end
