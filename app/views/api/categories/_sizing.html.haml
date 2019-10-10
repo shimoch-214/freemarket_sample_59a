@@ -1,0 +1,7 @@
+.items-forms__separator
+= label :item, :sizing_id, "サイズ", class: "items-forms__content__label"
+%span.items-forms__content__necessary
+  必須
+.items-forms__content__select-wrap
+  - options = options_for_select(sizings.map{ |ele| [ele.name, ele.id]}, selected: sizing_id)
+  = render partial: 'api/categories/select', locals: { model: :item, attr: :sizing_id, options: options }

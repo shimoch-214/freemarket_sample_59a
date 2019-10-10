@@ -2,9 +2,9 @@ class Item < ApplicationRecord
 
   # associations
   has_many    :images, dependent: :destroy
-  accepts_nested_attributes_for :images, reject_if: lambda {|img| img[:name].blank?}
+  accepts_nested_attributes_for :images
   has_one     :transact, dependent: :destroy, class_name: 'Transact', inverse_of: :item
-  accepts_nested_attributes_for :transact
+  accepts_nested_attributes_for :transact, update_only: true
   belongs_to  :category
   belongs_to  :sizing, optional: true
   delegate    :seller, :buyer, to: :transact
@@ -57,10 +57,28 @@ class Item < ApplicationRecord
   end
 
   def has_images
-    errors.add(:images, '画像が投稿されていません') if images.size < 1
-    errors.add(:imgaes, '画像は10枚までです') if images.size > 10
+    errors.add(:images, 'が投稿されていません') if images.size < 1
+    errors.add(:imgaes, 'は10枚までです') if images.size > 10
   end
 
   # method
+  def add_images(ids)
+    ids = ids.split(',').map{ |id| id.to_i }
+    ids.each do |id|
+      images << Image.find(id)
+    end
+  end
+
+  def add_category(category_params)
+    unless category
+      if category_params[:child_id].present?
+        self.category = Category.find(category_params[:child_id])
+      elsif category_params[:parent_id].present?
+        self.category = Category.find(category_params[:parent_id])
+      else
+        self.category = nil
+      end
+    end
+  end
 
 end

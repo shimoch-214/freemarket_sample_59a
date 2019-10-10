@@ -12,29 +12,9 @@
     .main-user
       %header.header-user
         %h1.header-user__logo
-          = link_to image_tag("header.svg",width:"185",height:"49"), root_path,class:"header__logo__top-img"
-        .header-user__signup-bar
-          %ol.header-user__signup-bar--process
-            %li.info
-              会員情報
-              .info--icon
-            %li.phone-number
-              電話番号認証
-              .phone-number--icon
-            %li.adress
-              お届け先住所入力
-              .adress--icon
-            %li.payment
-              支払い方法
-              .payment--icon
-            %li.complete
-              完了
-              .complete--icon
-          .header-user__signup-bar--status-line
-            .header-user__signup-bar--status-line--1
-            .header-user__signup-bar--status-line--2
-            .header-user__signup-bar--status-line--3
-            .header-user__signup-bar--status-line--4
+          = link_to image_tag("header.svg",width:"185",height:"49"),"https://www.google.co.jp/",class:"header__logo__top-img"
+        =render partial: "devise/registrations/progress_bar"
+
 
       = yield
 

@@ -1,4 +1,8 @@
 $(function() {
+  // initialize to display comma separated price
+  confirmPrice($('#item_price').val())  
+
+
   // functions for category selecting
   $(document).on('change', '#category-parent', function(){
     var parentId = $(this).val();
@@ -24,7 +28,7 @@ $(function() {
       alert('Internal Error')
     })
   })
-  $(document).on('change', '#category-children', function() {
+  $(document).on('change', '#category-child', function() {
     var childId = $(this).val();
     if (childId == '' ) {
       $('#sizing-wrapper').empty();
@@ -67,9 +71,16 @@ $(function() {
     })
   })
 
-  // function to confirme price
+  // function to confirm price
   $('#item_price').on('keyup', function() {
     var price = $(this).val();
+    confirmPrice(price);
+  })
+  function commaSeparated(price) {
+    price = String(price);
+    return price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  function confirmPrice(price) {
     $('#commission-fee').empty();
     $('#your-profit').empty();
     if (isNaN(price) || Number(price) < 300 || Number(price) > 9999999) {
@@ -77,12 +88,12 @@ $(function() {
       $('#your-profit').append('-');
       return
     }
-    var fee = Math.floor(price*0.1)
-    var profit = Math.ceil(price*0.9)
-    $('#commission-fee').append(fee);
-    $('#your-profit').append(profit)
+    var fee = Math.floor(price*0.1);
+    var profit = Math.ceil(price*0.9);
+    $('#commission-fee').append(`¥ ${commaSeparated(fee)}`);
+    $('#your-profit').append(`¥ ${commaSeparated(profit)}`);
+  }
 
-  })
 
   // function for delivery_method selecting
   $(document).on('change', '#item_transact_attributes_bearing', function() {

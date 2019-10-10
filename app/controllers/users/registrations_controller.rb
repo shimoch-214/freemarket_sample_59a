@@ -1,6 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "application-user"
-  # before_action :check_captcha, only: :phone_number
   before_action :configure_sign_up_params, only: [:create]
   before_action :reject_signed_in_user, except: [:complete]
   # before_action :configure_account_update_params, only: [:update]
