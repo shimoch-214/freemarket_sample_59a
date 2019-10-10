@@ -34,7 +34,7 @@ end
 
 
 crumb :card do
-  link "支払い方法", card_path
+  link "支払い方法", cards_path
   parent :mypage
 end
 
@@ -42,3 +42,13 @@ crumb :edit do
   link "クレジットカード情報入力"
   parent :card
 end
+<<<<<<< Updated upstream
+=======
+
+crumb :category do
+  link "カテゴリー一覧", categories_path
+  parent :root
+end
+
+
+>>>>>>> Stashed changes
