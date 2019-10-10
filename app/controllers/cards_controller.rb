@@ -1,14 +1,21 @@
 class CardsController < ApplicationController
+  require 'payjp'
+  before_action :set_card
 
-  def show
-    render 'mypages/edit_card'
+  def index
+    if @card.blank?
+      render 'mypages/edit_card'
+    else
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
+      set_brand
+      render 'mypages/edit_card'
+    end
   end
-  
-  def edit
-<<<<<<< Updated upstream
-    render 'mypages/create_card'
-=======
-    @card = current_user.cards.first
+
+  # クレジットカード情報入力
+  def new
     if @card
       redirect_to card_path unless @card
     else
@@ -45,9 +52,27 @@ class CardsController < ApplicationController
       redirect_to cards_path
   end
 
+  private
+
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
->>>>>>> Stashed changes
   end
 
+  def set_brand
+    @card_brand = @default_card_information.brand
+    case @card_brand
+      when "Visa"
+        @card_src = "visa.svg"
+      when "JCB"
+        @card_src = "jcb.svg"
+      when "MasterCard"
+        @card_src = "master-card.svg"
+      when "American Express"
+        @card_src = "american_express.svg"
+      when "Diners Club"
+        @card_src = "dinersclub.svg"
+      when "Discover"
+        @card_src = "discover.svg"
+    end
+  end
 end

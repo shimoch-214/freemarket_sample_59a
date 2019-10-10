@@ -1,7 +1,8 @@
 .card-form
   .card-form__box
     .card-form__box__number
-      %label.box-group--label{for: 'card-number'} カード番号
+      = form_with url: create_card_path,method: :post do |f|
+      = f.label :カード番号, class: 'box-group--label', for: 'card-number' 
       %span.input-require
         必須
       %input.card-number--input{type: "text",id: 'card-number', maxlength: "16", placeholder: "半角数字のみ"}

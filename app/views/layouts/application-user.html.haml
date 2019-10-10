@@ -12,7 +12,7 @@
     .main-user
       %header.header-user
         %h1.header-user__logo
-          = link_to image_tag("header.svg",width:"185",height:"49"),"https://www.google.co.jp/",class:"header__logo__top-img"
+          = link_to image_tag("header.svg",width:"185",height:"49"),"/",class:"header__logo__top-img"
         =render partial: "devise/registrations/progress_bar"
 
 
@@ -21,15 +21,15 @@
       %footer.footer-user
         .footer-user__links
           %ul
-            =link_to"https://www.google.com/",class:"privacy-policy" do
+            =link_to"https://www.mercari.com/jp/privacy/",class:"privacy-policy" do
               %li プライバシーポリシー
-            =link_to"https://www.google.com/",class:"Terms-of-service" do
+            =link_to"https://www.mercari.com/jp/tos/",class:"Terms-of-service" do
               %li メルカリ利用規約
-            =link_to"https://www.google.com/",class:"Notation" do
+            =link_to"https://www.mercari.com/jp/tokutei/",class:"Notation" do
               %li 特定商取引に関する表記
         .footer-user__logo
           %h1.footer-user__logo__img
-            =link_to image_tag("footer.svg",width:"80",height:"65"),"https://www.google.co.jp/"
+            =link_to image_tag("footer.svg",width:"80",height:"65"),"/"
         .footer-user__copyright
           %p © 2019 Mercari
 
