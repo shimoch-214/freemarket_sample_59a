@@ -1,3 +1,4 @@
+- breadcrumb :category
 .category-show
   -@category.children.first(3).each do |category|
     =link_to (category_path(category.id)),class:"category-show__link" do
