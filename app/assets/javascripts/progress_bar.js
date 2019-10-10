@@ -1,5 +1,5 @@
 $(function(){
-  if(document.URL.match("/registrations/signup/phone_number")) {
+  if(document.URL.match("signup/sms_confirmation")) {
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.phone-number--icon').css('background','red');
     $('li.phone-number').css('color','red');
@@ -7,35 +7,35 @@ $(function(){
     $('li.info').css('color','#888');
     $('li.info').css('font-weight','200')
 }
-if(document.URL.match("/registrations/signup/adress")) {
+if(document.URL.match("/signup/address")) {
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.header-user__signup-bar--status-line--2').css('background','red');
     $('.phone-number--icon').css('background','red');
-    $('.adress--icon').css('background','red');
-    $('li.adress').css('color','red');
-    $('li.adress').css('font-weight','600');
+    $('.address--icon').css('background','red');
+    $('li.address').css('color','red');
+    $('li.address').css('font-weight','600');
     $('li.info').css('color','#888');
     $('li.info').css('font-weight','200')
 }
-if(document.URL.match("/registrations/signup/payment")){
+if(document.URL.match("/signup/payment")){
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.header-user__signup-bar--status-line--2').css('background','red');
     $('.header-user__signup-bar--status-line--3').css('background','red');
     $('.phone-number--icon').css('background','red');
-    $('.adress--icon').css('background','red');
+    $('.address--icon').css('background','red');
     $('.payment--icon').css('background','red');
     $('li.payment').css('color','red');
     $('li.payment').css('font-weight','600');
     $('li.info').css('color','#888');
     $('li.info').css('font-weight','200')
 }
-if(document.URL.match("/registrations/signup/complete")){
+if(document.URL.match("/signup/complete")){
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.header-user__signup-bar--status-line--2').css('background','red');
     $('.header-user__signup-bar--status-line--3').css('background','red');
     $('.header-user__signup-bar--status-line--4').css('background','red');
     $('.phone-number--icon').css('background','red');
-    $('.adress--icon').css('background','red');
+    $('.address--icon').css('background','red');
     $('.payment--icon').css('background','red');
     $('.complete--icon').css('background','red');
     $('li.complete').css('color','red');

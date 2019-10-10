@@ -1,4 +1,4 @@
--if ['user_info' , 'phone_number' , 'user_adress' , 'user_payment' , 'create'].include?(controller.action_name) 
+-if ['user_info' , 'phone_number' , 'user_address' , 'user_payment' , 'create'].include?(controller.action_name) 
   .header-user__signup-bar
     %ol.header-user__signup-bar--process
       %li.info
@@ -7,9 +7,9 @@
       %li.phone-number
         電話番号認証
         .phone-number--icon
-      %li.adress
+      %li.address
         お届け先住所入力
-        .adress--icon
+        .address--icon
       %li.payment
         支払い方法
         .payment--icon
