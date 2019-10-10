@@ -50,6 +50,10 @@ Rails.application.routes.draw do
   # 商品取引
   get 'transacts/:id', to:'transacts#buy', as: 'transacts'
 
+  # カテゴリー検索
+  resources :categories, only:[:show,:index]
+
+
   namespace :api, format: 'html' do
     get 'categories/parent_select'
     get 'categories/child_select'
