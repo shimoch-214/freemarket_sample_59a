@@ -49,7 +49,9 @@
                   %br
                   = image_tag @card_src, height: '14px'
           .payment-method__box--change
-            %span.change-button 
-              変更する
-            %i.arrow-right
-              = fa_icon 'chevron-right'
+            - unless current_user.cards.present?
+              = link_to edit_card_path do
+                %span.change-button 
+                  変更する
+                %i.arrow-right
+                  = fa_icon 'chevron-right'
