@@ -34,11 +34,10 @@ Rails.application.routes.draw do
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
       # クレジットカード関連
-      resource :card , only: [:edit, :show] do
-        post 'create', to: 'cards#create', as: 'create'
-        post 'delete', to: 'cards#delete', as: 'delete'
-        get 'show', to: 'cards#show', as: 'show'
-      end
+      resources :cards , only: [:new, :index, :create, :destroy]
+        # post 'create', to: 'cards#create', as: 'create'
+        # post 'delete', to: 'cards#delete', as: 'delete'
+        # get 'show', to: 'cards#show', as: 'show'
     end
   end
 
