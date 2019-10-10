@@ -2,11 +2,12 @@
   .sms-confirmation__title
     %p.confirm-phone-number 電話番号の確認
   .sms-confirmation__form
-    = form_for(@user, url: user_adress_path ,method: :get) do |f|
+    = form_for(@user, url: user_address_path) do |f|
       .sms-confirmation__form--phone-number
         %p.phone-number 携帯電話の番号
         =f.text_field :phone_number, class:"input-phone-number",placeholder:"携帯電話の番号を入力"
-        %p.text 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+        %p.text 本人確認のため、携帯話のSMS(ショートメッセージサービス)を利用して認証を行います。
+        = render partial: 'shared/error_messages', locals: { resource: @user, attr: :phone_number }
       .sms-confirmation__form--submit 
         = f.submit "次に進む", class:"submit-sms"
         %p.text ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。

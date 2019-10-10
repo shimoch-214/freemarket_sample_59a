@@ -1,5 +1,6 @@
 class MypagesController < ApplicationController
-  
+  before_action :move_to_login_path
+
   def show
   end
 
@@ -15,6 +16,9 @@ class MypagesController < ApplicationController
   def edit_identification
   end
 
-  def logout 
+  private
+  def move_to_login_path
+    redirect_to user_sessions_new_path unless user_signed_in?
   end
+
 end

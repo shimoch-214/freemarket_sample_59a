@@ -10,25 +10,30 @@
             必須
         %p.items-image-upload__notice
           最大10枚までアップロードできます
-        = f.fields_for :images do |img|
-          .items-image-upload__dropbox
-            %ul#image-previews-container
-              = img.label :name, class: 'items-image-upload__label-has0' do
-                ドラッグアンドドロップ
-                %br/
-                またはクリックしてファイルをアップロード
-                = img.file_field :name, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png'
+        .items-image-upload__dropbox
+          %ul#image-previews-container
+            - @item.images.each do |image|
+              = render partial: 'api/items_image/image_list', locals: { image: image }
+            = label_tag :images, class: "items-image-upload__label-has#{modify_label(@item.images.size)}" do
+              ドラッグアンドドロップ
+              %br/
+              またはクリックしてファイルをアップロード
+              = file_field_tag :images, class: 'items-image-upload__hidden active-input', accept: 'image/jpg,image/jpeg,image/png', multiple: true
+              = text_field_tag :image_ids, '', style: 'display: none'
+            = render partial: 'shared/error_messages', locals: { resource: @item, attr: :images } 
       .items-container__inner--content
         .items-forms__content
           = f.label :name, "商品名", class: "items-forms__content__label"
           %span.items-forms__content__necessary
             必須
           = f.text_field :name, class: "items-forms__content__input-text", placeholder: "商品名（必須 40文字まで)"
+          = render partial: 'shared/error_messages', locals: { resource: @item, attr: :name } 
         .items-forms__content.items-forms__separator
           = f.label :description, "商品の説明", class: "items-forms__content__label"
           %span.items-forms__content__necessary
             必須
           = f.text_area :description, class: "items-forms__content__input-textarea", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+          = render partial: 'shared/error_messages', locals: { resource: @item, attr: :description }
       .items-container__inner--content-sep
         %h3.items-container__inner--headsub
           商品の詳細
@@ -36,18 +41,8 @@
           = f.label :category_id, "カテゴリー名", class: "items-forms__content__label"
           %span.items-forms__content__necessary
             必須
-          .items-forms__content__select-wrap
-            - options = options_for_select(Category.roots.map{ |ele| [ele.name, ele.id]})
-            = select_tag :parent_id, options, include_blank: "---", id: "category-parent"
-            = fa_icon "chevron-down"
-          -# ここに子供のセレクトボックスを挿入
-          .items-forms__content__select-wrap#children-select-box
-          -# ここに孫のセレクトボックスを挿入
-          .items-forms__content__select-wrap#grand-children-select-box
-          -# ここにサイズのセレクトボックスを挿入
-          #sizing-wrapper
+          = category_builder(@item)
           
-
           .items-forms__separator
           = f.label :condition, "商品の状態", class: "items-forms__content__label"
           %span.items-forms__content__necessary
@@ -55,7 +50,7 @@
           .items-forms__content__select-wrap
             = f.select :condition, Item.conditions.map { |k, v| [t("enums.item.condition.#{k}"), k] }, include_blank: "---"
             = fa_icon "chevron-down"
-
+            = render partial: 'shared/error_messages', locals: { resource: @item, attr: :condition } 
       .items-container__inner--content-sep
         = f.fields_for :transact do |i|
           %h3.items-container__inner--headsub
@@ -68,8 +63,11 @@
             .items-forms__content__select-wrap
               = i.select :bearing, Transact.bearings.map { |k, v| [t("enums.transact.bearing.#{k}"), k] }, include_blank: "---"
               = fa_icon "chevron-down"
+              = render partial: 'shared/error_messages', locals: { resource: @item.transact, attr: :bearing } 
             -# ここに配送方法のセレクトボックスを挿入
-            #delivery_method-wrapper
+            = delivery_method_builder(@item.transact.bearing, @item.transact.delivery_method)
+            - if @item.transact.bearing
+              = render partial: 'shared/error_messages', locals: { resource: @item.transact, attr: :delivery_method } 
             .items-forms__separator
             = i.label :prefecture_id, "発送元の地域", class: "items-forms__content__label"
             %span.items-forms__content__necessary
@@ -77,6 +75,7 @@
             .items-forms__content__select-wrap
               = i.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "---"
               = fa_icon "chevron-down"
+              = render partial: 'shared/error_messages', locals: { resource: @item.transact, attr: :prefecture } 
             .items-forms__separator
             = i.label :ship_days, "発送までの日数", class: "items-forms__content__label"
             %span.items-forms__content__necessary
@@ -84,6 +83,7 @@
             .items-forms__content__select-wrap
               = i.select :ship_days, Transact.ship_days.map { |k, v| [t("enums.transact.ship_days.#{k}"), k] }, include_blank: "---"
               = fa_icon "chevron-down"
+              = render partial: 'shared/error_messages', locals: { resource: @item.transact, attr: :ship_days } 
       .items-container__inner--content-sep
         %h3.items-container__inner--headsub
           販売価格(300~9,999,999)
@@ -97,6 +97,7 @@
             %div
               %span &yen;
               = f.text_field :price, class: "items-forms__content__input-text-sep", placeholder: "例) 300"
+          = render partial: 'shared/error_messages', locals: { resource: @item, attr: :price } 
           %li
             %div
               販売手数料 (10%)
@@ -108,19 +109,20 @@
             #your-profit.items-forms__price--profit
               \-
       .items-container__inner--content
-        %p
-          = link_to "禁止されている出品", "#"
-          、
-          = link_to "行為", "#"
-          を必ずご確認ください。
-        %p
-          またブランド品でシリアルナンバー等がある場合はご記載ください。
-          = link_to "偽ブランドの販売"
-          は犯罪であり処罰される可能性があります。
-        %p
-          また、出品をもちまして
-          = link_to "加盟店規約", ""
-          に同意したことになります。
-        = f.submit "出品する", class: "items-forms__content__submit"
-        %button.items-forms__content__return
-          もどる
+        - unless %w(edit update).include?(controller.action_name)
+          %p
+            = link_to "禁止されている出品", "#"
+            、
+            = link_to "行為", "#"
+            を必ずご確認ください。
+          %p
+            またブランド品でシリアルナンバー等がある場合はご記載ください。
+            = link_to "偽ブランドの販売"
+            は犯罪であり処罰される可能性があります。
+          %p
+            また、出品をもちまして
+            = link_to "加盟店規約", ""
+            に同意したことになります。
+        - message = modify_button_message(controller.action_name)
+        = f.submit message[0], class: "items-forms__content__submit"
+        = link_to message[1], :back, class: 'items-forms__content__return'

@@ -50,15 +50,15 @@ RSpec.describe User do
       user.valid?
       expect(user.errors[:password][0]).to include("は128文字以内で入力してください")
     end
-    it "is invalid without a password_confirmation although with a password" do
+    it "is invalid without a password_confirmation although a password exist" do
       user = build(:user, password_confirmation: "")
       user.valid?
-      expect(user.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
+      expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
     end
     it "is invalid without password_confirmation that is diffenret from password" do
     user = build(:user, password:"aaaaaaa",password_confirmation:"bbbbbbb")
     user.valid?
-    expect(user.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
+    expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
     end
     it "is invalid with password_confirmation correspond to password" do
       user = build(:user, password:"aaaaaaa",password_confirmation:"aaaaaaa")
@@ -118,7 +118,48 @@ RSpec.describe User do
     end
     
 end
+
+  describe '#password_required?' do
+    let(:user) { create(:user, :with_sns) }
+    it 'returns true when a user has a sns_confirmation' do
+      expect(user.password_required?).to eq false
+    end
+    it 'returns false when a user does not have a sns_confirmation' do
+      user.sns_confirmation = nil
+      expect(user.password_required?).to eq true
+    end
+  end
+
+  describe '#validation_in_phone_number' do
+    let(:user) { build(:user) }
+    it 'returns true if inputs in previous step are valid' do
+      expect(user.validation_in_phone_number).to eq true
+    end
+    it 'returns false if inputs in previous step are invalid' do
+      user.nickname = nil
+      expect(user.validation_in_phone_number).to eq false
+    end
+  end
+
+  describe '#validation_in_user_address' do
+    let(:user) { build(:user) }
+    it 'returns true if inputs in previous step are valid' do
+      expect(user.validation_in_user_address).to eq true
+    end
+    it 'returns false if inputs in previous step are invalid' do
+      user.phone_number = '00000000000'
+      expect(user.validation_in_user_address).to eq false
+    end
+  end
+
+  describe '#validation_in_user_payment' do
+    let(:user) { build(:user) }
+    it 'returns true if inputs in previous step are valid' do
+      expect(user.validation_in_user_payment).to eq true
+    end
+    it 'returns false if inputs in previous step are invalid' do
+      user.address.first_name = nil
+      expect(user.validation_in_user_payment).to eq false
+    end
+  end
 end
-# RSpec.describe User, type: :model do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end

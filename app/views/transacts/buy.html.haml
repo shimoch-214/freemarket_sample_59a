@@ -5,13 +5,13 @@
     %section.payment-confirmation__box__parchase-form
       .payment-confirmation__box__parchase-form--innner
         .parchase-item--image
-          = image_tag "excalibur.jpeg", width: '64px', height: '64px'
+          = image_tag "#{@item.images.first.name}"
         .parchase-item--name
-          エクスカリバー
+          = @item.name
         .parchase-form
           .parchase-price
             .parchase-price__box--cost
-              ￥1,499
+              = "¥#{@item.price}"
             .parchase-price__box--fee
               送料込み
           .parchase-point
@@ -21,25 +21,11 @@
             .payment-box__label
               支払い金額
             .payment-box__price
-              ￥1,499
-          %button.parchase-submit{type:'submit'} 
+              = "¥#{@item.price}"
+          %button.parchase-submit{type:'submit'}
             購入する
     %section.payment-confirmation__box__shipping-address
-      .reciever-address
-        .reciever-address__box
-          %h3.reciever-address__box--label
-            配送先
-          %address.reciever-address__box--detail
-            〒***-****
-            %br 
-            ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-            %br
-            アーサー・ペンドラゴン
-          .reciever-address__box--change
-            %span.change-button
-            変更する
-            %i.arrow-right
-              = fa_icon 'chevron-right'
+      = render partial: "reciever-address"
 
     %section.payment-confirmation__box__payment-method
       .payment-method
