@@ -5,7 +5,7 @@
         %span.item-profile__title--text
           = item.name
       .item-profile__image
-        = render partial: "item-sold" unless item.transact.status_before_type_cast == 0
+        = render partial: "items/item-sold" unless item.transact.status_before_type_cast == 0
         %span.item-profile__image--price
           ¥
           = item.price
