@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   layout "application-user", only: [:new, :create]
-  before_action :search_set, except: [:new, :create]
   before_action :authenticate_user!, except: [:index, :search]
 
   def index
@@ -79,11 +78,6 @@ class ItemsController < ApplicationController
     )
   end
 
-  def search_set
-    @q = Item.ransack(params[:q])
-  end
-
-  
   # 人気のカテゴリー、ブランドの種類を設定
   def popular_items_setting
     return {
