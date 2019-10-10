@@ -90,6 +90,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'gretel'
 gem 'recaptcha'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # sns authenticate
 gem 'omniauth'
