@@ -43,7 +43,13 @@ crumb :edit do
   parent :card
 end
 
-crumb :category do
+crumb :categories do
   link "カテゴリー一覧", categories_path
   parent :root
+end
+
+crumb :category do |category|
+  category=Category.find(params[:id])
+  link category.name
+  parent :categories
 end

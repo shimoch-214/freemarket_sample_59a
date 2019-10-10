@@ -61,52 +61,6 @@
               マイページ
             .user-list__box--box
 
-            .profile
-              %figure.profile__image-and-user-name
-                .profile__image
-                  画像
-                %figcaption.profile__name
-                  名前
-              .profile__status
-                = link_to (), class: 'profile__status--name' do
-                  評価数：０
-                = link_to (), class: 'profile__status--name' do
-                  出品数：０
-              %ul.profile__asset
-                %li.profile__asset--box
-                  = link_to (), class: 'profile__asset--link' do
-                    .profile__asset--name
-                      売上金
-                    .profile__asset--point
-                      ¥0
-                %li.profile__asset--box
-                  = link_to (), class: 'profile__asset--link' do
-                    .profile__asset--name
-                      ポイント
-                    .profile__asset--point
-                      P0
-              .profile__item
-                %ul.item-status
-                  %li.item-status__box
-                    = link_to (), class: 'item-status__nice' do
-                      いいね！一覧
-                  %li.item-status__box
-                    = link_to (), class: 'item-status__exhibiting' do
-                      出品した商品 - 出品中
-                  %li.item-status__box
-                    = link_to (), class: 'item-status__transaction' do
-                      出品した商品 - 取引中
-                  %li.item-status__box
-                    = link_to (), class: 'item-status__sold' do
-                      出品した商品 - 売却済み
-                  %li.item-status__box
-                    = link_to (), class: 'item-status__purchased' do
-                      購入した商品 - 取引中
-                  %li.item-status__box
-                    = link_to (), class: 'item-status__past_transactions' do
-                      購入した商品 - 過去の取引
-  = breadcrumbs class: 'breadcrumbs', separator:'>', fragment_tag: :ul
-
               .profile
                 %figure.profile__image-and-user-name
                   .profile__image
@@ -151,5 +105,5 @@
                     %li.item-status__box
                       = link_to (), class: 'item-status__past_transactions' do
                         購入した商品 - 過去の取引
+  = breadcrumbs class: 'breadcrumbs', separator:'>', fragment_tag: :ul
 
-  = breadcrumbs class: 'breadcrumbs-bar', separator:'>', fragment_tag: :ul

@@ -29,9 +29,9 @@
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
     display: flex;
     .current{
-      margin-left: 8px;
-      font-size: 14px;
-      font-weight: 600;
+      margin-left: 8px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
     }
     ul{
       margin: 0 8px;
