@@ -12,51 +12,53 @@
     .search-detail
       %h3.search-detail__title
         詳細検索
-      .search-detail__keyword
-        = label_tag :keyword do
-          = fa_icon('plus', class: 'search-detail__keyword--icon')
-          %span.search-detail__keyword--title
-            キーワードを追加する
-      .search-detail__category
-        = label_tag :category do
-          = fa_icon('list-ul', class: 'search-detail__category--icon')
-          %span.search-detail__category--title
-            カテゴリーを選択する
-      .search-detail__brand
-        = label_tag :brand do
-          = fa_icon('tag', class: 'search-detail__brand--icon')
-          %span.search-detail__brand--title
-            ブランド名から探す
-      .search-detail__size
-        = label_tag :size do
-          = fa_icon('th', class: 'search-detail__size--icon')
-          %span.search-detail__size--title
-            サイズを指定する
-      .search-detail__price
-        = label_tag :price do
-          = fa_icon('money', class: 'search-detail__price--icon')
-          %span.search-detail__price--title
-            価格
-      .search-detail__condition
-        = label_tag :condition do
-          = fa_icon('star', class: 'search-detail__condition--icon')
-          %span.search-detail__condition--title
-            商品の状態
-      .search-detail__bearing
-        = label_tag :bearing do
-          = fa_icon('truck', class: 'search-detail__bearing--icon')
-          %span.search-detail__bearing--title
-            配送料の負担
-      .search-detail__status
-        = label_tag :status do
-          = fa_icon('shopping-basket', class: 'search-detail__status--icon')
-          %span.search-detail__status--title
-            販売状況
-      .search-detail__btn
-        .search-detail__btn--clear
-          クリア
-        .search-detail__btn--search
-          完了
+      = search_form_for(@q, url: search_items_path) do |f|
+        .search-detail__keyword
+          = label_tag :keyword do
+            = fa_icon('plus', class: 'search-detail__keyword--icon')
+            %span.search-detail__keyword--title
+              キーワードを追加する
+          = f.text_field :name_or_description_cont, class: 'search-detail__keyword--form'
+        .search-detail__category
+          = label_tag :category do
+            = fa_icon('list-ul', class: 'search-detail__category--icon')
+            %span.search-detail__category--title
+              カテゴリーを選択する
+        .search-detail__brand
+          = label_tag :brand do
+            = fa_icon('tag', class: 'search-detail__brand--icon')
+            %span.search-detail__brand--title
+              ブランド名から探す
+        .search-detail__size
+          = label_tag :size do
+            = fa_icon('th', class: 'search-detail__size--icon')
+            %span.search-detail__size--title
+              サイズを指定する
+        .search-detail__price
+          = label_tag :price do
+            = fa_icon('money', class: 'search-detail__price--icon')
+            %span.search-detail__price--title
+              価格
+        .search-detail__condition
+          = label_tag :condition do
+            = fa_icon('star', class: 'search-detail__condition--icon')
+            %span.search-detail__condition--title
+              商品の状態
+        .search-detail__bearing
+          = label_tag :bearing do
+            = fa_icon('truck', class: 'search-detail__bearing--icon')
+            %span.search-detail__bearing--title
+              配送料の負担
+        .search-detail__status
+          = label_tag :status do
+            = fa_icon('shopping-basket', class: 'search-detail__status--icon')
+            %span.search-detail__status--title
+              販売状況
+        .search-detail__btn
+          .search-detail__btn--clear
+            クリア
+          .search-detail__btn--search
+            = f.submit "完了" 
 
   .search-item__content
     %section.search-results
@@ -65,22 +67,25 @@
           = "#{@keyword}"
           %span.search-results__keyword--answer の検索結果
 
-        - if @items.limit_value == 24
+        - if @search_items.blank?
           %p.search-results__keyword--not-match 該当する商品が見つかりません。検索条件を変えて、再度お試しください。
         - else
           .search-results__keyword--count
             - page_num = params[:page].to_i
             - page_num = 1 if params[:page].blank?
-            - item_num = (@items.limit_value * (page_num  - 1)) + 1
-            = "#{item_num} - #{item_num + @items.length - 1}件表示"
+            - item_num = (@search_items.limit_value * (page_num  - 1)) + 1
+            = "#{item_num} - #{item_num + @search_items.length - 1}件表示"
 
       %h3.search-results__new-item
-        = "新着商品" if @keyword.blank? || @items.limit_value == 24
+        = "新着商品" unless @items.blank?
 
       .search-results__items
         .search-results__box
-          = render partial: "item-profile", collection: @items, as: "item"
+          - if @search_items.blank? || @keyword.blank?
+            = render partial: "item-profile", collection: @items, as: "item"
+          - else
+            = render partial: "item-profile", collection: @search_items, as: "item"
 
       .search-results__page
-        - unless @keyword.blank? || @items.limit_value == 24
-          = paginate @items, window: 2
+        - unless @keyword.blank?
+          = paginate @search_items, window: 2
