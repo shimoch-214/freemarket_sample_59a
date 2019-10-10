@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  layout "application-user", only: :new
-  # before_action :authenticate_user!, only: [:new, :create]
+  layout "application-user", only: [:new, :create]
+  before_action :authenticate_user!, except: [:index, :search]
 
   def index
     @popular_items = popular_items_setting
@@ -10,16 +10,16 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.build_transact
-    @item.images.build
   end
 
   def create
     @item = Item.new(item_params)
     @item.transact.seller = current_user
+    @item.add_images(params[:image_ids])
     if @item.save
       redirect_to item_path(@item)
     else
-      @item.images.build if @item.images.empty?
+      @item.add_category(category_params)
       render 'new'
     end
   end
@@ -32,7 +32,6 @@ class ItemsController < ApplicationController
     category_item_ids = @item.category.sibling_ids
     category_item_ids.delete(@item.category.id)
     @category_items = Item.where(category_id: category_item_ids).page(params[:page]).per(6).order("created_at DESC")
-    # @transact_status = Transact.where(status: 0).map{ |tran| tran.item }
   end
 
   def edit
@@ -70,10 +69,14 @@ class ItemsController < ApplicationController
         :prefecture_id,
         :ship_days,
         :status
-      ],
-      images_attributes: [
-        :name
       ]
+    )
+  end
+
+  def category_params
+    params.permit(
+      :parent_id,
+      :child_id,
     )
   end
 

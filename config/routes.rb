@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    get 'items/image'
+  end
   devise_scope :user do
     get    'signup/registration' => 'users/registrations#user_info', as: :user_info
     get    'signup/registration/facebook' => 'users/registrations#user_info_facebook', as: :user_info_facebook
@@ -57,6 +60,8 @@ Rails.application.routes.draw do
     get 'categories/child_select'
     get 'categories/grand_child_select'
     get 'transacts/delivery_method'
+    post 'items_image/image'
+    delete 'items_image/destroy'
   end
 
 end

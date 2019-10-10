@@ -34,4 +34,18 @@ ja:
         street: 番地
         building: 建物名
         phone_number_sub: 電話番号
+      item:
+        name: 商品名
+        description: 商品説明
+        price: 価格
+        category_id: カテゴリー
+        sizing_id: サイズ
+        condition: 商品の状態
+        images: 商品画像
+      transact:
+        bearing: 配送の負担
+        delivery_method: 配送方法
+        prefecture: 発送元の地域
+        ship_days: 発送までの日数
+
       

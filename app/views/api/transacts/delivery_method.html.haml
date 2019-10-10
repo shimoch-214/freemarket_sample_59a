@@ -1,7 +1,1 @@
-.items-forms__separator
-= label 'item[transact_attributes]', :delivery_method, "配送の方法", class: "items-forms__content__label"
-%span.items-forms__content__necessary
-  必須
-.items-forms__content__select-wrap
-  = select 'item[transact_attributes]', :delivery_method, @options.map { |k, v| [t("enums.transact.delivery_method.#{k}"), k] }, include_blank: "---"
-  = fa_icon "chevron-down"
+= render partial: 'api/transacts/delivery_method_selector', locals: { options: @options, delivery_method: '' }
