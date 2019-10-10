@@ -46,11 +46,8 @@ class CardsController < ApplicationController
 
   #PayjpとCardデータベースを削除
   def destroy
-<<<<<<< HEAD
+
       Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-=======
-      Payjp.api_key = 'sk_test_1d97aaf5c495d2023d92a2bf'
->>>>>>> parent of 1d24cdf... Revert "指摘箇所修正２"
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete
