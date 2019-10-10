@@ -1,4 +1,4 @@
--if ['user_info' , 'phone_number' , 'user_address' , 'user_payment' , 'create'].include?(controller.action_name) 
+-if ['user_info' , 'phone_number' , 'user_address' , 'user_payment' , 'create'].include?(controller.action_name) && controller.controller_name == 'registrations'
   .header-user__signup-bar
     %ol.header-user__signup-bar--process
       %li.info
