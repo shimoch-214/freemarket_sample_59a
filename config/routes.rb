@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   # item exhibiting
 
   get 'sell', to: 'items#new', as: 'item_exhibit'
-  resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
+  resources :items, except: [:new] do
     collection do
       get :search
     end

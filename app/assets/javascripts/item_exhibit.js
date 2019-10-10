@@ -90,8 +90,8 @@ $(function() {
     }
     var fee = Math.floor(price*0.1);
     var profit = Math.ceil(price*0.9);
-    $('#commission-fee').append(commaSeparated(fee));
-    $('#your-profit').append(commaSeparated(profit));
+    $('#commission-fee').append(`¥ ${commaSeparated(fee)}`);
+    $('#your-profit').append(`¥ ${commaSeparated(profit)}`);
   }
 
 
