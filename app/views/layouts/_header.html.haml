@@ -14,10 +14,11 @@
     .header__menu--paragraph2
       .item-tag
         .item-tag__box
-          = link_to (), class: 'item-tag__category--name' do
+          = link_to (categories_path), class: 'item-tag__category--name' do
             = fa_icon('list-ul')
             カテゴリーから探す
           .item-tag__category--box
+            =render partial:"categories/category_menu" 
             //カテゴリーリスト追加予定
         .item-tag__box
           = link_to (), class: 'item-tag__brand--name' do
