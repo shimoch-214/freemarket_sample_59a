@@ -5,14 +5,37 @@
     %section.credit-list
       .credit-list--label
         クレジットカード一覧
+  - if current_user.cards.blank?
     %section.credit-card--add
       = link_to edit_card_path, class: 'credit-card--add__box' do
         .add-image
           = image_tag 'card-icon.png', width: '17.5px', height: '14px'
         .add-content
           クレジットカードを追加する
+          
     = link_to 'https://www.mercari.com/jp/help_center/category/6/',class: 'credit-card--about' do
       %span.payment-method
         支払い方法について    
       %i.payment-method-icon
         = fa_icon 'chevron-right'
+
+  - else
+    .user-credit-card
+      .user-credit-card__box
+        = image_tag @card_src
+        %br
+        = "**** **** **** " + @default_card_information.last4
+        %br
+        - exp_month = @default_card_information.exp_month.to_s
+        - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+        = exp_month + " / " + exp_year
+        = form_tag(delete_card_path, method: :post, id: 'charge-form', name: "inputForm") do
+          %input{ type: "hidden", name: "card_id", value: "" }
+          %button.delete-card-btn 削除する
+
+    = link_to 'https://www.mercari.com/jp/help_center/category/6/',class: 'credit-card--about' do
+      %span.payment-method
+        支払い方法について    
+      %i.payment-method-icon
+        = fa_icon 'chevron-right'
+  

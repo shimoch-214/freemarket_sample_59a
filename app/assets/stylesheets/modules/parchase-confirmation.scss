@@ -95,13 +95,13 @@
               font-size: 28px;
             }
           }
-          .parchase-submit{
+          button{
             width: 100%;
             line-height: 48px;
             font-size: 14px;
             margin-top: 8px;
             border: 1px solid #888;
-            background: #888;
+            background-color: #888;
             color: #fff;
             text-decoration: none;
           }
@@ -161,14 +161,15 @@
           &--change{
             margin-top: 8px;
             text-align: right;
-            color: #0099e8;
             .change-button{
               font-size: 14px;
+              color: #0099e8;
             }
             .arrow-right{
               font-size: 13px;
               font-weight: 100;
               margin-left: 8px;
+              color: #0099e8;
             }
           }
         }
