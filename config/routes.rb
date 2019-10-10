@@ -51,8 +51,8 @@ Rails.application.routes.draw do
   get 'transacts/:id', to:'transacts#buy', as: 'transacts'
 
   # カテゴリー検索
-  get 'category', to: 'categories#index'
-  get '/category/:id' ,to: 'categories#show', as: :category_show
+  resources :categories, only:[:show,:index] do
+  end
 
 
   namespace :api, format: 'html' do

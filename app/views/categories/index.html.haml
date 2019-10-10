@@ -4,7 +4,7 @@
     カテゴリー一覧
   .category-index__box
     - @parents.each do |parent, id|
-      = link_to (category_show_path(parent)) do
+      = link_to (category_path(parent)) do
         .category-name{id: "#{parent.id}"}
           = parent.name   #親カテゴリー名
   .category-index__body
@@ -13,16 +13,16 @@
       .category-list-name
         = parent.name
       .category-list-inner
-        = link_to (category_show_path(parent)), class: "category-list-by-all" do
+        = link_to (category_path(parent)), class: "category-list-by-all" do
           すべて
         - parent.children.each do |child, id|
           .child-category-name{id: "#{child.id}"}
             = child.name
           .child-category-list-box.clearfix
-            = link_to (category_show_path(child)), class: 'grandchild-category-all' do
+            = link_to (category_path(child)), class: 'grandchild-category-all' do
               すべて 
             - child.children.each do |grandchild, id|
-              =link_to (category_show_path(grandchild)) do
+              =link_to (category_path(grandchild)) do
                 .grandchild-name-list{id: "#{grandchild.id}"}
                   = grandchild.name
                 

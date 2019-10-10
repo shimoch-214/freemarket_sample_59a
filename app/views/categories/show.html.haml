@@ -1,6 +1,6 @@
 .category-show
   -@category.children.first(3).each do |category|
-    =link_to (category_show_path(category.id)),class:"category-show__link" do
+    =link_to (category_path(category.id)),class:"category-show__link" do
       %p.category-show__link--name= "#{category.name}"
   %p.category-show__name= "#{@category.name}の商品一覧"
   .category-show__item

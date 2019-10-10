@@ -1,16 +1,16 @@
 %ul.parents-category
   - Category.roots.each do |parent|
-    =link_to (category_show_path(parent)) do
+    =link_to (category_path(parent)) do
       %li.parent{id:"#{parent.id}"}
         = parent.name
         %ul.children
           - parent.children.each do |child|
-            =link_to (category_show_path(child)) do
+            =link_to (category_path(child)) do
               %li.category-child{id: "#{child.id}"}
                 =child.name
                 %ul.grandchildren
                   - child.children.each do |grandchild|
-                    =link_to (category_show_path(grandchild)) do
+                    =link_to (category_path(grandchild)) do
                       %li.category-grandchild{id: "#{grandchild.id}"}
                         =grandchild.name
 

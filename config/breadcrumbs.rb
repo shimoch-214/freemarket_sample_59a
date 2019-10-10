@@ -44,6 +44,6 @@ crumb :edit do
 end
 
 crumb :category do
-  link "カテゴリー一覧", category_path
+  link "カテゴリー一覧", categories_path
   parent :root
 end

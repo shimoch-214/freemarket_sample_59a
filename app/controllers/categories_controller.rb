@@ -5,16 +5,16 @@ class CategoriesController < ApplicationController
   end
   
   def show
-       @items = []
+    @items = []
     if @category.descendants.empty?
-       @items += @category.items
+      @items += @category.items
     else
-       @categories=@category.descendants
-       @categories.each do |category|
-       @items += category.items
+      @categories=@category.descendants
+      @categories.each do |category|
+        @items += category.items
+      end
     end
   end
-end
 
   def before_show
     @category=Category.find(params[:id])
