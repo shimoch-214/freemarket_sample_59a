@@ -2,7 +2,7 @@
   .login-page__login-box
     .login-page__login-box__sign-up
       %p.explanation アカウントをお持ちでない方はこちら
-      %input.login-page__login-box__sign-up__submit{type: 'submit', value: '新規会員登録'} 
+      = link_to '新規会員登録',user_sign_up_path,class:'login-page__login-box__sign-up__submit'
     .login-page__login-box__login
       = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, class: 'login-page__login-box__login__Facebook'
       = fa_icon 'facebook-official',class:"icon"

@@ -79,10 +79,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     if current_user.update(profile_update_params)
-      redirect_to profile_mypage_path
+      flash.now[:success] = 'プロフィールを編集しました'
     else
-      render template: 'mypages/profile'
+      flash.now[:alert] = 'プロフィールの編集に失敗しました'
     end
+    redirect_to profile_mypage_path
   end
 
   private
@@ -160,13 +161,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # a user already signed in can not visit sign up pages
   def reject_signed_in_user
     redirect_to root_path if user_signed_in?
-  end
-
-  protected
-  
-  # update without params
-  def update_resource(resource, params)
-    resource.update_without_password(params)
   end
 
 end
