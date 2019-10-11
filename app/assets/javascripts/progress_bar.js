@@ -1,5 +1,5 @@
 $(function(){
-    if($('.input-phone-number').length){
+  if(document.URL.match("signup/sms_confirmation")) {
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.phone-number--icon').css('background','red');
     $('li.phone-number').css('color','red');
@@ -7,7 +7,7 @@ $(function(){
     $('li.info').css('color','#888');
     $('li.info').css('font-weight','200')
 }
-    if($('.input-zip-code').length){
+if(document.URL.match("/signup/address")) {
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.header-user__signup-bar--status-line--2').css('background','red');
     $('.phone-number--icon').css('background','red');
@@ -17,7 +17,7 @@ $(function(){
     $('li.info').css('color','#888');
     $('li.info').css('font-weight','200')
 }
-    if($('.card-number--input').length){
+if(document.URL.match("/signup/payment")){
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.header-user__signup-bar--status-line--2').css('background','red');
     $('.header-user__signup-bar--status-line--3').css('background','red');
@@ -29,7 +29,7 @@ $(function(){
     $('li.info').css('color','#888');
     $('li.info').css('font-weight','200')
 }
-    if($('.start-mercari').length){
+if(document.URL.match("/signup/complete")){
     $('.header-user__signup-bar--status-line--1').css('background','red');
     $('.header-user__signup-bar--status-line--2').css('background','red');
     $('.header-user__signup-bar--status-line--3').css('background','red');
