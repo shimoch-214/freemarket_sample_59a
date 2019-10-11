@@ -34,7 +34,7 @@ end
 
 
 crumb :card do
-  link "支払い方法", card_path
+  link "支払い方法", cards_path
   parent :mypage
 end
 
@@ -43,7 +43,13 @@ crumb :edit do
   parent :card
 end
 
-crumb :category do
+crumb :categories do
   link "カテゴリー一覧", categories_path
   parent :root
+end
+
+crumb :category do |category|
+  category=Category.find(params[:id])
+  link category.name
+  parent :categories
 end

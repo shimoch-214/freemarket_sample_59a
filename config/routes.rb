@@ -34,14 +34,14 @@ Rails.application.routes.draw do
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
       # クレジットカード関連
-      resource :card , only: [:show, :edit]
+      resources :cards , only: [:new, :index, :create, :destroy]
     end
   end
 
   # item exhibiting
 
   get 'sell', to: 'items#new', as: 'item_exhibit'
-  resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
+  resources :items, except: [:new] do
     collection do
       get :search
     end
@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   
   # 商品取引
   get 'transacts/:id', to:'transacts#buy', as: 'transacts'
+  # クレジット支払い
+  post 'pay/:id', to: 'transacts#pay', as: 'pay'
 
   # カテゴリー検索
   resources :categories, only:[:show,:index]
