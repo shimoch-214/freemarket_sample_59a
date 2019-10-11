@@ -9,7 +9,7 @@
               %li.category-child{id: "#{child.id}"}
                 =child.name
                 %ul.grandchildren
-                  - child.children.each do |grandchild|
+                  - child.children.first(14).each do |grandchild|
                     =link_to (category_path(grandchild)) do
                       %li.category-grandchild{id: "#{grandchild.id}"}
                         =grandchild.name
