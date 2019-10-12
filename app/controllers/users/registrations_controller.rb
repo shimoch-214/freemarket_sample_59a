@@ -79,11 +79,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     if current_user.update(profile_update_params)
-      flash.now[:success] = 'プロフィールを編集しました'
+      redirect_to profile_mypage_path, notice: 'プロフィールを編集しました'
     else
-      flash.now[:alert] = 'プロフィールの編集に失敗しました'
+      redirect_to profile_mypage_path, alert: 'プロフィールが編集できませんでした'
     end
-    redirect_to profile_mypage_path
   end
 
   private

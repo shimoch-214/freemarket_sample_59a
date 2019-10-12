@@ -14,6 +14,7 @@ class MypagesController < ApplicationController
   end
 
   def edit_identification
+    @identification = current_user.identification
   end
 
   private

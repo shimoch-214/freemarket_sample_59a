@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'identificattions/update'
   devise_scope :user do
     get    'signup/registration' => 'users/registrations#user_info', as: :user_info
     get    'signup/registration/facebook' => 'users/registrations#user_info_facebook', as: :user_info_facebook
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
       get 'notification'
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
+      resource :identification, only: :update
       # クレジットカード関連
       resources :cards , only: [:new, :index, :create, :destroy]
     end
