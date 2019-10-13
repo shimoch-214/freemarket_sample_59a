@@ -63,6 +63,8 @@
 
 @import "./modules/item-search/search-results";
 @import "./modules/item-search/search-item";
+@import "./modules/item-search/search-sorting";
+@import "./modules/item-search/search-detail";
 
 @import "./modules/mypages/mypage-contents";
 @import "./modules/mypages/side-bar";
@@ -79,4 +81,4 @@
 @import "./modules/items/items-forms";
 
 @import "./modules/kaminari/page";
-@import "./modules/kaminari/current";
+@import "./modules/kaminari/page-current";

@@ -45,9 +45,10 @@ class ItemsController < ApplicationController
 
   def search
     @keyword = params[:q][:name_or_description_cont]
-    @search_items = @q.result.includes(:images).page(params[:page]).per(8).order("created_at DESC")
+    @search_items = @q.result.includes(:images, :transact, :sizing).page(params[:page]).per(8).order("created_at DESC")
     @items = Item.page(params[:page]).per(24).order("created_at DESC") if @search_items.blank? || @keyword.blank?
-
+    @sizing = Sizing.where(ancestry: nil)
+    # binding.pry
   end
 
   private
