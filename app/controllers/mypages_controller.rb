@@ -2,6 +2,7 @@ class MypagesController < ApplicationController
   before_action :move_to_login_path
 
   def show
+    @todos = current_user.sell_items
   end
 
   def todo

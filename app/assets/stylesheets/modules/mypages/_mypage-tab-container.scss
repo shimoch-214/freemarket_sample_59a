@@ -26,9 +26,13 @@
       background-color: #fff;
     }
   }
+  .active {
+    display: block;
+  }
   &__content {
     background-color: inherit;
     list-style: none;
+    display: none;
     &__list {
       display: block;
       padding: 16px;
