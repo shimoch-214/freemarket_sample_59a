@@ -1,7 +1,6 @@
 $(function() {
   var todoNotificationTabs = $('#todo-notification');
   $(todoNotificationTabs.children()).on('click', function(e) {
-    console.log(location.pathname)
     if (location.pathname != '/mypage') {
       return
     }
