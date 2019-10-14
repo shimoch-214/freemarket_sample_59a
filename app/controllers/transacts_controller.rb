@@ -1,8 +1,8 @@
 class TransactsController < ApplicationController
   layout 'application-user'
-
-  require 'payjp'
+  before_action :set_transact
   before_action :set_item
+  require 'payjp'
 
   # クレジット支払い
   def pay
@@ -22,24 +22,29 @@ class TransactsController < ApplicationController
 
   # 確認画面表示
   def buy
-    if current_user.cards.blank?
-      set_item
-    else
+    if current_user.cards.first
       Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       @card = Card.where(user_id: current_user.id).first
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
-      set_brand
+      set_card_brand
     end
+  end
+
+  def show
   end
 
   private
 
-  def set_item
-    @item = Item.find(params[:id])
+  def set_transact
+    @transact = Transact.find(params[:id])
   end
 
-  def set_brand
+  def set_item
+    @item = @transact.item
+  end
+
+  def set_card_brand
     @card_brand = @default_card_information.brand      
     case @card_brand
       when "Visa"

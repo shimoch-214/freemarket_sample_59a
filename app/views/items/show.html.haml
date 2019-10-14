@@ -96,8 +96,8 @@
       送料込み
 
   - unless @item.seller.id == current_user&.id
-    - if @item.transact.status_before_type_cast == 0 
-      = link_to '購入画面に進む', transacts_path, class: 'show-items__buy-botton'
+    - if @item.transact.status_before_type_cast == 0
+      = link_to '購入画面に進む', buy_transact_path(@item.transact), class: 'show-items__buy-botton'
     - else
       .show-items__not-buy-botton
         売り切れました

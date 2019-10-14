@@ -23,8 +23,8 @@
             .payment-box__price
               = "¥#{@item.price}"
           - if current_user.cards.present?
-            = form_tag(action: :pay, method: :post) do
-              %button 購入する
+            = form_tag pay_transact_path(@transact), method: :post do
+              = submit_tag '購入する'
 
     %section.payment-confirmation__box__shipping-address
       = render partial: "reciever-address"
