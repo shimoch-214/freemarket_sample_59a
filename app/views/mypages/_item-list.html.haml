@@ -1,0 +1,8 @@
+%li
+  = link_to "", url: item_path(item), class: "mypage-tab-container__content__list" do
+    = image_tag item.images.first.name.url, class: "mypage-tab-container__content__list__fig"
+    .mypage-tab-container__content__list__body
+      %p.mypage-tab-container__content__list__body--text
+        = "#{item.name}売ってるよ"
+    .mypage-tab-container__content__list__arrow
+      = fa_icon "chevron-right"

@@ -78,10 +78,12 @@ class User < ApplicationRecord
     super && sns_confirmation.nil?
   end
 
-  # def update_with_password(params, *options)
-  #   if encrypted_password.blank?
-  #     update_attributes(params, *options)
-  #   end
-  # end
+  def items_in_parchase
+    buy_transacts.where(status: [1,2,3,4]).map{ |tran| tran.item }
+  end
+
+  def items_finished
+    buy_transacts.where(status: 5).map{ |tran| tran.item }
+  end
 
 end

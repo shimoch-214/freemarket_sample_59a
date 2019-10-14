@@ -1,19 +1,19 @@
 %section.mypage-tab-container{style: 'margin-bottom: 40px;'}
   %ul.mypage-tab-container__tabs#todo-notification
-    %li.mypage-tab-container__tabs--item.active
+    %li.mypage-tab-container__tabs--item{ class: "#{set_active_notification}" }
       = link_to "お知らせ", notification_mypage_path
-    %li.mypage-tab-container__tabs--item
+    %li.mypage-tab-container__tabs--item{ class: "#{set_active_todo}" }
       = link_to "やることリスト", todo_mypage_path
   #todo-notification-contents
-    %ul.mypage-tab-container__content.active
+    %ul.mypage-tab-container__content{ class: "#{set_active_notification}" }
       - 5.times do
         = render partial: 'mypages/notification-list'
       %li.mypage-tab-container__content__go-all
         = link_to "一覧を見る", notification_mypage_path
-    %ul.mypage-tab-container__content
+    %ul.mypage-tab-container__content{ class: "#{set_active_todo}" }
       - if @todos.present?
         = render partial: 'mypages/todo-list', collection: @todos, as: :todo
         %li.mypage-tab-container__content__go-all
           = link_to "一覧を見る", todo_mypage_path
       - else
-        = render partial: 'mypages/no-list'
+        = render partial: 'mypages/no-list', locals: { message: '現在、やることリストはありません' }

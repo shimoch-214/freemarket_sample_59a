@@ -3,9 +3,12 @@ class MypagesController < ApplicationController
 
   def show
     @todos = current_user.sell_items
+    @items_in_parchase = current_user.items_in_parchase
+    @items_finished = current_user.items_finished
   end
 
   def todo
+    @todos = current_user.sell_items
   end
 
   def notification
