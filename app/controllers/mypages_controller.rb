@@ -29,6 +29,18 @@ class MypagesController < ApplicationController
     @items_finished = current_user.items_finished
   end
 
+  def listings
+    @items = current_user.items_exhibit
+  end
+
+  def in_progress
+    @items = current_user.items_in_progress
+  end
+
+  def completed
+    @items = current_user.items_completed
+  end
+
   private
   def move_to_login_path
     redirect_to user_sessions_new_path unless user_signed_in?

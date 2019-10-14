@@ -16,6 +16,18 @@ module MypagesHelper
     action_name == 'parchased' ? 'active' : ''
   end
 
+  def set_active_listings
+    action_name == 'listings' ? 'active' : ''
+  end
+
+  def set_active_in_progress
+    action_name == 'in_progress' ? 'active' : ''
+  end
+
+  def set_active_completed
+    action_name == 'completed' ? 'active' : ''
+  end
+
   def side_bar_active(link)
     link == request.path ? 'active' : ''
   end
@@ -23,5 +35,6 @@ module MypagesHelper
   def side_bar_arrow_active(link)
     link == request.path ? 'arrow-active' : ''
   end
+
 
 end

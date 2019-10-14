@@ -34,6 +34,9 @@ Rails.application.routes.draw do
       get 'identification', to: 'mypages#edit_identification'
       get 'parchase'
       get 'parchased'
+      get 'listing/listings', to: 'mypages#listings'
+      get 'listing/in_progress', to: 'mypages#in_progress'
+      get 'listing/completed', to: 'mypages#completed'
       resource :identification, only: :update
       # クレジットカード関連
       resources :cards , only: [:new, :index, :create, :destroy]

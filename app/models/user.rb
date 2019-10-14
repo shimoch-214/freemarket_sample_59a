@@ -78,12 +78,25 @@ class User < ApplicationRecord
     super && sns_confirmation.nil?
   end
 
+  # methods
   def items_in_parchase
     buy_transacts.where(status: [1,2,3,4]).map{ |tran| tran.item }
   end
 
   def items_finished
     buy_transacts.where(status: 5).map{ |tran| tran.item }
+  end
+
+  def items_exhibit
+    sell_transacts.where(status: 0).map{ |tran| tran.item }
+  end
+
+  def items_in_progress
+    sell_transacts.where(status: [1,2,3,4]).map{ |tran| tran.item }
+  end
+
+  def items_completed
+    sell_transacts.where(status: 5).map{ |tran| tran.item }
   end
 
 end

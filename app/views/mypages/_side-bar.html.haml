@@ -22,17 +22,17 @@
           出品する
           = fa_icon "chevron-right", class: "side-bar__lists--arrow"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to listing_listings_mypage_path, class: "side-bar__lists--item #{side_bar_active(listing_listings_mypage_path)}" do
           出品した商品-出品中
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "chevron-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(listing_listings_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to listing_in_progress_mypage_path, class: "side-bar__lists--item #{side_bar_active(listing_in_progress_mypage_path)}" do
           出品した商品-取引中
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "chevron-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(listing_in_progress_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to listing_completed_mypage_path, class: "side-bar__lists--item #{side_bar_active(listing_completed_mypage_path)}" do
           出品した商品-売却済み
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "chevron-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(listing_completed_mypage_path)}"
       %li
         = link_to parchase_mypage_path, class: "side-bar__lists--item #{side_bar_active(parchase_mypage_path)}" do
           購入した商品-取引中
