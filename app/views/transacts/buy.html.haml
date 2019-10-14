@@ -11,7 +11,7 @@
         .parchase-form
           .parchase-price
             .parchase-price__box--cost
-              = "¥#{@item.price}"
+              = "¥ #{number_with_delimiter(@item.price)}"
             .parchase-price__box--fee
               送料込み
           .parchase-point
@@ -21,7 +21,7 @@
             .payment-box__label
               支払い金額
             .payment-box__price
-              = "¥#{@item.price}"
+              = "¥ #{number_with_delimiter(@item.price)}"
           - if current_user.cards.present?
             = form_tag pay_transact_path(@transact), method: :post do
               = submit_tag '購入する'

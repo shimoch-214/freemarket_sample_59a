@@ -1,4 +1,5 @@
 module ItemsHelper
+
   def modify_label(image_size)
     if image_size < 5
       image_size.to_s

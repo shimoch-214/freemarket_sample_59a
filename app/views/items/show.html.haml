@@ -89,7 +89,7 @@
 
   .show-items__price-box
     %span.show-items__price-box--price
-      = "¥#{@item.price}"
+      = "¥ #{number_with_delimiter(@item.price)}"
     %span.show-items__price-box--tax
       (税込)
     %span.show-items__price-box--shipping-fee
