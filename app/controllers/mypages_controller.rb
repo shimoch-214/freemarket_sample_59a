@@ -21,6 +21,14 @@ class MypagesController < ApplicationController
     @identification = current_user.identification
   end
 
+  def parchase
+    @items_in_parchase = current_user.items_in_parchase
+  end
+
+  def parchased
+    @items_finished = current_user.items_finished
+  end
+
   private
   def move_to_login_path
     redirect_to user_sessions_new_path unless user_signed_in?

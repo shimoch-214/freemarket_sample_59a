@@ -3,19 +3,19 @@
 
 %section.mypage-tab-container
   %ul.mypage-tab-container__tabs#parchase
-    %li.mypage-tab-container__tabs--item.active
-      = link_to "取引中", "#"
-    %li.mypage-tab-container__tabs--item
-      = link_to "過去の取引", "#"
+    %li.mypage-tab-container__tabs--item{ class: "#{set_active_parchase}"}
+      = link_to "取引中", parchase_mypage_path
+    %li.mypage-tab-container__tabs--item{ class: "#{set_active_parchased}"}
+      = link_to "過去の取引", parchased_mypage_path
   #parchase-contents
-    %ul.mypage-tab-container__content.active
+    %ul.mypage-tab-container__content{ class: "#{set_active_parchase}"}
       - if @items_in_parchase.present?
         = render partial: 'mypages/item-list', collection: @items_in_parchase, as: :item
         %li.mypage-tab-container__content__go-all
           = link_to "一覧を見る", notification_mypage_path
       - else
         = render partial: 'mypages/no-list', locals: { message: '取引中の商品がありません' }
-    %ul.mypage-tab-container__content
+    %ul.mypage-tab-container__content{ class: "#{set_active_parchased}"}
       - if @items_finished.present?
         = render partial: 'mypages/item-list', collection: @items_finished, as: :item
         %li.mypage-tab-container__content__go-all

@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       get 'notification'
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
+      get 'parchase'
+      get 'parchased'
       resource :identification, only: :update
       # クレジットカード関連
       resources :cards , only: [:new, :index, :create, :destroy]

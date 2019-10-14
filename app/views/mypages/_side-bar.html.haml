@@ -34,13 +34,13 @@
           出品した商品-売却済み
           = fa_icon "chevron-right", class: "side-bar__lists--arrow"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to parchase_mypage_path, class: "side-bar__lists--item #{side_bar_active(parchase_mypage_path)}" do
           購入した商品-取引中
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "chevron-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(parchase_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to parchased_mypage_path, class: "side-bar__lists--item #{side_bar_active(parchased_mypage_path)}" do
           購入した商品-過去の取引
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "chevron-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(parchased_mypage_path)}"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           ニュース一覧

@@ -8,6 +8,14 @@ module MypagesHelper
     action_name == 'todo' ? 'active' : ''
   end
 
+  def set_active_parchase
+    %w(show parchase).include?(action_name) ? 'active' : ''
+  end
+
+  def set_active_parchased
+    action_name == 'parchased' ? 'active' : ''
+  end
+
   def side_bar_active(link)
     link == request.path ? 'active' : ''
   end
