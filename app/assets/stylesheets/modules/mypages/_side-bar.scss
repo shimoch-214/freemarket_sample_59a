@@ -18,7 +18,10 @@
       &:hover {
         background: #fafafa;
         text-decoration: none;
-        opacity: 1;
+        .side-bar__lists--arrow {
+          padding-right: 0;
+          color: #333;
+        }
       }
     }
     .active {
@@ -26,6 +29,8 @@
       font-weight: 600;
     }
     &--arrow {
+      transition: color .3s, padding .3s;
+      padding-right: 5px;
       color: #ccc;
     }
     .arrow-active {

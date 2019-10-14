@@ -1,0 +1,16 @@
+%h2.mypage-tab-container-title
+  出品した商品
+
+%section.mypage-tab-container
+  %ul.mypage-tab-container__tabs#listings
+    %li.mypage-tab-container__tabs--item{ class: "#{set_active_listings}"}
+      = link_to '出品中', listing_listings_mypage_path
+    %li.mypage-tab-container__tabs--item{ class: "#{set_active_in_progress}"}
+      = link_to '取引中', listing_in_progress_mypage_path
+    %li.mypage-tab-container__tabs--item{ class: "#{set_active_completed}"}
+      = link_to '売却済み', listing_completed_mypage_path
+  %ul.mypage-tab-container__content.active
+    - if @items.present?
+      = render partial: 'mypages/item-list', collection: @items, as: :item
+    - else
+      = render partial: 'mypages/no-list', locals: { message: message }

@@ -6,13 +6,15 @@
       = link_to url: "#" do
         %figure.mypage-user-icon__fig
           = image_tag "user_no_photo.png", width: "60", height: "60"
-        %h2 shimoch
+        %h2 
+          = current_user.nickname
         .mypage-user-icon__items
           .mypage-user-icon__items--item
             評価
             %span.mypage-user-icon__items--num 100
           .mypage-user-icon__items--item
             出品数
-            %span.mypage-user-icon__items--num 100
+            %span.mypage-user-icon__items--num
+              = current_user.sell_items.count
     = render partial: 'mypages/todo-notification'
     = render partial: 'mypages/parchase'

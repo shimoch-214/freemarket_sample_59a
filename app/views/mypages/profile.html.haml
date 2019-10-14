@@ -4,11 +4,11 @@
   .mypage-right
     %section.mypage-profile-container
       %h3 プロフィール
-      %form{action: "#", method: "get"}
+      = form_for current_user, url: user_registration_path(current_user), method: :patch do |f|
         .mypage-profile-container__icon
           %figure
             = image_tag "user_no_photo.png", height: 60, weight: 60
-          %input{ type: "text", placeholder: "ほげほげ"}
+          = f.text_field :nickname
         .mypage-profile-container__content
-          %textarea{ placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
-          %button{ type: "submit" } 変更する
+          = f.text_area :profile, placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"
+          = f.submit '変更する'

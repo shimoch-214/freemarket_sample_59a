@@ -77,7 +77,6 @@ $(function(){
     })
     $(this).val('');
   })
-
   $('.items-image-upload__dropbox').on('click', '.sell-upload-item__button--delete', function(e) {
     e.preventDefault();
     var li = $(this).parents('.sell-upload-item');

@@ -1,0 +1,5 @@
+- breadcrumb :listings
+.mypage-contents
+  = render partial: 'mypages/side-bar'
+  .mypage-right
+    = render partial: 'mypages/listing', locals: { message: '出品中の商品がありません' }
