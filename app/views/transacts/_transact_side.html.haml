@@ -1,0 +1,49 @@
+.transact-side
+  %section.transact-side__content
+    %h3.transact-side__content--head
+      取引情報
+    %ul.transact-side__content__info-table
+      %li
+        .transact-side__content__info-table--title 商品
+        .transact-side__content__info-table--detail
+          = link_to item_path(@item) do
+            = image_tag @item.images.first.name.url
+            = @item.name
+      %li
+        .transact-side__content__info-table--title 送料
+        .transact-side__content__info-table--detail
+          = @transact.bearing_i18n
+      %li
+        .transact-side__content__info-table--title 購入日時
+        .transact-side__content__info-table--detail
+          = @transact.parchased_at.strftime("%m月%d日 %H:%M")
+      %li
+        .transact-side__content__info-table--title 商品ID
+        .transact-side__content__info-table--detail
+          = @item.id
+      %li
+        .transact-side__content__info-table--title お届け先
+        .transact-side__content__info-table--detail
+          = "〒#{@buyer_address.zip_code}"
+          %br/
+          = full_address(@buyer_address)
+          %br/
+          = @buyer_address.building
+          %br/
+          = full_name(@buyer_address) + ' 様'
+
+  %section.transact-side__content
+    %h3.transact-side__content--head
+      - if current_user == @item.seller
+        購入者情報
+        .transact-side__content__user
+          = @transact.buyer.nickname
+      - else
+        出品者情報
+        .transact-side__content__user
+          .transact-side__content__user--img
+            = image_tag "user_no_photo"
+          .transact-side__content__user--name
+            = @transact.seller.nickname
+          .transact-side__content__user--arrow
+            = fa_icon "angle-right"

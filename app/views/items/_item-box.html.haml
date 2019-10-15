@@ -10,7 +10,7 @@
         = item.name
       .item-box__num
         .item-box__price
-          = "¥#{item.price}"
+          = "¥ #{number_with_delimiter(item.price)}"
         .item-box__like
           = fa_icon('heart')
           %span
