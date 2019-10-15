@@ -7,7 +7,11 @@
     %p.transact-content__attention__body
       このたびはメルカリのご利用ありがとうございました
   .transact-content__messages
-    = render partial: 'transacts/transact_message'
+    - @transact.messages.order('created_at desc').each do |message|
+      - if message.user == current_user
+        = render partial: 'transacts/transact_message', locals: { message: message }
+      - else
+        = render partial: 'transacts/transact_message_companion', locals: { message: message }
   = form_for @message, url: transact_message_path(@transact)  do |f|
     .transact-content__input
       .transact-content__input--notice
