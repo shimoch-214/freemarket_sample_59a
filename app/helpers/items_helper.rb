@@ -1,4 +1,5 @@
 module ItemsHelper
+
   def modify_label(image_size)
     if image_size < 5
       image_size.to_s
@@ -101,4 +102,13 @@ module ItemsHelper
       %w(出品する もどる)
     end
   end
+
+  def build_item_list_path(item)
+    if item.transact.status_before_type_cast == 0
+      item_path(item)
+    else
+      transact_path(item.transact)
+    end
+  end
+
 end

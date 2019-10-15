@@ -31,7 +31,7 @@
         @include select-default;
         margin-top: 8px;
       }
-      button {
+      input[type="submit"] {
         @include btn-default;
       }
       &--arbitrary {

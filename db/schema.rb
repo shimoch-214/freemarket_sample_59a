@@ -98,6 +98,16 @@ ActiveRecord::Schema.define(version: 2019_10_15_080438) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id"
+    t.bigint "transact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transact_id"], name: "index_messages_on_transact_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "sizings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
     t.string "name", null: false
@@ -123,7 +133,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_080438) do
     t.integer "ship_days", null: false
     t.integer "status", default: 0, null: false
     t.integer "prefecture_id", null: false
-    t.date "purchased_at"
+    t.datetime "parchased_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_transacts_on_buyer_id"
@@ -164,6 +174,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_080438) do
   add_foreign_key "items", "sizings"
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "transacts"
+  add_foreign_key "messages", "users"
   add_foreign_key "sns_confirmations", "users"
   add_foreign_key "transacts", "items"
   add_foreign_key "transacts", "users", column: "buyer_id"

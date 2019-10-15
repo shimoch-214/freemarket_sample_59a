@@ -15,6 +15,7 @@
 @import "font-awesome";
 @import "config/mixin";
 @import "config/errors";
+@import "config/flash_message";
 
 
 @import "./modules/devise/footer-user";
@@ -81,6 +82,10 @@
 @import "./modules/category/categories";
 @import "./modules/category/category_menu";
 @import "./modules/category/category-show";
+
+@import "./modules/transacts/transact-container";
+@import "./modules/transacts/transact-side";
+@import "./modules/transacts/transact-message";
 
 @import "./modules/kaminari/page";
 @import "./modules/kaminari/page-current";

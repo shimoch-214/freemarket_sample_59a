@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :api do
-    get 'items/image'
-  end
   devise_scope :user do
     get    'signup/registration' => 'users/registrations#user_info', as: :user_info
     get    'signup/registration/facebook' => 'users/registrations#user_info_facebook', as: :user_info_facebook
@@ -16,9 +13,9 @@ Rails.application.routes.draw do
     get    'logout' => 'users/sessions#logout', as: :user_session_logout
   end
 
-  devise_for :users,controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
+  devise_for :users, controllers: {
+    registrations:      'users/registrations',
+    sessions:           'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
@@ -33,13 +30,18 @@ Rails.application.routes.draw do
       get 'notification'
       get 'profile'
       get 'identification', to: 'mypages#edit_identification'
+      get 'parchase'
+      get 'parchased'
+      get 'listing/listings', to: 'mypages#listings'
+      get 'listing/in_progress', to: 'mypages#in_progress'
+      get 'listing/completed', to: 'mypages#completed'
+      resource :identification, only: :update
       # クレジットカード関連
       resources :cards , only: [:new, :index, :create, :destroy]
     end
   end
 
   # item exhibiting
-
   get 'sell', to: 'items#new', as: 'item_exhibit'
   resources :items, except: [:new] do
     namespace :api, format: 'js' do 
@@ -49,11 +51,20 @@ Rails.application.routes.draw do
       get :search
     end
   end
+
+  namespace :api do
+    get 'items/image'
+  end
   
   # 商品取引
-  get 'transacts/:id', to:'transacts#buy', as: 'transacts'
   # クレジット支払い
-  post 'pay/:id', to: 'transacts#pay', as: 'pay'
+  resources :transacts, only: [:show] do
+    member do
+      get  'buy', to:'transacts#buy'
+      post 'pay', to: 'transacts#pay', as: 'pay'
+    end
+    resource :message, only: [:create]
+  end
 
   # カテゴリー検索
   resources :categories, only:[:show,:index]
