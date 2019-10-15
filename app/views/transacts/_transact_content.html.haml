@@ -1,0 +1,24 @@
+%section.transact-content
+  %h2.transact-content__head
+    取引画面
+  .transact-content__attention
+    %h3.transact-content__attention__title
+      取引が完了しました
+    %p.transact-content__attention__body
+      このたびはメルカリのご利用ありがとうございました
+  .transact-content__messages
+    = render partial: 'transacts/transact_message'
+  .transact-content__input
+    .transact-content__input--notice
+      %p
+        取引メッセージの内容は、必要に応じて事務局で確認しています
+    .transact-content__input--text-area
+    .transact-content__input--submit
+      取引メッセージを送る
+    .transact-content__input--question
+      %span
+        ※お困りの際は
+      = link_to '#' do
+        よくある質問
+      %span
+        をご確認ください。

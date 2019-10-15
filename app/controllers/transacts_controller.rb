@@ -1,12 +1,13 @@
 class TransactsController < ApplicationController
   layout 'application-user'
+  layout 'application', only: [:show]
   before_action :set_transact
   before_action :set_item
   require 'payjp'
 
   # クレジット支払い
   def pay
-    @item.transact.buyer = current_user
+    @transact.buyer = current_user
     card = current_user.cards.first
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     Payjp::Charge.create(
@@ -14,9 +15,7 @@ class TransactsController < ApplicationController
       customer: card.customer_id,
       currency: 'jpy'
     )
-    transact = Transact.find(params[:id])
-    transact.update(status: 1)
-    @item.save
+    @transact.update(status: 1, parchased_at: Time.now)
     redirect_to item_path(@item)
   end
 
@@ -32,6 +31,7 @@ class TransactsController < ApplicationController
   end
 
   def show
+    @buyer_address = @transact.buyer.address
   end
 
   private
