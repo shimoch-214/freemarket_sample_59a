@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       get  'buy', to:'transacts#buy'
       post 'pay', to: 'transacts#pay', as: 'pay'
     end
+    resource :message, only: [:create]
   end
 
   # カテゴリー検索

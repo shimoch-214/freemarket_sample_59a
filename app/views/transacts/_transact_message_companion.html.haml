@@ -1,0 +1,8 @@
+.transact-message-companion
+  = link_to '#', class: 'transact-message-companion__avator' do
+    = image_tag 'user_no_photo'
+  .transact-message-companion__container
+    %span.transact-message-companion__container__name
+      = message.user.nickname
+    .transact-message-companion__container__body
+      = message.text

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_105540) do
+ActiveRecord::Schema.define(version: 2019_10_15_074841) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -88,6 +88,16 @@ ActiveRecord::Schema.define(version: 2019_10_14_105540) do
     t.index ["sizing_id"], name: "index_items_on_sizing_id"
   end
 
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id"
+    t.bigint "transact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transact_id"], name: "index_messages_on_transact_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "sizings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
     t.string "name", null: false
@@ -152,6 +162,8 @@ ActiveRecord::Schema.define(version: 2019_10_14_105540) do
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "sizings"
+  add_foreign_key "messages", "transacts"
+  add_foreign_key "messages", "users"
   add_foreign_key "sns_confirmations", "users"
   add_foreign_key "transacts", "items"
   add_foreign_key "transacts", "users", column: "buyer_id"
