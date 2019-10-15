@@ -32,6 +32,7 @@ class TransactsController < ApplicationController
 
   def show
     @buyer_address = @transact.buyer.address
+    @message = Message.new
   end
 
   private

@@ -48,8 +48,10 @@
       background-color: rgba(252, 238, 175, 0.548);
     }
     &--text-area {
-      margin-top: 8px;
       @include textarea-default;
+      margin-top: 8px;
+      font-size: 14px;
+      resize: none;
     }
     &--submit {
       @include btn-default;

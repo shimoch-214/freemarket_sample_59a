@@ -8,17 +8,17 @@
       このたびはメルカリのご利用ありがとうございました
   .transact-content__messages
     = render partial: 'transacts/transact_message'
-  .transact-content__input
-    .transact-content__input--notice
-      %p
-        取引メッセージの内容は、必要に応じて事務局で確認しています
-    .transact-content__input--text-area
-    .transact-content__input--submit
-      取引メッセージを送る
-    .transact-content__input--question
-      %span
-        ※お困りの際は
-      = link_to '#' do
-        よくある質問
-      %span
-        をご確認ください。
+  = form_for @message, url: transact_message_path(@transact)  do |f|
+    .transact-content__input
+      .transact-content__input--notice
+        %p
+          取引メッセージの内容は、必要に応じて事務局で確認しています
+      = f.text_area :text, class: 'transact-content__input--text-area'
+      = f.submit '取引メッセージを送る', class: 'transact-content__input--submit'
+      .transact-content__input--question
+        %span
+          ※お困りの際は
+        = link_to '#' do
+          よくある質問
+        %span
+          をご確認ください。
