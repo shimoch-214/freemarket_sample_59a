@@ -1,8 +1,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
+
 # Examples:
-#
+
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
@@ -26,7 +26,7 @@ CSV.foreach('db/csv/categories.csv', headers: true) do |row|
   )
 end
 
-# # Usersテーブル：ダミー登録
+# Usersテーブル：ダミー登録
 # 10.times do |u|
 #   user = User.new(
 #     nickname: Faker::Name.name,
@@ -56,7 +56,7 @@ end
 #   user.save!
 # end
 
-# # itemsテーブル：ダミー登録
+# itemsテーブル：ダミー登録
 # image_file_path = Dir.glob('/Users/miurashintaro/projects/freemarket_sample_59a/app/assets/images/item_image_sample/*')
 # grandchild_category = Category.where("ancestry LIKE ?", "%/%").pluck(:id)
 # brand_name = ["シャネル", "ルイヴィトン", "シュプリーム", "ナイキ", "NOブランド"]

@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many  :sell_items, class_name: 'Item', through: :sell_transacts, source: :item
   has_many  :buy_items, class_name: 'Item', through: :buy_transacts, source: :item
   has_many  :cards
-  
+  has_many  :likes, dependent: :destroy
   before_save { self.email = email.downcase }
 
   validates_presence_of :identification
