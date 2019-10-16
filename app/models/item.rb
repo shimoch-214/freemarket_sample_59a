@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to  :category
   belongs_to  :sizing, optional: true
   delegate    :seller, :buyer, to: :transact
+  has_many    :likes, dependent: :destroy
 
   # enum setting
   enum        condition: {
@@ -79,6 +80,15 @@ class Item < ApplicationRecord
         self.category = nil
       end
     end
+  end
+
+#ユーザが商品に対していいねをすでに送っているかを判定するメソッドです。
+  def liked_by?(user)
+    likes.where(user_id:user.id).exists?
+  end
+#ユーザがした商品のidをとってくるメソッドです。
+  def like_id(user)
+    likes.where(user_id:user.id)
   end
 
 end

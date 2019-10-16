@@ -107,12 +107,7 @@
       = @item.description
   .show-items__botton-container
     .show-items__botton-container-left
-      %button.show-items__like-botton
-        = fa_icon('heart')
-        %span
-          いいね!
-        %span
-          72
+      =render partial:"api/likes/likes"
       = link_to (), class: 'show-items__report-link' do
         = fa_icon('flag')
         %span
