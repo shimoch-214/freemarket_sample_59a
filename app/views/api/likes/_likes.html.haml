@@ -1,0 +1,23 @@
+-if user_signed_in?
+  -if @item.liked_by?(current_user)
+    =link_to item_api_like_path(item_id: @item.id, id: @item.like_id(current_user)),method: :delete, class:"likes-link",remote:true do
+      %button.show-items__like-botton-delete{id:"like_buttun#{@item.id}"}
+        = fa_icon('heart',class:"animated rubberBand")
+        %span
+          いいね!
+        %span="#{@item.likes.count}"
+  - else
+    =link_to item_api_likes_path(item_id: @item.id),method: :post, class:"likes-link",remote:true do
+      %button.show-items__like-botton{id:"like_buttun#{@item.id}"}
+        = fa_icon('heart')
+        %span
+          いいね!
+        %span="#{@item.likes.count}"
+-else
+  =link_to user_sessions_new_path, class:"likes-link" do
+    %button.show-items__like-botton{id:"like_buttun#{@item.id}"}
+      = fa_icon('heart')
+      %span
+        いいね!
+      %span="#{@item.likes.count}"
+      

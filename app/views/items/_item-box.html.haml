@@ -12,6 +12,6 @@
         .item-box__price
           = "¥ #{number_with_delimiter(item.price)}"
         .item-box__like
-          = fa_icon('heart-o')
-          %span
-            72
+          = fa_icon('heart')
+          %span="#{@item.likes.count}"
+            

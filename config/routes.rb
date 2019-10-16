@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   # item exhibiting
   get 'sell', to: 'items#new', as: 'item_exhibit'
   resources :items, except: [:new] do
+    namespace :api, format: 'js' do 
+      resources :likes , only:[:create,:destroy]
+    end
     collection do
       get :search
     end
