@@ -27,6 +27,8 @@
       left: 0;
       z-index: 1;
       width: 100%;
+      max-height: 220px;
+      object-fit: cover;
       opacity: 1;
       -webkit-transition: opacity .3s;
       transition: opacity .3s;
