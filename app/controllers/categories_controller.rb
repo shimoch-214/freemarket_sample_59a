@@ -7,12 +7,10 @@ class CategoriesController < ApplicationController
   def show
     @items = []
     if @category.descendants.empty?
-      @items += @category.items
+      @items=Item.where(category_id: @category).page(params[:page]).per(10)
     else
-      @categories=@category.descendants
-      @categories.each do |category|
-        @items += category.items
-      end
+      @categories=@category.descendants.pluck(:id)
+      @items=Item.where(category_id: @categories).page(params[:page]).per(10)
     end
   end
 
