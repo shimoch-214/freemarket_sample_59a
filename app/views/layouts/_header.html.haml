@@ -36,14 +36,14 @@
         %ul.user-list
           %li.user-list__box
             = link_to (), class: 'user-list__box--link' do
-              = fa_icon('heart')
+              = fa_icon('heart-o')
               いいね一覧
             .user-list__box--box
               %ul.user-list__box--list
                 %li.user-list__box--msg
           %li.user-list__box
             = link_to (), class: 'user-list__box--link' do
-              = fa_icon('bell')
+              = fa_icon('bell-o')
               お知らせ
             .user-list__box--box
               %ul.user-list__box--list
@@ -106,5 +106,5 @@
                       = link_to (), class: 'item-status__past_transactions' do
                         購入した商品 - 過去の取引
   = render 'shared/flash_message'
-  = breadcrumbs class: 'breadcrumbs', separator:'>', fragment_tag: :ul
+  = breadcrumbs class: 'breadcrumbs', separator: fa_icon('angle-right'), fragment_tag: :ul
 

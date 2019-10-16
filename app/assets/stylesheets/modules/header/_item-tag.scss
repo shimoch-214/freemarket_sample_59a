@@ -16,7 +16,10 @@
       line-height: 36px;
       white-space: nowrap;
       &:hover{
-        color: rgb(0, 149, 238);
+        color: #0099e8;
+      }
+      i {
+        color: #ea352d;
       }
     }
     &--box{
@@ -37,7 +40,12 @@
       font-weight: 600;
       line-height: 36px;
       white-space: nowrap;
-
+      &:hover{
+        color: #0099e8;
+      }
+      i {
+        color: #ea352d;
+      }
     }
     &--box{
       display: none;

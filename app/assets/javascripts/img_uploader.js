@@ -50,7 +50,7 @@ $(function(){
 
   $('.items-image-upload__dropbox').on('drop change', `.active-input`, function(e){
     var files = e.target.files;
-    if (files.length > 10) {
+    if (files.length + image_ids.length > 10) {
       alert('欲張りすぎ')
       return false;
     }
