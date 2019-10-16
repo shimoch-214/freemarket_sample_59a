@@ -1,4 +1,4 @@
-@keyframes fadeOut {
+@keyframes fadeOutFlash {
   0% {
     opacity: 1;
   }
@@ -17,7 +17,7 @@
   align-items: center;
   position: absolute;
   cursor: pointer;
-  animation-name: fadeOut;
+  animation-name: fadeOutFlash;
   animation-duration: .5s;
   animation-delay: 4.5s;
   transition: all ease-out .3s;

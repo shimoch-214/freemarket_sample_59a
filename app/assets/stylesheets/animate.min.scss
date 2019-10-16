@@ -81,36 +81,36 @@
   transform-origin: center bottom;
 }
 
-@-webkit-keyframes flash {
-  from,
-  50%,
-  to {
-    opacity: 1;
-  }
+// @-webkit-keyframes flash {
+//   from,
+//   50%,
+//   to {
+//     opacity: 1;
+//   }
 
-  25%,
-  75% {
-    opacity: 0;
-  }
-}
+//   25%,
+//   75% {
+//     opacity: 0;
+//   }
+// }
 
-@keyframes flash {
-  from,
-  50%,
-  to {
-    opacity: 1;
-  }
+// @keyframes flash {
+//   from,
+//   50%,
+//   to {
+//     opacity: 1;
+//   }
 
-  25%,
-  75% {
-    opacity: 0;
-  }
-}
+//   25%,
+//   75% {
+//     opacity: 0;
+//   }
+// }
 
-.flash {
-  -webkit-animation-name: flash;
-  animation-name: flash;
-}
+// .flash {
+//   -webkit-animation-name: flash;
+//   animation-name: flash;
+// }
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
