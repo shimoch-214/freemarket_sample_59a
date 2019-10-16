@@ -35,7 +35,7 @@
     textarea {
       @include textarea-default(216px);
     }
-    button {
+    input {
       margin: 16px 0 0;
       @include btn-default;
     }

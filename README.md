@@ -113,7 +113,7 @@ belongs_to :user, optional: true
 - belongs_to :seller, class_name: 'User', foreign_key: :seller_id
 - belongs_to :buyer, class_name: 'User', foreign_key: :buyer_id, optional: true
 - has_many :payments(未実装)
-- has_many :messages(未実装)
+- has_many :messages
 
 
 ## paymentsテーブル
@@ -162,9 +162,11 @@ belongs_to :user, optional: true
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false|
-|item|references|null: false, foreign_key: true|
+|transact|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :item
+- belongs_to :transact
+- belongs_to :user
 
 
 ## likesテーブル

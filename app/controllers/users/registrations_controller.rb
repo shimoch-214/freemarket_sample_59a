@@ -1,8 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "application-user"
   before_action :configure_sign_up_params, only: [:create]
-  before_action :reject_signed_in_user, except: [:complete]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
+  before_action :reject_signed_in_user, except: [:complete, :update]
 
   def sign_up
     previous_url
@@ -77,8 +77,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def complete
   end
 
+  def update
+    if current_user.update(profile_update_params)
+      redirect_to profile_mypage_path, notice: 'プロフィールを編集しました'
+    else
+      redirect_to profile_mypage_path, alert: 'プロフィールが編集できませんでした'
+    end
+  end
+
   private
 
+  # get params
   def user_params
     params.require(:user).permit(
       :nickname,
@@ -110,6 +119,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     )
   end
 
+  def profile_update_params
+    params.require(:user).permit(:nickname, :profile)
+  end
+
+  # construct :birthday attrbute
   def birthday_join
     date = params[:birthday]
     return unless date
@@ -117,10 +131,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
   end
 
+  # devise sanitizer
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :phone_number])
   end
 
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :profile])
+  end
+
+  # build new sns_confirmation in sign_up steps
   def build_sns_confirmed_user(provider)
     @user = User.new(email: session["devise.#{provider}_data"]['info']['email'])
     @user.build_identification
@@ -132,10 +152,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user
   end
 
+  # remember where from the user comes for the sns authentication
   def previous_url
     session[:previous_url] = request.original_url
   end
 
+  # a user already signed in can not visit sign up pages
   def reject_signed_in_user
     redirect_to root_path if user_signed_in?
   end

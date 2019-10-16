@@ -27,6 +27,7 @@ $(function(){
       .addClass(`items-image-upload__label-hasmax`)
     }
   }
+
   function deleteImage(count) {
     if (count < 5) {
       $(`.items-image-upload__label-has${count}`)
@@ -77,7 +78,7 @@ $(function(){
     })
     $(this).val('');
   })
-
+  
   $('.items-image-upload__dropbox').on('click', '.sell-upload-item__button--delete', function(e) {
     e.preventDefault();
     var li = $(this).parents('.sell-upload-item');
