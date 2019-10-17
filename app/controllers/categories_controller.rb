@@ -7,10 +7,10 @@ class CategoriesController < ApplicationController
   def show
     @items = []
     if @category.descendants.empty?
-      @items=Item.where(category_id: @category).page(params[:page]).per(10).order("created_at DESC")
+      @items=Item.where(category_id: @category).page(params[:page]).per(40).order("created_at DESC")
     else
       @categories=@category.descendants.pluck(:id)
-      @items=Item.where(category_id: @categories).page(params[:page]).per(10).order("created_at DESC")
+      @items=Item.where(category_id: @categories).page(params[:page]).per(40).order("created_at DESC")
     end
   end
 
