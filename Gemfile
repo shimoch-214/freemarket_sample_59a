@@ -89,6 +89,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'gretel'
 gem 'recaptcha'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'faker'
 
 # sns authenticate
