@@ -2,7 +2,7 @@
   .header__menu
     .header__menu--paragraph1
       .site-name
-        = link_to items_path, class: 'site-name__logo' do
+        = link_to root_path, class: 'site-name__logo' do
           = image_tag "header", class: 'site-name__image'
       .item-search
         = search_form_for(@q, url: search_items_path) do |f|
