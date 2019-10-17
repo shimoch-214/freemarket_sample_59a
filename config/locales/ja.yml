@@ -26,13 +26,9 @@ ja:
         short:          "1~2日で発送"
         medium:         "2~3日で発送"
         long:           "4~7日で発送"
+      status: 
+        exhibit:        "販売中"
+        contract:       "売り切れ"
   recaptcha:
     errors:
       verification_failed: 'reCAPTCHA認証に失敗しました'
-  views:
-    pagination:
-      first: <i class="fa fa-angle-double-left"></i>
-      last: <i class="fa fa-angle-double-right"></i>
-      previous: <i class="fa fa-angle-left"></i>
-      next: <i class="fa fa-angle-right"></i>
-      truncate: ""
