@@ -65,12 +65,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.identification[:street] = @user.address[:street]
     @user.identification[:building] = @user.address[:building]
     @user.identification[:prefecture_id] = @user.address[:prefecture_id]
-      if @user.save
-        session.delete(:params)
-        sign_in @user unless user_signed_in?
-        redirect_to registration_complete_path
-      else
-        render 'user_payment'
+    if @user.save
+      user_credit_create(@user) unless params['payjp-token'].blank?
+      session.delete(:params)
+      sign_in @user unless user_signed_in?
+      redirect_to registration_complete_path
+    else
+      render 'user_payment'
     end
   end
 
@@ -115,8 +116,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :street, 
         :building, 
         :phone_number_sub
+      ],
+      cards_attributes: [
+        :card_number,
+        :exp_month,
+        :exp_year,
+        :cvc
       ]
     )
+  end
+
+  def user_credit_create(user)
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    customer = Payjp::Customer.create(
+      email: user.email,
+      card: params['payjp-token'],
+    )
+    Card.create(user_id: user.id, customer_id: customer.id, card_id: customer.default_card)
   end
 
   def profile_update_params
