@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def search_set
-    # binding.pry
     @q = Item.ransack(params[:q])
   end
 end
