@@ -89,15 +89,15 @@
 
   .show-items__price-box
     %span.show-items__price-box--price
-      = "¥#{@item.price}"
+      = "¥ #{number_with_delimiter(@item.price)}"
     %span.show-items__price-box--tax
       (税込)
     %span.show-items__price-box--shipping-fee
       送料込み
 
   - unless @item.seller.id == current_user&.id
-    - if @item.transact.status_before_type_cast == 0 
-      = link_to '購入画面に進む', transacts_path, class: 'show-items__buy-botton'
+    - if @item.transact.status_before_type_cast == 0
+      = link_to '購入画面に進む', buy_transact_path(@item.transact), class: 'show-items__buy-botton'
     - else
       .show-items__not-buy-botton
         売り切れました
@@ -107,12 +107,7 @@
       = @item.description
   .show-items__botton-container
     .show-items__botton-container-left
-      %button.show-items__like-botton
-        = fa_icon('heart')
-        %span
-          いいね!
-        %span
-          72
+      =render partial:"api/likes/likes"
       = link_to (), class: 'show-items__report-link' do
         = fa_icon('flag')
         %span
@@ -126,7 +121,7 @@
 //アイテム編集・削除
 - if (current_user == @item.seller) && (@item.transact.status_before_type_cast == 0)
   .items-status
-    = link_to edit_item_path, class: 'items-status__edit' do
+    = link_to edit_item_path(@item), class: 'items-status__edit' do
       商品の編集
     %p or
     .items-status__exhibit

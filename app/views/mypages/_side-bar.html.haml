@@ -2,99 +2,99 @@
   %nav
     %ul.side-bar__lists
       %li
-        = link_to "", class: "side-bar__lists--item active" do
+        = link_to mypage_path, class: "side-bar__lists--item #{side_bar_active(mypage_path)}" do
           マイページ
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow arrow-active"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to notification_mypage_path, class: "side-bar__lists--item #{side_bar_active(notification_mypage_path)}" do
           お知らせ
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(notification_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to todo_mypage_path, class: "side-bar__lists--item #{side_bar_active(todo_mypage_path)}" do
           やることリスト        
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(todo_mypage_path)}"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           いいね！一覧
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to item_exhibit_path, class: "side-bar__lists--item" do
           出品する
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to listing_listings_mypage_path, class: "side-bar__lists--item #{side_bar_active(listing_listings_mypage_path)}" do
           出品した商品-出品中
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(listing_listings_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to listing_in_progress_mypage_path, class: "side-bar__lists--item #{side_bar_active(listing_in_progress_mypage_path)}" do
           出品した商品-取引中
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(listing_in_progress_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to listing_completed_mypage_path, class: "side-bar__lists--item #{side_bar_active(listing_completed_mypage_path)}" do
           出品した商品-売却済み
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(listing_completed_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to parchase_mypage_path, class: "side-bar__lists--item #{side_bar_active(parchase_mypage_path)}" do
           購入した商品-取引中
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(parchase_mypage_path)}"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to parchased_mypage_path, class: "side-bar__lists--item #{side_bar_active(parchased_mypage_path)}" do
           購入した商品-過去の取引
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(parchased_mypage_path)}"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           ニュース一覧
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           評価一覧
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           ガイド
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           お問い合わせ
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
     %h3.side-bar__head メルペイ
     %ul.side-bar__lists
       %li
         = link_to "#", class: "side-bar__lists--item" do
           売上・振込申請
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           ポイント
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
     %h3.side-bar__head 設定   
     %ul.side-bar__lists
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to profile_mypage_path, class: "side-bar__lists--item #{side_bar_active(profile_mypage_path)}" do
           プロフィール
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(profile_mypage_path)}"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           発送元・お届け先住所変更
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
-        = link_to card_path, class: "side-bar__lists--item" do
-          支払方法
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+        = link_to cards_path, class: "side-bar__lists--item #{side_bar_active(cards_path)}" do
+          支払い方法
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(cards_path)}"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           メール/パスワード
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to identification_mypage_path, class: "side-bar__lists--item #{side_bar_active(identification_mypage_path)}" do
           本人情報
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(identification_mypage_path)}"
       %li
         = link_to "#", class: "side-bar__lists--item" do
           電話番号の確認
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow"
       %li
-        = link_to "#", class: "side-bar__lists--item" do
+        = link_to user_session_logout_path, class: "side-bar__lists--item #{side_bar_active(user_session_logout_path)}" do
           ログアウト
-          = fa_icon "chevron-right", class: "side-bar__lists--arrow"
+          = fa_icon "angle-right", class: "side-bar__lists--arrow #{side_bar_arrow_active(user_session_logout_path)}"
 

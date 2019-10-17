@@ -43,7 +43,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
-  gem 'faker'
   # for automatic deploy
   gem 'capistrano'
   gem 'capistrano-rbenv'
@@ -91,8 +90,12 @@ gem 'kaminari'
 gem 'gretel'
 gem 'recaptcha'
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'faker'
 
 # sns authenticate
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+
+# parment method by credit
+gem 'payjp'

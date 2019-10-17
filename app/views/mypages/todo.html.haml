@@ -1,3 +1,5 @@
 - breadcrumb :todo
-%h1 Mypages#todo
-%p Find me in app/views/mypages/todo.html.haml
+.mypage-contents
+  = render partial: 'mypages/side-bar'
+  .mypage-right
+    = render partial: 'mypages/todo-notification'

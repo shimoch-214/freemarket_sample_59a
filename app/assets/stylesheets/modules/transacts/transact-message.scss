@@ -1,0 +1,117 @@
+.transact-message-companion {
+  margin-top: 40px;
+  display: flex;
+  &__avator {
+    display: block;
+    width: 10%;
+    img {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+    }
+  }
+  &__container {
+    width: 90%;
+    &__name {
+      font-weight: bold;
+    }
+    &__body {
+      margin-top: 8px;
+      position: relative;
+      background-color: #eee;
+      padding: 16px;
+      border-radius: 10px;
+      &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        transform: rotate(135deg);
+        left: -30px;
+        top: 8px;
+        border-left: 20px solid #eee;
+        border-top: 20px solid rgba(0,0,0,0);
+        border-right: 20px solid #fff;
+        border-bottom: 20px solid #fff;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        transform: rotate(135deg);
+        left: -40px;
+        top: 5px;
+        border-left: 20px solid #fff;
+        border-top: 20px solid #fff;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+      }
+    }
+  }
+}
+
+.transact-message {
+  margin-top: 40px;
+  display: flex;
+  &__avator {
+    display: flex;
+    width: 10%;
+    justify-content: flex-end;
+    img {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+    }
+  }
+  &__container {
+    width: 90%;
+    text-align: right;
+    &__name {
+      color: #ea352d;
+      font-weight: bold;
+    }
+    &__body {
+      text-align: left;
+      margin-top: 8px;
+      position: relative;
+      background-color: #fbf0e6;
+      padding: 16px;
+      border-radius: 10px;
+      &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        transform: rotate(45deg);
+        left: 548px;
+        top: 8px;
+        border-left: 20px solid #fbf0e6;
+        border-top: 20px solid rgba(0,0,0,0);
+        border-right: 20px solid rgba(0,0,0,0);
+        border-bottom: 20px solid rgba(0,0,0,0);
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        transform: rotate(-45deg);
+        left: 558px;
+        top: 5px;
+        border-left: 20px solid #fff;
+        border-top: 20px solid #fff;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+      }
+    }
+  }
+}

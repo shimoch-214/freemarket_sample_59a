@@ -27,6 +27,7 @@ $(function(){
       .addClass(`items-image-upload__label-hasmax`)
     }
   }
+
   function deleteImage(count) {
     if (count < 5) {
       $(`.items-image-upload__label-has${count}`)
@@ -49,7 +50,7 @@ $(function(){
 
   $('.items-image-upload__dropbox').on('drop change', `.active-input`, function(e){
     var files = e.target.files;
-    if (files.length > 10) {
+    if (files.length + image_ids.length > 10) {
       alert('欲張りすぎ')
       return false;
     }
@@ -77,7 +78,7 @@ $(function(){
     })
     $(this).val('');
   })
-
+  
   $('.items-image-upload__dropbox').on('click', '.sell-upload-item__button--delete', function(e) {
     e.preventDefault();
     var li = $(this).parents('.sell-upload-item');

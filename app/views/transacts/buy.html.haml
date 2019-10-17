@@ -11,7 +11,7 @@
         .parchase-form
           .parchase-price
             .parchase-price__box--cost
-              = "¥#{@item.price}"
+              = "¥ #{number_with_delimiter(@item.price)}"
             .parchase-price__box--fee
               送料込み
           .parchase-point
@@ -21,9 +21,11 @@
             .payment-box__label
               支払い金額
             .payment-box__price
-              = "¥#{@item.price}"
-          %button.parchase-submit{type:'submit'}
-            購入する
+              = "¥ #{number_with_delimiter(@item.price)}"
+          - if current_user.cards.present?
+            = form_tag pay_transact_path(@transact), method: :post do
+              = submit_tag '購入する'
+
     %section.payment-confirmation__box__shipping-address
       = render partial: "reciever-address"
 
@@ -33,14 +35,22 @@
           %h3.payment-method__box--label
             支払い方法
           %address.payment-method__box--detail
-            **** **** ****
-            %br 
-            ** / **
-            %br
-            = image_tag 'jcb.svg', width: '20px', height: '15px'
+            - if current_user.cards.blank?
+              %br /
+            - else
+              .user-credit-card
+                .user-credit-card__box
+                  = "**** **** **** " + @default_card_information.last4
+                  %br
+                  - exp_month = @default_card_information.exp_month.to_s
+                  - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                  = exp_month + " / " + exp_year
+                  %br
+                  = image_tag @card_src, height: '14px'
           .payment-method__box--change
-            %span.change-button
-            変更する
-            %i.arrow-right
-              = fa_icon 'chevron-right'
-
+            - unless current_user.cards.present?
+              = link_to new_card_path do
+                %span.change-button 
+                  変更する
+                %i.arrow-right
+                  = fa_icon 'chevron-right'

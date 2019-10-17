@@ -15,6 +15,7 @@
 @import "font-awesome";
 @import "config/mixin";
 @import "config/errors";
+@import "config/flash_message";
 
 
 @import "./modules/devise/footer-user";
@@ -25,7 +26,7 @@
 @import "./modules/devise/login-page";
 @import "./modules/devise/signup-page";
 @import "./modules/devise/sms-confirmation";
-@import "./modules/devise/user-adress";
+@import "./modules/devise/user-address";
 @import "./modules/devise/user-complete";
 @import "./modules/devise/edit-credit";
 
@@ -80,5 +81,14 @@
 @import "./modules/items/items-image-upload";
 @import "./modules/items/items-forms";
 
+@import "./modules/category/categories";
+@import "./modules/category/category_menu";
+@import "./modules/category/category-show";
+
+@import "./modules/transacts/transact-container";
+@import "./modules/transacts/transact-side";
+@import "./modules/transacts/transact-message";
+
 @import "./modules/kaminari/page";
 @import "./modules/kaminari/page-current";
+@import "./animate.min";

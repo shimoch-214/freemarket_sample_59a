@@ -4,10 +4,11 @@ class Item < ApplicationRecord
   has_many    :images, dependent: :destroy
   accepts_nested_attributes_for :images
   has_one     :transact, dependent: :destroy, class_name: 'Transact', inverse_of: :item
-  accepts_nested_attributes_for :transact
+  accepts_nested_attributes_for :transact, update_only: true
   belongs_to  :category
   belongs_to  :sizing, optional: true
   delegate    :seller, :buyer, to: :transact
+  has_many    :likes, dependent: :destroy
 
   # enum setting
   enum        condition: {
@@ -58,7 +59,7 @@ class Item < ApplicationRecord
 
   def has_images
     errors.add(:images, 'が投稿されていません') if images.size < 1
-    errors.add(:imgaes, 'は10枚までです') if images.size > 10
+    errors.add(:images, 'は10枚までです') if images.size > 10
   end
 
   # method
@@ -79,6 +80,15 @@ class Item < ApplicationRecord
         self.category = nil
       end
     end
+  end
+
+#ユーザが商品に対していいねをすでに送っているかを判定するメソッドです。
+  def liked_by?(user)
+    likes.where(user_id:user.id).exists?
+  end
+#ユーザがした商品のidをとってくるメソッドです。
+  def like_id(user)
+    likes.where(user_id:user.id)
   end
 
 end

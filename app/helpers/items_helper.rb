@@ -1,4 +1,5 @@
 module ItemsHelper
+
   def modify_label(image_size)
     if image_size < 5
       image_size.to_s
@@ -93,4 +94,21 @@ module ItemsHelper
       content_tag(:div, '', id: 'delivery_method-wrapper')
     end
   end
+
+  def modify_button_message(action)
+    if %w(edit update).include?(action)
+      %w(変更する キャンセル)
+    else
+      %w(出品する もどる)
+    end
+  end
+
+  def build_item_list_path(item)
+    if item.transact.status_before_type_cast == 0
+      item_path(item)
+    else
+      transact_path(item.transact)
+    end
+  end
+
 end

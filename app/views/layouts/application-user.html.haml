@@ -12,44 +12,24 @@
     .main-user
       %header.header-user
         %h1.header-user__logo
-          = link_to image_tag("header.svg",width:"185",height:"49"), root_path,class:"header__logo__top-img"
-        .header-user__signup-bar
-          %ol.header-user__signup-bar--process
-            %li.info
-              会員情報
-              .info--icon
-            %li.phone-number
-              電話番号認証
-              .phone-number--icon
-            %li.adress
-              お届け先住所入力
-              .adress--icon
-            %li.payment
-              支払い方法
-              .payment--icon
-            %li.complete
-              完了
-              .complete--icon
-          .header-user__signup-bar--status-line
-            .header-user__signup-bar--status-line--1
-            .header-user__signup-bar--status-line--2
-            .header-user__signup-bar--status-line--3
-            .header-user__signup-bar--status-line--4
+          = link_to image_tag("header.svg",width:"185",height:"49"),"/",class:"header__logo__top-img"
+        =render partial: "devise/registrations/progress_bar"
+
 
       = yield
 
       %footer.footer-user
         .footer-user__links
           %ul
-            =link_to"https://www.google.com/",class:"privacy-policy" do
+            =link_to"https://www.mercari.com/jp/privacy/",class:"privacy-policy" do
               %li プライバシーポリシー
-            =link_to"https://www.google.com/",class:"Terms-of-service" do
+            =link_to"https://www.mercari.com/jp/tos/",class:"Terms-of-service" do
               %li メルカリ利用規約
-            =link_to"https://www.google.com/",class:"Notation" do
+            =link_to"https://www.mercari.com/jp/tokutei/",class:"Notation" do
               %li 特定商取引に関する表記
         .footer-user__logo
           %h1.footer-user__logo__img
-            =link_to image_tag("footer.svg",width:"80",height:"65"),"https://www.google.co.jp/"
+            =link_to image_tag("footer.svg",width:"80",height:"65"),"/"
         .footer-user__copyright
           %p © 2019 Mercari
 

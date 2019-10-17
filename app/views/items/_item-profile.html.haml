@@ -5,7 +5,7 @@
         %span.item-profile__title--text
           = item.name
       .item-profile__image
+        = render partial: "items/item-sold" unless item.transact.status_before_type_cast == 0
         %span.item-profile__image--price
-          ¥
-          = item.price
+          = "¥ #{number_with_delimiter(item.price)}"
         = image_tag "#{item.images.first.name}", class: 'item-profile__image--item-image'

@@ -263,8 +263,6 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   Rails.application.credentials.facebook[:access_key_id],
                   Rails.application.credentials.facebook[:secret_access_key],
-                  # "1111111111111",
-                  # "1111111111111",
                   scope: 'email',
                   info_fields: 'email',
                   display: 'popup'
@@ -272,10 +270,8 @@ Devise.setup do |config|
   config.omniauth :google_oauth2,
                   Rails.application.credentials.google[:access_key_id],
                   Rails.application.credentials.google[:secret_access_key],
-                  # "1111111111111",
-                  # "1111111111111",
                   scope: 'email'
-
+                  
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
