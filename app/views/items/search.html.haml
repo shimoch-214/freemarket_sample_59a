@@ -1,140 +1,29 @@
 %main.search-item
   .search-item__side
-    = search_form_for(@q, url: search_items_path, id: 'detail-search') do |f|
-
-      .search-sorting
-        = f.select :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'}
-
-      .search-detail
-        %h3.search-detail__title--large
-          詳細検索
-        .search-detail__box
-          = label_tag :keyword, class: '.search-detail__label' do
-            = fa_icon('plus', class: 'search-detail__icon')
-            %span.search-detail__title
-              キーワードを追加する
-          = f.text_field :name_or_description_cont, class: 'search-detail__text-form', placeholder: '例）値下げ'
-
-        .search-detail__box
-          = label_tag :category do
-            = fa_icon('list-ul', class: 'search-detail__icon')
-            %span.search-detail__title
-              カテゴリーを選択する
-          = select "", :category, @category.pluck(:name, :id), {prompt: 'すべて'}, {class: 'search-detail__select-form  js_category_form'}
-          - @category.each do |root|
-            .search-detail__box--check-box.js_category_none{id: "category_child_#{root.id}"}
-              = select "", :category_child, root.children.pluck(:name, :id), {prompt: 'すべて'}, {class: 'search-detail__select-form js_category_child_form'}
-              - root.children.each do |parent|
-                .search-detail__box--check-box.js_category_none.js_category_grandchild_none{id: "category_grandchild_#{parent.id}"}
-                  = f.collection_check_boxes :category_id_in, parent.children, :id, :name, {include_hidden: false}, {class: 'search-detail__check-box'} do |b|
-                    = b.label(class: 'search-detail__check-box--none') do
-                      = b.check_box
-                      = b.text
-
-        .search-detail__box
-          = label_tag :brand do
-            = fa_icon('tag', class: 'search-detail__icon')
-            %span.search-detail__title
-              ブランド名から探す
-          = f.text_field :brand_cont, class: 'search-detail__text-form', placeholder: '例）シャネル'
-
-        .search-detail__box
-          = label_tag :sizing do
-            = fa_icon('th', class: 'search-detail__icon')
-            %span.search-detail__title
-              サイズを指定する
-          = select "", :sizing, @sizing.pluck(:name, :id), {prompt: '指定なし'}, {class: 'search-detail__select-form js_sizing_form'}
-          - @sizing.each do |sizing|
-            .search-detail__box--check-box.js_sizing_none{id: "sizing_#{sizing.id}"}
-              = f.collection_check_boxes :sizing_id_in, sizing.children, :id, :name, {include_hidden: false}, {class: 'search-detail__check-box'} do |b|
-                = b.label(class: 'search-detail__check-box--none') do
-                  = b.check_box
-                  = b.text
-
-        .search-detail__box
-          = label_tag :price do
-            = fa_icon('money', class: 'search-detail__icon')
-            %span.search-detail__title
-              価格
-          .search-detail__price--select
-            = select_tag :price_select, options_for_select([['選択して下さい', 0], ['300 ~ 1000', 1], ['1000 ~ 5000', 2], ['5000 ~ 10000', 3], ['10000 ~ 30000', 4], ['30000 ~ 50000', 5], ['50000 ~ ', 6]]), class: 'search-detail__select-form'
-          = f.text_field :price_gteq, class: 'search-detail__text-form--price', placeholder: '¥ Min'
-          %span ~
-          = f.text_field :price_lteq, class: 'search-detail__text-form--price', placeholder: '¥ Max'
-
-        .search-detail__box
-          = label_tag :condition_eq do
-            = fa_icon('star', class: 'search-detail__icon')
-            %span.search-detail__title
-              商品の状態
-          .search-detail__box--check-box.js_check-box
-            = f.label :all_check do
-              = check_box :condition, '', class: 'search-detail__check-box js_all_check', id: 'all_check'
-              全部
-            = f.collection_check_boxes :condition_in, Item.conditions, :last, :first, class: 'search-detail__condition--list' do |b|
-              = b.label do
-                = b.check_box(class: "search-detail__check-box js_check")
-                = Item.conditions_i18n[b.object.send(:first)]
-
-        .search-detail__box
-          = label_tag :bearing do
-            = fa_icon('truck', class: 'search-detail__icon')
-            %span.search-detail__title
-              配送料の負担
-          .search-detail__box--check-box.js_check-box
-            = f.label :all_check do
-              = check_box :transact_bearing, ``, class: "search-detail__check-box js_all_check", id: 'all_check'
-              全部
-            = f.collection_check_boxes :transact_bearing_in, Transact.bearings, :last, :first, class: 'search-detail__bearing-list' do |b|
-              = b.label do
-                = b.check_box(class: "search-detail__check-box js_check")
-                = Transact.bearings_i18n[b.object.send(:first)]
-
-        .search-detail__box
-          = label_tag :status do
-            = fa_icon('shopping-basket', class: 'search-detail__icon')
-            %span.search-detail__title
-              販売状況
-          .search-detail__box--check-box.js_check-box
-            = f.label :all_check do
-              = check_box :transact_status, '', class: "search-detail__check-box js_all_check", id: 'all_check'
-              全部
-            = f.collection_check_boxes :transact_status_in, Transact.statuses.first(2), :last, :first, class: 'search-detail__status-list' do |b|
-              = b.label do
-                = b.check_box(class: "search-detail__check-box js_check")
-                = Transact.statuses_i18n[b.object.send(:first)]
-
-        .search-detail__btn
-          %input.search-detail__btn--clear{type: "reset", value: "クリア"}
-          = f.submit "完了", class: 'search-detail__btn--search'
-
   .search-item__content
     %section.search-results
       - unless @keyword.blank?
         %h2.search-results__keyword
           = "#{@keyword}"
-          %span.search-results__keyword--answer の検索
+          %span.search-results__keyword--answer の検索結果
 
-        - if @search_items.blank?
+        - if @items.limit_value == 24
           %p.search-results__keyword--not-match 該当する商品が見つかりません。検索条件を変えて、再度お試しください。
+        - else
+          .search-results__keyword--count
+            - page_num = params[:page].to_i
+            - page_num = 1 if params[:page].blank?
+            - item_num = (@items.limit_value * (page_num  - 1)) + 1
+            = "#{item_num} - #{item_num + @items.length - 1}件表示"
 
-      - if @search_items.blank? 
-        %h3.search-results__new-item
-          新着商品
-        .search-results__items
-          .search-results__box
-            = render partial: "item-profile", collection: @items, as: "item"
-      - else
-        %h3.search-results__new-item
-          検索結果
-        .search-results__keyword--count
-          - page_num = params[:page].to_i
-          - page_num = 1 if params[:page].blank?
-          - item_num = (@search_items.limit_value * (page_num  - 1)) + 1
-          = "#{item_num} - #{item_num + @search_items.length - 1}件表示"
-        .search-results__items
-          .search-results__box
-            = render partial: "item-profile", collection: @search_items, as: "item"
+      %h3.search-results__new-item
+        = "新着商品" if @keyword.blank? || @items.limit_value == 24
 
-        .search-results__page
-          = paginate @search_items, window: 2
+      .search-results__items
+        .search-results__box
+          = render partial: "item-profile", collection: @items, as: "item"
+
+      .search-results__page
+        - unless @keyword.blank? || @items.limit_value == 24
+          = paginate @items, window: 2
+      

@@ -4,12 +4,12 @@
       .site-name
         = link_to items_path, class: 'site-name__logo' do
           = image_tag "header", class: 'site-name__image'
-      .item-search
-        = search_form_for(@q, url: search_items_path) do |f|
-          = f.text_field :name_or_description_cont, class: 'item-search__field', placeholder: '何かお探しですか？'
-          = label_tag :search do
-            = fa_icon('search', class: 'item-search__submit--icon')
-          = f.submit  '', :name => nil, class: 'item-search__submit', id: 'search'
+      = form_tag( search_items_path, method: :get, class: 'item-search') do
+        - keyword = @keyword if controller.action_name = "search"
+        = text_field_tag :keyword, "#{keyword}", class: 'item-search__field', placeholder: '何かお探しですか？'
+        = label_tag :search do
+          = fa_icon('search', class: 'item-search__submit--icon')
+        = submit_tag  '', :name => nil, class: 'item-search__submit', id: 'search'
 
     .header__menu--paragraph2
       .item-tag

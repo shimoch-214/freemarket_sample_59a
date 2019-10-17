@@ -78,6 +78,12 @@ end
 #     prefecture_id: rand(1..47),
 #     ship_days: rand(0..2)
 #   )
+#   rand(1..10).times do
+#     item.images.build(
+#       name: File.open(image_file_path.sample)
+#     )
+#   end
+#   item.save!
 # end
 
 brand_name = ["シャネル", "ルイヴィトン", "シュプリーム", "ナイキ", "NOブランド"]

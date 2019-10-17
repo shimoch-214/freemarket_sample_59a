@@ -57,11 +57,12 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @keyword = params[:q][:name_or_description_cont]
-    @search_items = @q.result.includes(:images, :transact, :sizing, :category).page(params[:page]).per(3).order("created_at DESC")
-    @items = Item.page(params[:page]).per(24).order("created_at DESC") if @search_items.blank? || @keyword.blank?
-    @category = Category.where(ancestry: nil)
-    @sizing = Sizing.where(ancestry: nil)
+    @keyword = params[:keyword]
+    item = Item.where('name LIKE ? OR description LIKE ?', "%#{@keyword}%", "%#{@keyword}%").page(params[:page]).per(132).order("created_at DESC")
+    if item.blank? || @keyword.blank?
+      item = Item.page(params[:page]).per(24).order("created_at DESC")
+    end
+    @items = item
   end
 
   private
@@ -137,4 +138,5 @@ class ItemsController < ApplicationController
     end
     return items
   end
+
 end
