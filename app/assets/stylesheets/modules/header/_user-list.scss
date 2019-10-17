@@ -5,14 +5,27 @@
     height: 44px;
     position: relative;
     padding: 0px 7px;
+    &:hover {
+      a {
+        color: rgb(0, 149, 238);
+        i {
+          color: rgb(0, 149, 238);
+        }
+      }
+    }
     &--link{
       -webkit-box-align: center;
       align-items: center;
       display: flex;
       font-size: 14px;
       height: 32px;
-      transform: scale(1);
-      transition: all 0.3s ease-out 0s;
+      margin-left: 5px;
+      i {
+        display: inline-block;
+        font-size: 20px;
+        color: #ccc;
+        margin-right: 8px;
+      }
     }
     &--box{
       background-color: rgb(255, 255, 255);

@@ -31,6 +31,11 @@
     margin: 0;
     overflow: hidden;
     z-index: 0;
+    &:hover {
+      box-sizing: content-box;
+      margin: -1px;
+      border: solid 1px #0099e8;
+    }
   }
   &__title{
     -webkit-box-sizing: border-box;

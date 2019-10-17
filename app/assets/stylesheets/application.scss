@@ -83,5 +83,10 @@
 @import "./modules/category/category_menu";
 @import "./modules/category/category-show";
 
+@import "./modules/transacts/transact-container";
+@import "./modules/transacts/transact-side";
+@import "./modules/transacts/transact-message";
+
 @import "./modules/kaminari/page";
 @import "./modules/kaminari/page-current";
+@import "./animate.min";

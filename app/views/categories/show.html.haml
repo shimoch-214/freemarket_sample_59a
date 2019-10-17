@@ -1,8 +1,10 @@
 - breadcrumb :category
 .category-show
-  -@category.children.first(3).each do |category|
+  -@category.children.first(6).each do |category|
     =link_to (category_path(category.id)),class:"category-show__link" do
       %p.category-show__link--name= "#{category.name}"
   %p.category-show__name= "#{@category.name}の商品一覧"
   .category-show__item
     =render partial: "items/item-profile", collection: @items, as: :item
+  .category-show__page  
+    =paginate @items,window:2

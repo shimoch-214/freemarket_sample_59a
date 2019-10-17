@@ -6,6 +6,8 @@ class Transact < ApplicationRecord
   belongs_to  :seller, class_name: 'User', foreign_key: :seller_id
   belongs_to  :buyer, class_name: 'User', foreign_key: :buyer_id, optional: true
   belongs_to_active_hash :prefecture
+  has_many    :messages
+  accepts_nested_attributes_for :messages
 
   # enum setting
   enum delivery_method: {
@@ -33,8 +35,7 @@ class Transact < ApplicationRecord
     contract:    1,
     shipped:     2,
     arrived:     3,
-    thanks:      4,
-    complete:    5
+    complete:    4
   }
 
   # validations

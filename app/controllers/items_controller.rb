@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :get_item, only: [:edit, :update, :show, :destroy]
   before_action :move_to_sign_in, except: [:index, :show, :search], unless: :user_signed_in?
   before_action :current_user_is_seller?, only: [:edit, :update, :destroy]
-  before_action :status_is_zero?, only: [:edit, :update, :destroy] 
+  before_action :status_is_zero?, only: [:edit, :update, :destroy]
 
   def index
     @popular_items = popular_items_setting
@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
     category_item_ids = @item.category.sibling_ids
     category_item_ids.delete(@item.category.id)
     @category_items = Item.where(category_id: category_item_ids).page(params[:page]).per(6).order("created_at DESC")
+    @like=@item.likes
   end
 
   def edit
