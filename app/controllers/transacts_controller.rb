@@ -40,7 +40,7 @@ class TransactsController < ApplicationController
   end
 
   def set_brand
-    @card_brand = @default_card_information.brand      
+    @card_brand = @default_card_information.brand
     case @card_brand
       when "Visa"
         @card_src = "visa.svg"
