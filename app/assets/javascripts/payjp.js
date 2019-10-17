@@ -1,9 +1,7 @@
 $(function(){
 
   var submit = document.getElementById("token_submit");
-  if (submit == null) {
-    return
-  }
+
   submit.addEventListener('click', function(e){
     e.preventDefault();
     Payjp.setPublicKey("pk_test_50682211a79cb20179a84c3c");
