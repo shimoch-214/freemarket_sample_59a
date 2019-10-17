@@ -1,6 +1,5 @@
 class TransactsController < ApplicationController
   layout 'application-user'
-  layout 'application', only: [:show]
   before_action :set_transact
   before_action :set_item
   require 'payjp'
@@ -33,6 +32,7 @@ class TransactsController < ApplicationController
   def show
     @buyer_address = @transact.buyer.address
     @message = Message.new
+    render :layout => 'application'
   end
 
   private
