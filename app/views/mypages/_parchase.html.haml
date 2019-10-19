@@ -12,13 +12,13 @@
       - if @items_in_parchase.present?
         = render partial: 'mypages/item-list', collection: @items_in_parchase, as: :item
         %li.mypage-tab-container__content__go-all
-          = link_to "一覧を見る", notification_mypage_path
+          = link_to "一覧を見る", parchase_mypage_path
       - else
         = render partial: 'mypages/no-list', locals: { message: '取引中の商品がありません' }
     %ul.mypage-tab-container__content{ class: "#{set_active_parchased}"}
       - if @items_finished.present?
         = render partial: 'mypages/item-list', collection: @items_finished, as: :item
         %li.mypage-tab-container__content__go-all
-          = link_to "一覧を見る", notification_mypage_path
+          = link_to "一覧を見る", parchased_mypage_path
       -else
         = render partial: 'mypages/no-list', locals: { message: '取引済の商品がありません' }

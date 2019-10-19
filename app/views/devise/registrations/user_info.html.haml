@@ -56,9 +56,9 @@
           = render partial: 'shared/error_messages', locals: { resource: @user.identification, attr: :birthday }
       .user-info__form--text
         %p.text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
-      .user-info__form--recaptcha
-        = recaptcha_tags
-        = render partial: 'shared/error_messages', locals: { resource: @user, attr: :base }
+      -# .user-info__form--recaptcha
+        -# = recaptcha_tags
+        -# = render partial: 'shared/error_messages', locals: { resource: @user, attr: :base }
       .user-info__form--next
         %span.next--explanation 「次へ進む」のボタンを押すことにより、
         %a.terms-of-service{href:"#"} 利用規約

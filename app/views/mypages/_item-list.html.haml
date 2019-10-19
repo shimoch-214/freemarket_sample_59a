@@ -1,8 +1,9 @@
+- message = item.seller == current_user ? "を出品しました。" : "を購入しました。"
 %li
   = link_to build_item_list_path(item), class: "mypage-tab-container__content__list" do
     = image_tag item.images.first.name.url, class: "mypage-tab-container__content__list__fig"
     .mypage-tab-container__content__list__body
       %p.mypage-tab-container__content__list__body--text
-        = "#{item.name}売ってるよ"
+        = "「#{item.name}」#{message}"
     .mypage-tab-container__content__list__arrow
       = fa_icon "angle-right"
