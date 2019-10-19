@@ -104,7 +104,7 @@
 
   .show-items__text
     %p.show-items__text--inner
-      = @item.description
+      = safe_join @item.description.split("\n"), tag(:br)
   .show-items__botton-container
     .show-items__botton-container-left
       =render partial:"api/likes/likes"
