@@ -1,46 +1,46 @@
 $(function(){
-if($('.input-phone-number').length) {
-    $('.header-user__signup-bar--status-line--1').css('background','red');
-    $('.phone-number--icon').css('background','red');
-    $('li.phone-number').css('color','red');
-    $('li.phone-number').css('font-weight','600');
-    $('li.info').css('color','#888');
-    $('li.info').css('font-weight','200')
-}
-if($('.input-street-number').length) {
-    $('.header-user__signup-bar--status-line--1').css('background','red');
-    $('.header-user__signup-bar--status-line--2').css('background','red');
-    $('.phone-number--icon').css('background','red');
-    $('.address--icon').css('background','red');
-    $('li.address').css('color','red');
-    $('li.address').css('font-weight','600');
-    $('li.info').css('color','#888');
-    $('li.info').css('font-weight','200')
-}
-if($('.card-number--input').length){
-    $('.header-user__signup-bar--status-line--1').css('background','red');
-    $('.header-user__signup-bar--status-line--2').css('background','red');
-    $('.header-user__signup-bar--status-line--3').css('background','red');
-    $('.phone-number--icon').css('background','red');
-    $('.address--icon').css('background','red');
-    $('.payment--icon').css('background','red');
-    $('li.payment').css('color','red');
-    $('li.payment').css('font-weight','600');
-    $('li.info').css('color','#888');
-    $('li.info').css('font-weight','200')
-}
-if($('.start-mercari').length){
-    $('.header-user__signup-bar--status-line--1').css('background','red');
-    $('.header-user__signup-bar--status-line--2').css('background','red');
-    $('.header-user__signup-bar--status-line--3').css('background','red');
-    $('.header-user__signup-bar--status-line--4').css('background','red');
-    $('.phone-number--icon').css('background','red');
-    $('.address--icon').css('background','red');
-    $('.payment--icon').css('background','red');
-    $('.complete--icon').css('background','red');
-    $('li.complete').css('color','red');
-    $('li.complete').css('font-weight','600');
-    $('li.info').css('color','#888');
-    $('li.info').css('font-weight','200')
-}
+    if($('.confirm-phone-number').length) {
+        $('.header-user__signup-bar--status-line--1').css('background','red');
+        $('.phone-number--icon').css('background','red');
+        $('li.phone-number').css('color','red');
+        $('li.phone-number').css('font-weight','600');
+        $('li.info').css('color','#888');
+        $('li.info').css('font-weight','200')
+    }
+    if($('.input-street-number').length) {
+        $('.header-user__signup-bar--status-line--1').css('background','red');
+        $('.header-user__signup-bar--status-line--2').css('background','red');
+        $('.phone-number--icon').css('background','red');
+        $('.address--icon').css('background','red');
+        $('li.address').css('color','red');
+        $('li.address').css('font-weight','600');
+        $('li.info').css('color','#888');
+        $('li.info').css('font-weight','200')
+    }
+    if($('.card-number--input').length){
+        $('.header-user__signup-bar--status-line--1').css('background','red');
+        $('.header-user__signup-bar--status-line--2').css('background','red');
+        $('.header-user__signup-bar--status-line--3').css('background','red');
+        $('.phone-number--icon').css('background','red');
+        $('.address--icon').css('background','red');
+        $('.payment--icon').css('background','red');
+        $('li.payment').css('color','red');
+        $('li.payment').css('font-weight','600');
+        $('li.info').css('color','#888');
+        $('li.info').css('font-weight','200')
+    }
+    if($('.start-mercari').length){
+        $('.header-user__signup-bar--status-line--1').css('background','red');
+        $('.header-user__signup-bar--status-line--2').css('background','red');
+        $('.header-user__signup-bar--status-line--3').css('background','red');
+        $('.header-user__signup-bar--status-line--4').css('background','red');
+        $('.phone-number--icon').css('background','red');
+        $('.address--icon').css('background','red');
+        $('.payment--icon').css('background','red');
+        $('.complete--icon').css('background','red');
+        $('li.complete').css('color','red');
+        $('li.complete').css('font-weight','600');
+        $('li.info').css('color','#888');
+        $('li.info').css('font-weight','200')
+    }
 })

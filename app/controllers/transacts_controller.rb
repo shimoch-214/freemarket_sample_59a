@@ -2,6 +2,7 @@ class TransactsController < ApplicationController
   layout 'application-user'
   before_action :set_transact
   before_action :set_item
+  before_action :move_to_sign_in, unless: :user_signed_in?
   require 'payjp'
 
   # クレジット支払い
@@ -36,6 +37,10 @@ class TransactsController < ApplicationController
   end
 
   private
+
+  def move_to_sign_in
+    redirect_to user_sessions_new_path
+  end
 
   def set_transact
     @transact = Transact.find(params[:id])
