@@ -12,6 +12,8 @@ $(function() {
       checkboxes.prop('checked', true);
     }
   }
+
+  // 前回の検索が「すべて」にチェックが入っていた場合、チェック状態にする
   $('.search-detail__box').find('.js_check-box').each(function() {
     checkboxCheck($(this))
   })
@@ -39,18 +41,18 @@ $(function() {
 
   // category_selectboxで選択した値をchild_category_selectboxに反映させる
   $('.js_category_form').change(function() {
-    var val = $('.js_category_form').val()
+    var val = $(this).val()
     $(this).parent().find('.js_category_child_form').val("")
     $(this).parent().find('input[type="checkbox"]').prop('checked', false)
     $('.js_category_none').hide()
     $('#category_child_'+val).show()
   });
   $('.js_category_child_form').change(function() {
-    var val = $('.js_category_child_form').val()
-    select_sizing = $('#category_grandchild_'+val)
+    var val = $(this).val()
+    select_category = $('#category_grandchild_'+val)
     $(this).parent().find('input[type="checkbox"]').prop('checked', false)
     $('.js_category_grandchild_none').hide()
-    $('#category_grandchild_'+val).show()
+    select_category.show()
   });
 
   // size_selectboxで選択した値をcheckboxに反映させる
