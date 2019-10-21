@@ -2,7 +2,7 @@ class MypagesController < ApplicationController
   before_action :move_to_login_path
 
   def show
-    @todos = current_user.sell_items
+    @todos = []
     @items_in_parchase = current_user.items_in_parchase
     @items_finished = current_user.items_finished
   end
