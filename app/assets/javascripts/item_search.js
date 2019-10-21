@@ -1,5 +1,5 @@
 $(function() {
-  
+
   function priceValueCheck(price){
     price = parseInt(price)
     if (Number.isNaN(price)){
@@ -94,6 +94,12 @@ $(function() {
     $('#q_price_gteq').val(price_min)
     $('#q_price_lteq').val(price_max)
   });
+
+  // reset_buttonが押されたら、category_checkboxとsizing_checkboxを非表示にする
+  $(".search-detail__btn--clear").on('click',function(){
+    $('.js_category_none').hide()
+    $('.js_sizing_none').hide()
+  })
 
   // 完了ボタンを押されたら実行
   $('#detail-search').on('submit', function(e){
