@@ -1,5 +1,14 @@
 $(function() {
-
+  
+  function priceValueCheck(price){
+    price = parseInt(price)
+    if (Number.isNaN(price)){
+      return ""
+    } else {
+      return price
+    }
+  }
+  
   function checkboxCheck(parent_box){
     // var parent_box = checkbox.parent().parent()
     var checkboxes = parent_box.find('input[type="checkbox"]')
@@ -75,18 +84,13 @@ $(function() {
     checkboxCheck(parent_box)
   })
 
+
   // price_selectboxで選択した値をtextboxに反映させる 
   $('[name=price_select]').change(function() {
     var price = $('[name=price_select] option:selected').text();
     var price_min_max = price.split(' ~ ')
-    price_min = parseInt(price_min_max[0])
-    if (Number.isNaN(price_min)){
-      price_min = ""
-    }
-    price_max = parseInt(price_min_max[1])
-    if (Number.isNaN(price_max)){
-      price_max = ""
-    }
+    price_min = priceValueCheck(price_min_max[0])
+    price_max = priceValueCheck(price_min_max[1])
     $('#q_price_gteq').val(price_min)
     $('#q_price_lteq').val(price_max)
   });
