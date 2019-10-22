@@ -37,6 +37,9 @@
       text-align: center;
       color: #fff;
       background-color: #ea352d;
+      &:focus {
+        outline: 0;
+      }
     }
   }
 }

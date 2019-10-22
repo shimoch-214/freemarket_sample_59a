@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   resources :transacts, only: [:show] do
     member do
       get  'buy', to:'transacts#buy'
-      post 'pay', to: 'transacts#pay', as: 'pay'
+      post 'pay', to: 'transacts#pay'
     end
     resource :message, only: [:create]
   end

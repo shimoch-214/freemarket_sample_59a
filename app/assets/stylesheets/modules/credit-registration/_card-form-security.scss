@@ -11,6 +11,10 @@
     background: #fff;
     line-height: 1.5;
     font-size: 16px;
+    &:focus {
+      outline: 0;
+      border: 1px solid #57a2ff;
+    }
   }
   .question-form{
     box-sizing: border-box;

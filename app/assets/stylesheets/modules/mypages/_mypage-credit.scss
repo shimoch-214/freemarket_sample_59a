@@ -87,6 +87,9 @@
       border: 1px solid #ea352d;
       color: #ea352d;
       font-size: 14px;
+      &:focus{
+        outline: 0;
+      }
     }
   }
 }
