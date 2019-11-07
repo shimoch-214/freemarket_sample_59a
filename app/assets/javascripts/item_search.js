@@ -1,5 +1,14 @@
 $(function() {
 
+  function priceValueCheck(price){
+    price = parseInt(price)
+    if (Number.isNaN(price)){
+      return ""
+    } else {
+      return price
+    }
+  }
+  
   function checkboxCheck(parent_box){
     // var parent_box = checkbox.parent().parent()
     var checkboxes = parent_box.find('input[type="checkbox"]')
@@ -12,6 +21,8 @@ $(function() {
       checkboxes.prop('checked', true);
     }
   }
+
+  // 前回の検索が「すべて」にチェックが入っていた場合、チェック状態にする
   $('.search-detail__box').find('.js_check-box').each(function() {
     checkboxCheck($(this))
   })
@@ -39,18 +50,18 @@ $(function() {
 
   // category_selectboxで選択した値をchild_category_selectboxに反映させる
   $('.js_category_form').change(function() {
-    var val = $('.js_category_form').val()
+    var val = $(this).val()
     $(this).parent().find('.js_category_child_form').val("")
     $(this).parent().find('input[type="checkbox"]').prop('checked', false)
     $('.js_category_none').hide()
     $('#category_child_'+val).show()
   });
   $('.js_category_child_form').change(function() {
-    var val = $('.js_category_child_form').val()
-    select_sizing = $('#category_grandchild_'+val)
+    var val = $(this).val()
+    select_category = $('#category_grandchild_'+val)
     $(this).parent().find('input[type="checkbox"]').prop('checked', false)
     $('.js_category_grandchild_none').hide()
-    $('#category_grandchild_'+val).show()
+    select_category.show()
   });
 
   // size_selectboxで選択した値をcheckboxに反映させる
@@ -73,21 +84,22 @@ $(function() {
     checkboxCheck(parent_box)
   })
 
+
   // price_selectboxで選択した値をtextboxに反映させる 
   $('[name=price_select]').change(function() {
     var price = $('[name=price_select] option:selected').text();
     var price_min_max = price.split(' ~ ')
-    price_min = parseInt(price_min_max[0])
-    if (Number.isNaN(price_min)){
-      price_min = ""
-    }
-    price_max = parseInt(price_min_max[1])
-    if (Number.isNaN(price_max)){
-      price_max = ""
-    }
+    price_min = priceValueCheck(price_min_max[0])
+    price_max = priceValueCheck(price_min_max[1])
     $('#q_price_gteq').val(price_min)
     $('#q_price_lteq').val(price_max)
   });
+
+  // reset_buttonが押されたら、category_checkboxとsizing_checkboxを非表示にする
+  $(".search-detail__btn--clear").on('click',function(){
+    $('.js_category_none').hide()
+    $('.js_sizing_none').hide()
+  })
 
   // 完了ボタンを押されたら実行
   $('#detail-search').on('submit', function(e){
